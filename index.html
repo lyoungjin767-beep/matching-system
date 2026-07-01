@@ -2489,9 +2489,7 @@
         localStorage.setItem(storageKey, JSON.stringify(profile));
         updateProfilePreview(profile);
         renderCompanyMatches(profile, true);
-        profileDialog.close();
-        pageMatches.scrollIntoView({ behavior: "smooth", block: "start" });
-        formStatus.textContent = "프로필이 등록되었습니다. 기업과 멘토를 함께 매칭했습니다.";
+        formStatus.textContent = "프로필이 등록되었습니다. 아래에서 기업과 멘토 매칭 결과를 확인하세요.";
         formStatus.hidden = false;
       });
 
