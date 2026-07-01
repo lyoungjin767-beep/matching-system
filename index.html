@@ -139,6 +139,20 @@
         padding-top: 8px;
       }
 
+      .hero-visual {
+        margin: 0;
+      }
+
+      .hero-photo {
+        display: block;
+        width: 100%;
+        height: auto;
+        border: 1px solid #dbe7f8;
+        border-radius: 8px;
+        background: #ffffff;
+        box-shadow: 0 18px 42px rgba(14, 45, 88, 0.12);
+      }
+
       .hero-title {
         margin: 0;
         color: var(--navy);
@@ -1500,71 +1514,9 @@
           </div>
         </div>
 
-        <div class="matching-stage" aria-label="AI 맞춤 매칭 흐름">
-          <div class="flow-board">
-            <article class="mini-panel student-panel">
-              <h2 class="panel-title">학생 프로필</h2>
-              <div class="avatar" aria-hidden="true"></div>
-              <p class="student-name" data-profile-name>김지훈</p>
-              <p class="student-major" data-profile-major>컴퓨터공학 전공</p>
-              <div class="chips" aria-label="관심 키워드" data-profile-chips>
-                <span class="chip">데이터 분석</span>
-                <span class="chip">AI/머신러닝</span>
-                <span class="chip">ESG</span>
-                <span class="chip">지역 사회 문제 해결</span>
-              </div>
-            </article>
-
-            <div class="flow-arrow" aria-hidden="true"></div>
-
-            <article class="mini-panel ai-panel">
-              <h2 class="panel-title">AI 맞춤 매칭</h2>
-              <div class="ai-orbit" aria-hidden="true">
-                <span class="ai-core">AI</span>
-                <span class="dot dot-a"></span>
-                <span class="dot dot-b"></span>
-                <span class="dot dot-c"></span>
-                <span class="dot dot-d"></span>
-              </div>
-              <ul class="check-list">
-                <li>전공 · 역량 분석</li>
-                <li>관심사 · 가치 분석</li>
-                <li>프로젝트 적합도 예측</li>
-              </ul>
-            </article>
-
-            <div class="signal-lines" aria-hidden="true"></div>
-
-            <div class="result-stack">
-              <article class="result-tile green">
-                <div class="icon-badge" aria-hidden="true">M</div>
-                <div>
-                  <h2 class="result-title">멘토(현직자)</h2>
-                  <p class="result-text">데이터 사이언티스트<br>네이버</p>
-                </div>
-                <div class="round-action" aria-hidden="true">+</div>
-              </article>
-
-              <article class="result-tile">
-                <div class="icon-badge" aria-hidden="true">B</div>
-                <div>
-                  <h2 class="result-title">기업 프로젝트</h2>
-                  <p class="result-text">친환경 데이터 플랫폼 구축<br>네이버</p>
-                </div>
-                <div class="round-action" aria-hidden="true">+</div>
-              </article>
-
-              <article class="result-tile green">
-                <div class="icon-badge" aria-hidden="true">L</div>
-                <div>
-                  <h2 class="result-title">지역 과제</h2>
-                  <p class="result-text">지역 탄소 배출 분석 프로젝트<br>서울특별시</p>
-                </div>
-                <div class="round-action" aria-hidden="true">+</div>
-              </article>
-            </div>
-          </div>
-        </div>
+        <figure class="hero-visual" aria-label="사진1">
+          <img class="hero-photo" src="./photo1.png" alt="사진1" />
+        </figure>
       </section>
 
       <section class="comparison" aria-label="일반 인턴십과 ENVOL 비교">
@@ -1669,7 +1621,19 @@
                 </div>
                 <div class="field">
                   <label for="majorName">전공</label>
-                  <input id="majorName" name="majorName" type="text" placeholder="컴퓨터공학" required>
+                  <select id="majorName" name="majorName" required>
+                    <option value="">선택</option>
+                    <option>컴퓨터공학</option>
+                    <option>소프트웨어공학</option>
+                    <option>데이터사이언스</option>
+                    <option>인공지능</option>
+                    <option>산업공학</option>
+                    <option>경영학</option>
+                    <option>디자인</option>
+                    <option>환경공학</option>
+                    <option>에너지공학</option>
+                    <option>기타</option>
+                  </select>
                 </div>
                 <div class="field">
                   <label for="studentYear">학년</label>
@@ -1800,6 +1764,7 @@
       const pageMentorCopy = document.querySelector("[data-page-mentor-copy]");
       const pageMentorSummary = document.querySelector("[data-page-mentor-summary]");
       const pageMentorList = document.querySelector("[data-page-mentor-list]");
+      const majorField = profileForm.elements.majorName;
       const storageKey = "envol-basic-profile";
       const companyPool = [
         {
@@ -2183,6 +2148,38 @@
         }
       };
 
+      const readProfileFromForm = () => {
+        const formData = new FormData(profileForm);
+        const readText = (key) => (formData.get(key) || "").trim();
+
+        return {
+          studentName: readText("studentName") || "김지훈",
+          schoolName: readText("schoolName") || "ENVOL대학교",
+          majorName: readText("majorName"),
+          studentYear: formData.get("studentYear") || "3학년",
+          interests: getSelectedInterests(),
+          projectType: formData.get("projectType") || "기업 프로젝트",
+          regionName: readText("regionName") || "서울",
+          skills: readText("skills"),
+          emailAddress: readText("emailAddress"),
+          portfolioUrl: readText("portfolioUrl")
+        };
+      };
+
+      const revealMatchesFromMajor = () => {
+        const profile = readProfileFromForm();
+        if (!profile.majorName) {
+          modalMatches.hidden = true;
+          pageMatches.hidden = true;
+          return;
+        }
+
+        updateProfilePreview(profile);
+        renderCompanyMatches(profile, false);
+        formStatus.textContent = "전공 선택이 완료되어 매칭 결과를 표시합니다.";
+        formStatus.hidden = false;
+      };
+
       const updateProfilePreview = (profile) => {
         const nameTarget = document.querySelector("[data-profile-name]");
         const majorTarget = document.querySelector("[data-profile-major]");
@@ -2500,23 +2497,11 @@
         button.addEventListener("click", () => profileDialog.close());
       });
 
+      majorField.addEventListener("change", revealMatchesFromMajor);
+
       profileForm.addEventListener("submit", (event) => {
         event.preventDefault();
-
-        const formData = new FormData(profileForm);
-        const readText = (key) => (formData.get(key) || "").trim();
-        const profile = {
-          studentName: readText("studentName"),
-          schoolName: readText("schoolName"),
-          majorName: readText("majorName"),
-          studentYear: formData.get("studentYear"),
-          interests: getSelectedInterests(),
-          projectType: formData.get("projectType"),
-          regionName: readText("regionName"),
-          skills: readText("skills"),
-          emailAddress: readText("emailAddress"),
-          portfolioUrl: readText("portfolioUrl")
-        };
+        const profile = readProfileFromForm();
 
         localStorage.setItem(storageKey, JSON.stringify(profile));
         updateProfilePreview(profile);
@@ -2529,7 +2514,6 @@
       if (savedProfile) {
         fillForm(savedProfile);
         updateProfilePreview(savedProfile);
-        renderCompanyMatches(savedProfile);
       }
 
       if (window.location.hash === "#profile") {
