@@ -182,8 +182,11 @@
 
       .cta-button {
         min-width: 286px;
+        border: 0;
         padding: 0 34px;
         font-size: 1.35rem;
+        font-family: inherit;
+        cursor: pointer;
       }
 
       .cta-primary {
@@ -723,6 +726,278 @@
         bottom: 0;
       }
 
+      .profile-modal {
+        width: min(940px, calc(100% - 40px));
+        max-height: min(860px, calc(100vh - 48px));
+        padding: 0;
+        border: 1px solid #cddbf0;
+        border-radius: 8px;
+        color: var(--text);
+        background: #ffffff;
+        box-shadow: 0 28px 80px rgba(7, 24, 65, 0.22);
+      }
+
+      .profile-modal::backdrop {
+        background: rgba(7, 24, 65, 0.48);
+        backdrop-filter: blur(8px);
+      }
+
+      .profile-shell {
+        display: grid;
+        grid-template-columns: minmax(220px, 0.78fr) minmax(0, 1.22fr);
+        min-height: 620px;
+      }
+
+      .profile-aside {
+        padding: 36px 30px;
+        color: #ffffff;
+        background: linear-gradient(160deg, #0f5bea 0%, #0b8c5b 100%);
+      }
+
+      .profile-aside h2 {
+        margin: 0;
+        font-size: 2rem;
+        line-height: 1.2;
+        letter-spacing: 0;
+      }
+
+      .profile-aside p {
+        margin: 18px 0 0;
+        color: rgba(255, 255, 255, 0.86);
+        font-size: 1rem;
+        line-height: 1.7;
+      }
+
+      .profile-points {
+        display: grid;
+        gap: 14px;
+        margin: 36px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .profile-points li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.95rem;
+        font-weight: 800;
+      }
+
+      .profile-points li::before {
+        content: "";
+        width: 18px;
+        height: 18px;
+        flex: 0 0 18px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.22);
+        box-shadow: inset 0 0 0 5px #ffffff;
+      }
+
+      .profile-form-wrap {
+        padding: 30px;
+        overflow: auto;
+      }
+
+      .profile-form-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 22px;
+      }
+
+      .profile-form-head h3 {
+        margin: 0;
+        color: var(--navy);
+        font-size: 1.55rem;
+        letter-spacing: 0;
+      }
+
+      .profile-form-head p {
+        margin: 8px 0 0;
+        color: var(--muted);
+        line-height: 1.55;
+      }
+
+      .icon-button {
+        width: 38px;
+        height: 38px;
+        flex: 0 0 38px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        color: var(--navy);
+        background: #ffffff;
+        font-size: 1.45rem;
+        line-height: 1;
+        cursor: pointer;
+      }
+
+      .profile-form {
+        display: grid;
+        gap: 22px;
+      }
+
+      .form-section {
+        display: grid;
+        gap: 16px;
+        margin: 0;
+        padding: 0;
+        border: 0;
+      }
+
+      .form-section legend {
+        margin-bottom: 2px;
+        color: var(--navy);
+        font-size: 1.05rem;
+        font-weight: 900;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .field {
+        display: grid;
+        gap: 8px;
+      }
+
+      .field.full {
+        grid-column: 1 / -1;
+      }
+
+      .field label,
+      .choice-label {
+        color: #26324a;
+        font-size: 0.88rem;
+        font-weight: 900;
+      }
+
+      .field input,
+      .field select,
+      .field textarea {
+        width: 100%;
+        min-height: 46px;
+        border: 1px solid #cfd9ea;
+        border-radius: 8px;
+        padding: 0 14px;
+        color: var(--text);
+        background: #ffffff;
+        font: inherit;
+        outline: none;
+        transition: border-color 160ms ease, box-shadow 160ms ease;
+      }
+
+      .field textarea {
+        min-height: 92px;
+        padding-top: 12px;
+        resize: vertical;
+      }
+
+      .field input:focus,
+      .field select:focus,
+      .field textarea:focus {
+        border-color: var(--blue);
+        box-shadow: 0 0 0 4px rgba(15, 91, 234, 0.12);
+      }
+
+      .choice-group {
+        display: grid;
+        gap: 10px;
+      }
+
+      .option-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .option-grid input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .option-grid label {
+        min-height: 38px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #cfd9ea;
+        border-radius: 999px;
+        padding: 0 14px;
+        color: #24314a;
+        background: #f8fbff;
+        font-size: 0.9rem;
+        font-weight: 800;
+        cursor: pointer;
+        transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
+      }
+
+      .option-grid input:checked + label {
+        border-color: var(--blue);
+        color: var(--blue);
+        background: #eaf3ff;
+      }
+
+      .agreement {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        color: #354157;
+        font-size: 0.9rem;
+        line-height: 1.55;
+      }
+
+      .agreement input {
+        width: 18px;
+        height: 18px;
+        flex: 0 0 18px;
+        margin-top: 2px;
+        accent-color: var(--blue);
+      }
+
+      .form-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        padding-top: 4px;
+      }
+
+      .submit-button,
+      .ghost-button {
+        min-height: 48px;
+        border-radius: 8px;
+        padding: 0 22px;
+        font: inherit;
+        font-weight: 900;
+        cursor: pointer;
+      }
+
+      .submit-button {
+        border: 0;
+        color: #ffffff;
+        background: var(--blue);
+        box-shadow: 0 14px 30px rgba(15, 91, 234, 0.2);
+      }
+
+      .ghost-button {
+        border: 1px solid #cfd9ea;
+        color: var(--navy);
+        background: #ffffff;
+      }
+
+      .form-status {
+        margin: 0;
+        color: var(--green-dark);
+        font-size: 0.92rem;
+        font-weight: 900;
+      }
+
       @media (max-width: 1350px) {
         .hero {
           grid-template-columns: 1fr;
@@ -929,6 +1204,59 @@
         .bullet-list {
           font-size: 1rem;
         }
+
+        .profile-modal {
+          width: min(calc(100% - 24px), 360px);
+          max-height: calc(100vh - 24px);
+        }
+
+        .profile-shell {
+          grid-template-columns: 1fr;
+          min-height: 0;
+        }
+
+        .profile-aside {
+          padding: 24px;
+        }
+
+        .profile-aside h2 {
+          font-size: 1.45rem;
+        }
+
+        .profile-aside p,
+        .profile-points {
+          display: none;
+        }
+
+        .profile-form-wrap {
+          padding: 22px;
+        }
+
+        .profile-form-head {
+          align-items: flex-start;
+        }
+
+        .profile-form-head h3 {
+          font-size: 1.25rem;
+        }
+
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .option-grid label {
+          flex: 1 1 auto;
+        }
+
+        .form-actions {
+          align-items: stretch;
+          flex-direction: column-reverse;
+        }
+
+        .submit-button,
+        .ghost-button {
+          width: 100%;
+        }
       }
     </style>
   </head>
@@ -960,7 +1288,7 @@
             지역 과제와 연결합니다.
           </p>
           <div class="cta-row">
-            <a class="cta-button cta-primary" href="#projects">프로젝트 시작하기</a>
+            <button class="cta-button cta-primary" type="button" data-open-profile>프로젝트 시작하기</button>
             <a class="cta-button cta-secondary" href="#mentor">멘토로 참여하기</a>
           </div>
         </div>
@@ -970,9 +1298,9 @@
             <article class="mini-panel student-panel">
               <h2 class="panel-title">학생 프로필</h2>
               <div class="avatar" aria-hidden="true"></div>
-              <p class="student-name">김지훈</p>
-              <p class="student-major">컴퓨터공학 전공</p>
-              <div class="chips" aria-label="관심 키워드">
+              <p class="student-name" data-profile-name>김지훈</p>
+              <p class="student-major" data-profile-major>컴퓨터공학 전공</p>
+              <div class="chips" aria-label="관심 키워드" data-profile-chips>
                 <span class="chip">데이터 분석</span>
                 <span class="chip">AI/머신러닝</span>
                 <span class="chip">ESG</span>
@@ -1068,5 +1396,228 @@
         </div>
       </section>
     </main>
+
+    <dialog class="profile-modal" id="profileDialog" aria-labelledby="profileDialogTitle">
+      <div class="profile-shell">
+        <aside class="profile-aside">
+          <h2 id="profileDialogTitle">기본 프로필 등록</h2>
+          <p>전공, 관심 분야, 프로젝트 선호도를 등록하면 AI 매칭 카드에 바로 반영됩니다.</p>
+          <ul class="profile-points">
+            <li>학생 기본 정보</li>
+            <li>관심 분야와 역량</li>
+            <li>프로젝트 참여 조건</li>
+          </ul>
+        </aside>
+
+        <div class="profile-form-wrap">
+          <div class="profile-form-head">
+            <div>
+              <h3>프로필 정보</h3>
+              <p>프로젝트 추천에 필요한 핵심 정보만 입력합니다.</p>
+            </div>
+            <button class="icon-button" type="button" aria-label="닫기" data-close-profile>&times;</button>
+          </div>
+
+          <form class="profile-form" id="profileForm">
+            <fieldset class="form-section">
+              <legend>기본 정보</legend>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="studentName">이름</label>
+                  <input id="studentName" name="studentName" type="text" placeholder="김지훈" autocomplete="name" required>
+                </div>
+                <div class="field">
+                  <label for="schoolName">학교</label>
+                  <input id="schoolName" name="schoolName" type="text" placeholder="ENVOL대학교" required>
+                </div>
+                <div class="field">
+                  <label for="majorName">전공</label>
+                  <input id="majorName" name="majorName" type="text" placeholder="컴퓨터공학" required>
+                </div>
+                <div class="field">
+                  <label for="studentYear">학년</label>
+                  <select id="studentYear" name="studentYear" required>
+                    <option value="">선택</option>
+                    <option>1학년</option>
+                    <option>2학년</option>
+                    <option>3학년</option>
+                    <option>4학년</option>
+                    <option>졸업 예정</option>
+                  </select>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="form-section">
+              <legend>관심 분야</legend>
+              <div class="choice-group">
+                <span class="choice-label">관심 키워드</span>
+                <div class="option-grid">
+                  <input id="interestData" name="interests" type="checkbox" value="데이터 분석">
+                  <label for="interestData">데이터 분석</label>
+                  <input id="interestAi" name="interests" type="checkbox" value="AI/머신러닝">
+                  <label for="interestAi">AI/머신러닝</label>
+                  <input id="interestEsg" name="interests" type="checkbox" value="ESG">
+                  <label for="interestEsg">ESG</label>
+                  <input id="interestLocal" name="interests" type="checkbox" value="지역 문제 해결">
+                  <label for="interestLocal">지역 문제 해결</label>
+                  <input id="interestDesign" name="interests" type="checkbox" value="서비스 기획">
+                  <label for="interestDesign">서비스 기획</label>
+                </div>
+              </div>
+
+              <div class="form-grid">
+                <div class="field">
+                  <label for="projectType">선호 프로젝트</label>
+                  <select id="projectType" name="projectType" required>
+                    <option value="">선택</option>
+                    <option>기업 프로젝트</option>
+                    <option>지역 과제</option>
+                    <option>멘토링 중심</option>
+                    <option>데이터 분석 프로젝트</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="regionName">활동 가능 지역</label>
+                  <input id="regionName" name="regionName" type="text" placeholder="서울, 경기, 온라인" required>
+                </div>
+                <div class="field full">
+                  <label for="skills">보유 역량</label>
+                  <textarea id="skills" name="skills" placeholder="Python, 데이터 시각화, 발표, 리서치 등"></textarea>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="form-section">
+              <legend>연락 정보</legend>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="emailAddress">이메일</label>
+                  <input id="emailAddress" name="emailAddress" type="email" placeholder="student@example.com" autocomplete="email" required>
+                </div>
+                <div class="field">
+                  <label for="portfolioUrl">포트폴리오</label>
+                  <input id="portfolioUrl" name="portfolioUrl" type="url" placeholder="https://">
+                </div>
+              </div>
+            </fieldset>
+
+            <label class="agreement">
+              <input name="agreement" type="checkbox" required>
+              <span>프로젝트 매칭을 위해 입력한 프로필 정보를 활용하는 데 동의합니다.</span>
+            </label>
+
+            <div class="form-actions">
+              <button class="ghost-button" type="button" data-close-profile>취소</button>
+              <p class="form-status" data-form-status hidden></p>
+              <button class="submit-button" type="submit">프로필 등록하기</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </dialog>
+
+    <script>
+      const profileDialog = document.querySelector("#profileDialog");
+      const profileForm = document.querySelector("#profileForm");
+      const formStatus = document.querySelector("[data-form-status]");
+      const storageKey = "envol-basic-profile";
+
+      const getSelectedInterests = () =>
+        Array.from(profileForm.querySelectorAll("input[name='interests']:checked")).map((input) => input.value);
+
+      const openProfileDialog = () => {
+        formStatus.hidden = true;
+        if (profileDialog.showModal) {
+          profileDialog.showModal();
+        } else {
+          profileDialog.setAttribute("open", "");
+        }
+      };
+
+      const updateProfilePreview = (profile) => {
+        const nameTarget = document.querySelector("[data-profile-name]");
+        const majorTarget = document.querySelector("[data-profile-major]");
+        const chipsTarget = document.querySelector("[data-profile-chips]");
+        const savedInterests = Array.isArray(profile.interests) ? profile.interests : [];
+        const interests = savedInterests.length ? savedInterests : ["데이터 분석", "AI/머신러닝", "ESG"];
+
+        nameTarget.textContent = profile.studentName || "김지훈";
+        majorTarget.textContent = `${profile.majorName || "컴퓨터공학"} 전공`;
+        chipsTarget.replaceChildren(
+          ...interests.slice(0, 4).map((interest) => {
+            const chip = document.createElement("span");
+            chip.className = "chip";
+            chip.textContent = interest;
+            return chip;
+          })
+        );
+      };
+
+      const fillForm = (profile) => {
+        Object.entries(profile).forEach(([key, value]) => {
+          if (key === "interests") return;
+          const field = profileForm.elements[key];
+          if (field) field.value = value;
+        });
+
+        profileForm.querySelectorAll("input[name='interests']").forEach((input) => {
+          const interests = Array.isArray(profile.interests) ? profile.interests : [];
+          input.checked = interests.includes(input.value);
+        });
+      };
+
+      const readSavedProfile = () => {
+        try {
+          return JSON.parse(localStorage.getItem(storageKey));
+        } catch {
+          return null;
+        }
+      };
+
+      document.querySelectorAll("[data-open-profile]").forEach((button) => {
+        button.addEventListener("click", () => {
+          openProfileDialog();
+        });
+      });
+
+      document.querySelectorAll("[data-close-profile]").forEach((button) => {
+        button.addEventListener("click", () => profileDialog.close());
+      });
+
+      profileForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(profileForm);
+        const readText = (key) => (formData.get(key) || "").trim();
+        const profile = {
+          studentName: readText("studentName"),
+          schoolName: readText("schoolName"),
+          majorName: readText("majorName"),
+          studentYear: formData.get("studentYear"),
+          interests: getSelectedInterests(),
+          projectType: formData.get("projectType"),
+          regionName: readText("regionName"),
+          skills: readText("skills"),
+          emailAddress: readText("emailAddress"),
+          portfolioUrl: readText("portfolioUrl")
+        };
+
+        localStorage.setItem(storageKey, JSON.stringify(profile));
+        updateProfilePreview(profile);
+        formStatus.textContent = "프로필이 등록되었습니다.";
+        formStatus.hidden = false;
+      });
+
+      const savedProfile = readSavedProfile();
+      if (savedProfile) {
+        fillForm(savedProfile);
+        updateProfilePreview(savedProfile);
+      }
+
+      if (window.location.hash === "#profile") {
+        openProfileDialog();
+      }
+    </script>
   </body>
 </html>
