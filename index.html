@@ -129,7 +129,8 @@
       }
 
       .hero,
-      .comparison {
+      .comparison,
+      .company-matches {
         width: min(1600px, calc(100% - 72px));
         margin: 0 auto;
       }
@@ -998,6 +999,175 @@
         font-weight: 900;
       }
 
+      .company-matches {
+        padding: 0 0 76px;
+      }
+
+      .company-match-shell,
+      .match-results {
+        border: 1px solid #cfdff3;
+        border-radius: 8px;
+        background: rgba(248, 251, 255, 0.96);
+        box-shadow: 0 18px 44px rgba(22, 49, 92, 0.08);
+      }
+
+      .company-match-shell {
+        padding: 34px;
+      }
+
+      .match-results {
+        padding: 20px;
+      }
+
+      .match-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 20px;
+        margin-bottom: 22px;
+      }
+
+      .match-eyebrow {
+        margin: 0 0 8px;
+        color: var(--green-dark);
+        font-size: 0.82rem;
+        font-weight: 900;
+      }
+
+      .match-header h2,
+      .match-header h3 {
+        margin: 0;
+        color: var(--navy);
+        line-height: 1.22;
+        letter-spacing: 0;
+      }
+
+      .match-header h2 {
+        font-size: 2rem;
+      }
+
+      .match-header h3 {
+        font-size: 1.25rem;
+      }
+
+      .match-copy {
+        margin: 10px 0 0;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .match-summary {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 8px;
+      }
+
+      .summary-pill {
+        min-height: 34px;
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid #cae0ff;
+        border-radius: 999px;
+        padding: 0 12px;
+        color: #17458c;
+        background: #eef6ff;
+        font-size: 0.82rem;
+        font-weight: 900;
+      }
+
+      .match-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 14px;
+      }
+
+      .match-results .match-list {
+        max-height: 360px;
+        overflow: auto;
+        padding-right: 4px;
+      }
+
+      .company-card {
+        min-height: 218px;
+        display: grid;
+        gap: 12px;
+        align-content: start;
+        border: 1px solid #d8e3f3;
+        border-radius: 8px;
+        padding: 16px;
+        background: #ffffff;
+        box-shadow: 0 12px 26px rgba(24, 51, 89, 0.06);
+      }
+
+      .company-card-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .company-name {
+        margin: 0;
+        color: var(--navy);
+        font-size: 1.08rem;
+        font-weight: 900;
+        line-height: 1.35;
+      }
+
+      .company-sector {
+        margin: 4px 0 0;
+        color: var(--green-dark);
+        font-size: 0.82rem;
+        font-weight: 900;
+      }
+
+      .score-badge {
+        min-width: 54px;
+        min-height: 34px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        color: #ffffff;
+        background: var(--blue);
+        font-size: 0.9rem;
+        font-weight: 900;
+      }
+
+      .company-detail {
+        margin: 0;
+        color: #344158;
+        font-size: 0.9rem;
+        line-height: 1.55;
+      }
+
+      .project-line {
+        margin: 0;
+        color: #1f2c44;
+        font-size: 0.88rem;
+        line-height: 1.55;
+        font-weight: 800;
+      }
+
+      .tag-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+      }
+
+      .mini-tag {
+        min-height: 26px;
+        display: inline-flex;
+        align-items: center;
+        border-radius: 999px;
+        padding: 0 9px;
+        color: #1d365b;
+        background: #edf4ff;
+        font-size: 0.74rem;
+        font-weight: 900;
+      }
+
       @media (max-width: 1350px) {
         .hero {
           grid-template-columns: 1fr;
@@ -1015,7 +1185,8 @@
       @media (max-width: 980px) {
         .header-inner,
         .hero,
-        .comparison {
+        .comparison,
+        .company-matches {
           width: min(calc(100% - 36px), 900px);
         }
 
@@ -1091,6 +1262,14 @@
           grid-column: 1 / -1;
           justify-self: center;
         }
+
+        .match-header {
+          display: grid;
+        }
+
+        .match-summary {
+          justify-content: flex-start;
+        }
       }
 
       @media (min-width: 1500px) {
@@ -1106,7 +1285,8 @@
 
         .header-inner,
         .hero,
-        .comparison {
+        .comparison,
+        .company-matches {
           max-width: 300px;
         }
 
@@ -1257,6 +1437,26 @@
         .ghost-button {
           width: 100%;
         }
+
+        .company-match-shell {
+          padding: 22px;
+        }
+
+        .match-results {
+          padding: 16px;
+        }
+
+        .match-header h2 {
+          font-size: 1.5rem;
+        }
+
+        .match-list {
+          grid-template-columns: 1fr;
+        }
+
+        .company-card {
+          min-height: 0;
+        }
       }
     </style>
   </head>
@@ -1395,6 +1595,22 @@
           </article>
         </div>
       </section>
+
+      <section class="company-matches" data-page-matches hidden aria-live="polite">
+        <div class="company-match-shell">
+          <div class="match-header">
+            <div>
+              <p class="match-eyebrow">AI 기업 매칭 결과</p>
+              <h2 data-page-match-title>관련 기업 매칭 대기 중</h2>
+              <p class="match-copy" data-page-match-copy>
+                기본 프로필을 등록하면 현재 입력한 관심 분야와 프로젝트 조건에 맞는 기업들이 관련도순으로 정렬됩니다.
+              </p>
+            </div>
+            <div class="match-summary" data-page-match-summary></div>
+          </div>
+          <div class="match-list" data-page-match-list></div>
+        </div>
+      </section>
     </main>
 
     <dialog class="profile-modal" id="profileDialog" aria-labelledby="profileDialogTitle">
@@ -1512,6 +1728,18 @@
               <p class="form-status" data-form-status hidden></p>
               <button class="submit-button" type="submit">프로필 등록하기</button>
             </div>
+
+            <section class="match-results" data-modal-matches hidden aria-live="polite">
+              <div class="match-header">
+                <div>
+                  <p class="match-eyebrow">매칭 완료</p>
+                  <h3 data-modal-match-title>관련 기업</h3>
+                  <p class="match-copy" data-modal-match-copy></p>
+                </div>
+                <div class="match-summary" data-modal-match-summary></div>
+              </div>
+              <div class="match-list" data-modal-match-list></div>
+            </section>
           </form>
         </div>
       </div>
@@ -1521,7 +1749,239 @@
       const profileDialog = document.querySelector("#profileDialog");
       const profileForm = document.querySelector("#profileForm");
       const formStatus = document.querySelector("[data-form-status]");
+      const modalMatches = document.querySelector("[data-modal-matches]");
+      const modalMatchTitle = document.querySelector("[data-modal-match-title]");
+      const modalMatchCopy = document.querySelector("[data-modal-match-copy]");
+      const modalMatchSummary = document.querySelector("[data-modal-match-summary]");
+      const modalMatchList = document.querySelector("[data-modal-match-list]");
+      const pageMatches = document.querySelector("[data-page-matches]");
+      const pageMatchTitle = document.querySelector("[data-page-match-title]");
+      const pageMatchCopy = document.querySelector("[data-page-match-copy]");
+      const pageMatchSummary = document.querySelector("[data-page-match-summary]");
+      const pageMatchList = document.querySelector("[data-page-match-list]");
       const storageKey = "envol-basic-profile";
+      const companyPool = [
+        {
+          name: "NAVER Cloud",
+          sector: "AI · 클라우드",
+          region: "성남 · 서울 · 온라인",
+          tags: ["AI/머신러닝", "데이터 분석", "클라우드", "서비스 기획"],
+          projectTypes: ["기업 프로젝트", "데이터 분석 프로젝트"],
+          majors: ["컴퓨터", "소프트웨어", "데이터", "AI", "산업공학"],
+          keywords: ["ai", "머신러닝", "데이터", "클라우드", "python", "서비스", "기획"],
+          project: "생성형 AI 서비스 기획, 클라우드 데이터 플랫폼 구축",
+          reason: "AI 모델과 클라우드 기반 서비스를 함께 다루는 프로젝트에 적합합니다."
+        },
+        {
+          name: "Kakao Enterprise",
+          sector: "AI · 업무 플랫폼",
+          region: "판교 · 온라인",
+          tags: ["AI/머신러닝", "데이터 분석", "서비스 기획", "클라우드"],
+          projectTypes: ["기업 프로젝트", "멘토링 중심"],
+          majors: ["컴퓨터", "소프트웨어", "데이터", "경영", "산업공학"],
+          keywords: ["ai", "챗봇", "데이터", "플랫폼", "서비스", "기획"],
+          project: "업무 자동화 AI, 협업 플랫폼 사용성 개선",
+          reason: "AI 기반 업무 도구와 B2B 서비스 기획 경험을 쌓기 좋습니다."
+        },
+        {
+          name: "Samsung SDS",
+          sector: "데이터 · 엔터프라이즈 DX",
+          region: "서울 · 수원 · 온라인",
+          tags: ["데이터 분석", "AI/머신러닝", "클라우드", "서비스 기획"],
+          projectTypes: ["기업 프로젝트", "데이터 분석 프로젝트"],
+          majors: ["컴퓨터", "데이터", "산업공학", "통계", "경영"],
+          keywords: ["데이터", "analytics", "ai", "cloud", "보안", "python", "sql"],
+          project: "기업 데이터 분석, AI 업무 프로세스 자동화",
+          reason: "대기업 DX와 데이터 분석 프로젝트에 강하게 맞습니다."
+        },
+        {
+          name: "LG CNS",
+          sector: "AI · DX 컨설팅",
+          region: "서울 · 마곡 · 온라인",
+          tags: ["AI/머신러닝", "데이터 분석", "서비스 기획", "클라우드"],
+          projectTypes: ["기업 프로젝트", "데이터 분석 프로젝트"],
+          majors: ["컴퓨터", "데이터", "산업공학", "경영", "통계"],
+          keywords: ["dx", "ai", "데이터", "클라우드", "서비스", "컨설팅"],
+          project: "산업별 AI 적용, 고객 데이터 기반 서비스 설계",
+          reason: "AI·데이터를 실제 기업 시스템에 적용하는 경험과 잘 맞습니다."
+        },
+        {
+          name: "SK Telecom",
+          sector: "AI · 통신 데이터",
+          region: "서울 · 온라인",
+          tags: ["AI/머신러닝", "데이터 분석", "서비스 기획"],
+          projectTypes: ["기업 프로젝트", "데이터 분석 프로젝트"],
+          majors: ["컴퓨터", "데이터", "전자", "통계", "산업공학"],
+          keywords: ["ai", "통신", "데이터", "추천", "모바일", "서비스"],
+          project: "통신 데이터 기반 개인화 서비스, AI 에이전트 실험",
+          reason: "통신·모바일 데이터와 AI 서비스 접점이 큽니다."
+        },
+        {
+          name: "KT",
+          sector: "AICT · 클라우드",
+          region: "서울 · 판교 · 온라인",
+          tags: ["AI/머신러닝", "데이터 분석", "클라우드", "지역 문제 해결"],
+          projectTypes: ["기업 프로젝트", "지역 과제", "데이터 분석 프로젝트"],
+          majors: ["컴퓨터", "데이터", "전자", "도시", "산업공학"],
+          keywords: ["ai", "통신", "클라우드", "도시", "지역", "데이터"],
+          project: "지역 통신 데이터 분석, 공공 AI 서비스 모델링",
+          reason: "지역 데이터와 AICT 인프라를 연결하는 과제에 적합합니다."
+        },
+        {
+          name: "Viva Republica(Toss)",
+          sector: "핀테크 · 데이터",
+          region: "서울 · 온라인",
+          tags: ["데이터 분석", "서비스 기획", "AI/머신러닝"],
+          projectTypes: ["기업 프로젝트", "데이터 분석 프로젝트"],
+          majors: ["컴퓨터", "데이터", "경영", "경제", "통계"],
+          keywords: ["핀테크", "금융", "데이터", "서비스", "기획", "ux"],
+          project: "금융 사용자 행동 분석, 데이터 기반 서비스 개선",
+          reason: "금융 데이터와 빠른 제품 실험에 관심 있는 프로필에 잘 맞습니다."
+        },
+        {
+          name: "KakaoBank",
+          sector: "디지털 금융 · 데이터",
+          region: "판교 · 온라인",
+          tags: ["데이터 분석", "서비스 기획", "AI/머신러닝"],
+          projectTypes: ["기업 프로젝트", "데이터 분석 프로젝트"],
+          majors: ["컴퓨터", "데이터", "경제", "경영", "통계"],
+          keywords: ["금융", "데이터", "리스크", "서비스", "모바일"],
+          project: "모바일 금융 고객 분석, 신용·리스크 데이터 모델링",
+          reason: "핀테크와 데이터 분석 역량을 함께 활용하기 좋습니다."
+        },
+        {
+          name: "Coupang",
+          sector: "커머스 · 물류 데이터",
+          region: "서울 · 온라인",
+          tags: ["데이터 분석", "서비스 기획", "AI/머신러닝"],
+          projectTypes: ["기업 프로젝트", "데이터 분석 프로젝트"],
+          majors: ["컴퓨터", "데이터", "산업공학", "경영", "통계"],
+          keywords: ["커머스", "물류", "추천", "데이터", "운영", "sql"],
+          project: "수요 예측, 물류 운영 데이터 분석, 추천 서비스 개선",
+          reason: "대규모 커머스·물류 데이터를 다루는 프로젝트와 연결됩니다."
+        },
+        {
+          name: "Woowa Brothers",
+          sector: "푸드테크 · 플랫폼",
+          region: "서울 · 온라인",
+          tags: ["서비스 기획", "데이터 분석", "지역 문제 해결"],
+          projectTypes: ["기업 프로젝트", "지역 과제"],
+          majors: ["컴퓨터", "경영", "데이터", "디자인", "산업공학"],
+          keywords: ["서비스", "플랫폼", "지역", "소상공인", "데이터", "ux"],
+          project: "지역 상권 데이터 분석, 플랫폼 UX 개선",
+          reason: "지역 상권·플랫폼 문제를 서비스 관점으로 풀기 좋습니다."
+        },
+        {
+          name: "Hyundai AutoEver",
+          sector: "모빌리티 SW · 데이터",
+          region: "서울 · 의왕 · 온라인",
+          tags: ["AI/머신러닝", "데이터 분석", "서비스 기획"],
+          projectTypes: ["기업 프로젝트", "데이터 분석 프로젝트"],
+          majors: ["컴퓨터", "소프트웨어", "전자", "데이터", "산업공학"],
+          keywords: ["모빌리티", "차량", "sw", "데이터", "ai", "서비스"],
+          project: "차량 데이터 분석, 모빌리티 서비스 프로토타입",
+          reason: "모빌리티 소프트웨어와 데이터 기반 서비스에 적합합니다."
+        },
+        {
+          name: "Hyundai Motor Group",
+          sector: "모빌리티 · 친환경",
+          region: "서울 · 화성 · 온라인",
+          tags: ["AI/머신러닝", "데이터 분석", "ESG", "서비스 기획"],
+          projectTypes: ["기업 프로젝트", "데이터 분석 프로젝트"],
+          majors: ["기계", "전자", "컴퓨터", "데이터", "환경", "산업공학"],
+          keywords: ["모빌리티", "친환경", "배터리", "데이터", "ai", "탄소"],
+          project: "친환경 모빌리티 데이터 분석, 차량 서비스 기획",
+          reason: "AI·데이터와 ESG 모빌리티 주제가 함께 맞는 기업입니다."
+        },
+        {
+          name: "SOCAR",
+          sector: "모빌리티 플랫폼",
+          region: "제주 · 서울 · 온라인",
+          tags: ["데이터 분석", "서비스 기획", "지역 문제 해결"],
+          projectTypes: ["기업 프로젝트", "지역 과제", "데이터 분석 프로젝트"],
+          majors: ["컴퓨터", "데이터", "도시", "경영", "산업공학"],
+          keywords: ["모빌리티", "지역", "데이터", "플랫폼", "수요"],
+          project: "지역 이동 수요 분석, 공유 모빌리티 운영 최적화",
+          reason: "지역 이동 문제와 데이터 분석을 연결하기 좋습니다."
+        },
+        {
+          name: "LG Energy Solution",
+          sector: "배터리 · 에너지",
+          region: "서울 · 오창 · 온라인",
+          tags: ["ESG", "데이터 분석", "AI/머신러닝"],
+          projectTypes: ["기업 프로젝트", "데이터 분석 프로젝트"],
+          majors: ["화학", "환경", "에너지", "데이터", "컴퓨터", "산업공학"],
+          keywords: ["배터리", "에너지", "esg", "탄소", "데이터", "품질"],
+          project: "배터리 생산 데이터 분석, 에너지 효율 개선",
+          reason: "ESG·에너지·데이터 역량을 동시에 활용할 수 있습니다."
+        },
+        {
+          name: "SK ecoplant",
+          sector: "환경 · 에너지 솔루션",
+          region: "서울 · 온라인",
+          tags: ["ESG", "지역 문제 해결", "데이터 분석"],
+          projectTypes: ["기업 프로젝트", "지역 과제", "데이터 분석 프로젝트"],
+          majors: ["환경", "에너지", "도시", "데이터", "산업공학"],
+          keywords: ["환경", "폐기물", "에너지", "탄소", "지역", "esg"],
+          project: "지역 탄소·폐기물 데이터 분석, 환경 솔루션 기획",
+          reason: "지역 환경 문제와 ESG 프로젝트에 강하게 맞습니다."
+        },
+        {
+          name: "Hanwha Solutions",
+          sector: "태양광 · 친환경 소재",
+          region: "서울 · 온라인",
+          tags: ["ESG", "데이터 분석", "지역 문제 해결"],
+          projectTypes: ["기업 프로젝트", "지역 과제"],
+          majors: ["환경", "화학", "에너지", "데이터", "산업공학"],
+          keywords: ["태양광", "에너지", "소재", "esg", "탄소", "데이터"],
+          project: "재생에너지 수요 분석, 친환경 소재 시장 리서치",
+          reason: "에너지 전환과 ESG 주제를 실무형 과제로 연결할 수 있습니다."
+        },
+        {
+          name: "POSCO Holdings",
+          sector: "소재 · 탄소 저감",
+          region: "서울 · 포항 · 광양",
+          tags: ["ESG", "데이터 분석", "지역 문제 해결"],
+          projectTypes: ["기업 프로젝트", "지역 과제", "데이터 분석 프로젝트"],
+          majors: ["소재", "환경", "산업공학", "데이터", "화학"],
+          keywords: ["소재", "탄소", "철강", "esg", "지역", "데이터"],
+          project: "산업 탄소 배출 데이터 분석, 지역 소재 산업 과제",
+          reason: "탄소 저감과 지역 산업 데이터 과제에 적합합니다."
+        },
+        {
+          name: "CJ Logistics",
+          sector: "물류 · 공급망 데이터",
+          region: "서울 · 전국 · 온라인",
+          tags: ["데이터 분석", "AI/머신러닝", "지역 문제 해결"],
+          projectTypes: ["기업 프로젝트", "데이터 분석 프로젝트", "지역 과제"],
+          majors: ["산업공학", "데이터", "컴퓨터", "경영", "통계"],
+          keywords: ["물류", "공급망", "수요", "최적화", "데이터", "지역"],
+          project: "배송 수요 예측, 지역 물류 운영 최적화",
+          reason: "데이터 기반 운영 최적화 프로젝트에 잘 맞습니다."
+        },
+        {
+          name: "Kurly",
+          sector: "커머스 · 데이터",
+          region: "서울 · 온라인",
+          tags: ["데이터 분석", "서비스 기획", "AI/머신러닝"],
+          projectTypes: ["기업 프로젝트", "데이터 분석 프로젝트"],
+          majors: ["컴퓨터", "데이터", "경영", "통계", "산업공학"],
+          keywords: ["커머스", "식품", "추천", "데이터", "수요", "서비스"],
+          project: "신선식품 수요 예측, 고객 세그먼트 분석",
+          reason: "커머스 데이터와 고객 경험 개선 과제에 적합합니다."
+        },
+        {
+          name: "Dunamu",
+          sector: "핀테크 · 블록체인 데이터",
+          region: "서울 · 온라인",
+          tags: ["데이터 분석", "AI/머신러닝", "서비스 기획"],
+          projectTypes: ["기업 프로젝트", "데이터 분석 프로젝트"],
+          majors: ["컴퓨터", "데이터", "경제", "경영", "통계"],
+          keywords: ["핀테크", "블록체인", "데이터", "보안", "금융", "서비스"],
+          project: "디지털 자산 데이터 분석, 금융 플랫폼 리스크 탐색",
+          reason: "금융·데이터·기술 플랫폼 관심사와 연결됩니다."
+        }
+      ];
 
       const getSelectedInterests = () =>
         Array.from(profileForm.querySelectorAll("input[name='interests']:checked")).map((input) => input.value);
@@ -1567,6 +2027,162 @@
         });
       };
 
+      const getProfileSearchText = (profile) => {
+        const interests = Array.isArray(profile.interests) ? profile.interests : [];
+        return [
+          profile.studentName,
+          profile.schoolName,
+          profile.majorName,
+          profile.studentYear,
+          profile.projectType,
+          profile.regionName,
+          profile.skills,
+          interests.join(" ")
+        ]
+          .filter(Boolean)
+          .join(" ")
+          .toLowerCase();
+      };
+
+      const getRegionFit = (company, regionName) => {
+        const region = (regionName || "").toLowerCase();
+        if (!region) return 0;
+        if (region.includes("온라인")) return 6;
+        return company.region
+          .split(" · ")
+          .some((companyRegion) => region.includes(companyRegion.toLowerCase()) || companyRegion.toLowerCase().includes(region))
+          ? 6
+          : 0;
+      };
+
+      const buildCompanyMatches = (profile) => {
+        const interests = Array.isArray(profile.interests) ? profile.interests : [];
+        const searchText = getProfileSearchText(profile);
+
+        return companyPool
+          .map((company) => {
+            const exactInterestMatches = company.tags.filter((tag) => interests.includes(tag));
+            const keywordMatches = company.keywords.filter((keyword) => searchText.includes(keyword.toLowerCase()));
+            const tagTextMatches = company.tags.filter((tag) => searchText.includes(tag.toLowerCase()));
+            const majorMatches = company.majors.filter((major) => (profile.majorName || "").includes(major));
+            const projectFit = company.projectTypes.includes(profile.projectType) ? 14 : 0;
+            const regionFit = getRegionFit(company, profile.regionName);
+            const matchedSignals = Array.from(new Set([...exactInterestMatches, ...tagTextMatches, ...keywordMatches])).slice(0, 5);
+
+            const rawScore =
+              34 +
+              Math.min(exactInterestMatches.length * 15, 36) +
+              Math.min(keywordMatches.length * 4, 18) +
+              Math.min(majorMatches.length * 12, 18) +
+              projectFit +
+              regionFit;
+
+            return {
+              ...company,
+              score: Math.min(rawScore, 98),
+              matchedSignals: matchedSignals.length ? matchedSignals : company.tags.slice(0, 3),
+              level: rawScore >= 86 ? "최우선" : rawScore >= 72 ? "강력 추천" : rawScore >= 58 ? "추천" : "관련"
+            };
+          })
+          .sort((a, b) => b.score - a.score || a.name.localeCompare(b.name, "ko-KR"));
+      };
+
+      const createPill = (text) => {
+        const pill = document.createElement("span");
+        pill.className = "summary-pill";
+        pill.textContent = text;
+        return pill;
+      };
+
+      const createCompanyCard = (company) => {
+        const card = document.createElement("article");
+        card.className = "company-card";
+
+        const head = document.createElement("div");
+        head.className = "company-card-head";
+
+        const titleWrap = document.createElement("div");
+        const title = document.createElement("h3");
+        title.className = "company-name";
+        title.textContent = company.name;
+        const sector = document.createElement("p");
+        sector.className = "company-sector";
+        sector.textContent = company.sector;
+        titleWrap.append(title, sector);
+
+        const score = document.createElement("span");
+        score.className = "score-badge";
+        score.textContent = `${company.score}%`;
+        head.append(titleWrap, score);
+
+        const detail = document.createElement("p");
+        detail.className = "company-detail";
+        detail.textContent = `${company.level} · ${company.reason}`;
+
+        const project = document.createElement("p");
+        project.className = "project-line";
+        project.textContent = `추천 과제: ${company.project}`;
+
+        const tagRow = document.createElement("div");
+        tagRow.className = "tag-row";
+        company.matchedSignals.forEach((tag) => {
+          const tagNode = document.createElement("span");
+          tagNode.className = "mini-tag";
+          tagNode.textContent = tag;
+          tagRow.append(tagNode);
+        });
+
+        card.append(head, detail, project, tagRow);
+        return card;
+      };
+
+      const renderMatchBlock = ({ container, title, copy, summary, list }, profile, matches, compact = false) => {
+        const interests = Array.isArray(profile.interests) ? profile.interests : [];
+        const displayCount = compact ? Math.min(8, matches.length) : matches.length;
+        title.textContent = `${profile.studentName || "학생"}님 관련 기업 ${matches.length}개 매칭`;
+        copy.textContent = compact
+          ? `${profile.majorName || "전공"} · ${profile.projectType || "프로젝트"} 기준 상위 ${displayCount}개를 먼저 보여드립니다. 전체 결과는 페이지 하단에 펼쳐집니다.`
+          : `${profile.majorName || "전공"} · ${profile.projectType || "프로젝트"} · ${interests.slice(0, 3).join(", ") || "관심 키워드"} 기준으로 관련도순 정렬했습니다.`;
+        summary.replaceChildren(
+          createPill(compact ? `상위 ${displayCount}개` : `${matches.length}개 기업`),
+          createPill(profile.projectType || "프로젝트"),
+          createPill(interests[0] || "관심 분야")
+        );
+        list.replaceChildren(...matches.slice(0, compact ? 8 : matches.length).map(createCompanyCard));
+        container.hidden = false;
+      };
+
+      const renderCompanyMatches = (profile, shouldScroll = false) => {
+        const matches = buildCompanyMatches(profile);
+        renderMatchBlock(
+          {
+            container: modalMatches,
+            title: modalMatchTitle,
+            copy: modalMatchCopy,
+            summary: modalMatchSummary,
+            list: modalMatchList
+          },
+          profile,
+          matches,
+          true
+        );
+        renderMatchBlock(
+          {
+            container: pageMatches,
+            title: pageMatchTitle,
+            copy: pageMatchCopy,
+            summary: pageMatchSummary,
+            list: pageMatchList
+          },
+          profile,
+          matches
+        );
+
+        if (shouldScroll) {
+          modalMatches.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+      };
+
       const readSavedProfile = () => {
         try {
           return JSON.parse(localStorage.getItem(storageKey));
@@ -1605,6 +2221,7 @@
 
         localStorage.setItem(storageKey, JSON.stringify(profile));
         updateProfilePreview(profile);
+        renderCompanyMatches(profile, true);
         formStatus.textContent = "프로필이 등록되었습니다.";
         formStatus.hidden = false;
       });
@@ -1613,6 +2230,7 @@
       if (savedProfile) {
         fillForm(savedProfile);
         updateProfilePreview(savedProfile);
+        renderCompanyMatches(savedProfile);
       }
 
       if (window.location.hash === "#profile") {
