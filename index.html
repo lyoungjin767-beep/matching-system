@@ -58,9 +58,9 @@
         width: min(1600px, calc(100% - 72px));
         min-height: 88px;
         margin: 0 auto;
-        display: flex;
+        display: grid;
+        grid-template-columns: auto 1fr;
         align-items: center;
-        justify-content: space-between;
         gap: 32px;
       }
 
@@ -99,13 +99,13 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        justify-self: center;
         gap: 76px;
         color: var(--navy);
         font-size: 1.13rem;
         font-weight: 800;
       }
 
-      .login-button,
       .cta-button {
         min-height: 52px;
         border-radius: 8px;
@@ -114,14 +114,6 @@
         justify-content: center;
         font-weight: 800;
         line-height: 1;
-      }
-
-      .login-button {
-        min-width: 118px;
-        padding: 0 28px;
-        color: #ffffff;
-        background: var(--blue);
-        box-shadow: 0 12px 28px rgba(15, 91, 234, 0.2);
       }
 
       main {
@@ -1100,6 +1092,21 @@
         box-shadow: 0 12px 26px rgba(24, 51, 89, 0.06);
       }
 
+      .match-subsection {
+        margin-top: 30px;
+        padding-top: 26px;
+        border-top: 1px solid #d9e4f4;
+      }
+
+      .match-subsection .match-header {
+        margin-bottom: 16px;
+      }
+
+      .mentor-card {
+        border-color: #cbe8d7;
+        background: linear-gradient(180deg, #ffffff 0%, #f7fdf9 100%);
+      }
+
       .company-card-head {
         display: flex;
         align-items: flex-start;
@@ -1122,6 +1129,10 @@
         font-weight: 900;
       }
 
+      .mentor-card .company-sector {
+        color: var(--blue);
+      }
+
       .score-badge {
         min-width: 54px;
         min-height: 34px;
@@ -1133,6 +1144,10 @@
         background: var(--blue);
         font-size: 0.9rem;
         font-weight: 900;
+      }
+
+      .mentor-card .score-badge {
+        background: var(--green);
       }
 
       .company-detail {
@@ -1207,13 +1222,6 @@
         .main-nav {
           gap: 28px;
           font-size: 1rem;
-        }
-
-        .login-button {
-          min-width: 74px;
-          min-height: 46px;
-          padding: 0 14px;
-          font-size: 0.92rem;
         }
 
         .hero-title {
@@ -1472,7 +1480,6 @@
           <a href="#company">기업</a>
           <a href="#impact">성과</a>
         </nav>
-        <a class="login-button" href="#login">로그인</a>
       </div>
     </header>
 
@@ -1600,15 +1607,29 @@
         <div class="company-match-shell">
           <div class="match-header">
             <div>
-              <p class="match-eyebrow">AI 기업 매칭 결과</p>
+              <p class="match-eyebrow">AI 기업·멘토 매칭 결과</p>
               <h2 data-page-match-title>관련 기업 매칭 대기 중</h2>
               <p class="match-copy" data-page-match-copy>
-                기본 프로필을 등록하면 현재 입력한 관심 분야와 프로젝트 조건에 맞는 기업들이 관련도순으로 정렬됩니다.
+                기본 프로필을 등록하면 관심 분야와 프로젝트 조건에 맞는 기업과 현직자 멘토가 관련도순으로 정렬됩니다.
               </p>
             </div>
             <div class="match-summary" data-page-match-summary></div>
           </div>
           <div class="match-list" data-page-match-list></div>
+
+          <div class="match-subsection">
+            <div class="match-header">
+              <div>
+                <p class="match-eyebrow">현직자 멘토 매칭</p>
+                <h2 data-page-mentor-title>관련 멘토 매칭 대기 중</h2>
+                <p class="match-copy" data-page-mentor-copy>
+                  기업 매칭과 함께 전공, 역량, 관심 분야에 맞는 현직자 멘토도 추천됩니다.
+                </p>
+              </div>
+              <div class="match-summary" data-page-mentor-summary></div>
+            </div>
+            <div class="match-list" data-page-mentor-list></div>
+          </div>
         </div>
       </section>
     </main>
@@ -1732,13 +1753,25 @@
             <section class="match-results" data-modal-matches hidden aria-live="polite">
               <div class="match-header">
                 <div>
-                  <p class="match-eyebrow">매칭 완료</p>
+                  <p class="match-eyebrow">기업 추천</p>
                   <h3 data-modal-match-title>관련 기업</h3>
                   <p class="match-copy" data-modal-match-copy></p>
                 </div>
                 <div class="match-summary" data-modal-match-summary></div>
               </div>
               <div class="match-list" data-modal-match-list></div>
+
+              <div class="match-subsection">
+                <div class="match-header">
+                  <div>
+                    <p class="match-eyebrow">멘토 추천</p>
+                    <h3 data-modal-mentor-title>관련 멘토</h3>
+                    <p class="match-copy" data-modal-mentor-copy></p>
+                  </div>
+                  <div class="match-summary" data-modal-mentor-summary></div>
+                </div>
+                <div class="match-list" data-modal-mentor-list></div>
+              </div>
             </section>
           </form>
         </div>
@@ -1759,6 +1792,14 @@
       const pageMatchCopy = document.querySelector("[data-page-match-copy]");
       const pageMatchSummary = document.querySelector("[data-page-match-summary]");
       const pageMatchList = document.querySelector("[data-page-match-list]");
+      const modalMentorTitle = document.querySelector("[data-modal-mentor-title]");
+      const modalMentorCopy = document.querySelector("[data-modal-mentor-copy]");
+      const modalMentorSummary = document.querySelector("[data-modal-mentor-summary]");
+      const modalMentorList = document.querySelector("[data-modal-mentor-list]");
+      const pageMentorTitle = document.querySelector("[data-page-mentor-title]");
+      const pageMentorCopy = document.querySelector("[data-page-mentor-copy]");
+      const pageMentorSummary = document.querySelector("[data-page-mentor-summary]");
+      const pageMentorList = document.querySelector("[data-page-mentor-list]");
       const storageKey = "envol-basic-profile";
       const companyPool = [
         {
@@ -1983,6 +2024,153 @@
         }
       ];
 
+      const mentorPool = [
+        {
+          name: "AI 플랫폼 멘토",
+          role: "AI Product Manager",
+          company: "NAVER Cloud",
+          region: "성남 · 서울 · 온라인",
+          tags: ["AI/머신러닝", "데이터 분석", "서비스 기획", "클라우드"],
+          projectTypes: ["기업 프로젝트", "데이터 분석 프로젝트", "멘토링 중심"],
+          majors: ["컴퓨터", "소프트웨어", "데이터", "AI", "산업공학"],
+          keywords: ["ai", "머신러닝", "클라우드", "서비스", "기획", "python"],
+          focus: "생성형 AI 서비스 기획, 모델 활용 전략, 클라우드 기반 MVP 설계",
+          reason: "AI 프로젝트를 서비스로 연결하는 방향 설정에 강합니다."
+        },
+        {
+          name: "데이터 엔지니어 멘토",
+          role: "Data Engineer",
+          company: "Samsung SDS",
+          region: "서울 · 온라인",
+          tags: ["데이터 분석", "AI/머신러닝", "클라우드"],
+          projectTypes: ["기업 프로젝트", "데이터 분석 프로젝트"],
+          majors: ["컴퓨터", "데이터", "통계", "산업공학"],
+          keywords: ["데이터", "sql", "python", "cloud", "pipeline", "분석"],
+          focus: "데이터 파이프라인, SQL 분석, 기업 데이터 품질 관리",
+          reason: "데이터 분석 결과를 실무 시스템으로 옮기는 데 도움을 줄 수 있습니다."
+        },
+        {
+          name: "DX 컨설팅 멘토",
+          role: "DX Consultant",
+          company: "LG CNS",
+          region: "서울 · 온라인",
+          tags: ["서비스 기획", "데이터 분석", "AI/머신러닝"],
+          projectTypes: ["기업 프로젝트", "멘토링 중심"],
+          majors: ["경영", "산업공학", "컴퓨터", "데이터"],
+          keywords: ["dx", "컨설팅", "서비스", "데이터", "기획", "ai"],
+          focus: "기업 문제 정의, 요구사항 정리, 데이터 기반 제안서 구조화",
+          reason: "프로젝트를 기업 실무 언어로 정리하는 데 적합합니다."
+        },
+        {
+          name: "AI 서비스 멘토",
+          role: "AI Service Planner",
+          company: "Kakao Enterprise",
+          region: "판교 · 온라인",
+          tags: ["AI/머신러닝", "서비스 기획", "데이터 분석"],
+          projectTypes: ["기업 프로젝트", "멘토링 중심"],
+          majors: ["컴퓨터", "경영", "데이터", "디자인"],
+          keywords: ["ai", "챗봇", "플랫폼", "서비스", "ux", "기획"],
+          focus: "AI 챗봇/업무 자동화 서비스 기획, 사용자 시나리오 설계",
+          reason: "AI 기능을 실제 사용자 흐름으로 풀어내는 멘토링에 맞습니다."
+        },
+        {
+          name: "핀테크 데이터 멘토",
+          role: "Fintech Data Analyst",
+          company: "Viva Republica(Toss)",
+          region: "서울 · 온라인",
+          tags: ["데이터 분석", "서비스 기획", "AI/머신러닝"],
+          projectTypes: ["기업 프로젝트", "데이터 분석 프로젝트", "멘토링 중심"],
+          majors: ["데이터", "컴퓨터", "경영", "경제", "통계"],
+          keywords: ["핀테크", "금융", "데이터", "실험", "sql", "서비스"],
+          focus: "금융 사용자 행동 분석, 지표 설계, 제품 실험",
+          reason: "데이터를 제품 개선으로 연결하는 관점이 필요한 학생에게 적합합니다."
+        },
+        {
+          name: "커머스 추천 멘토",
+          role: "Recommendation Analyst",
+          company: "Coupang",
+          region: "서울 · 온라인",
+          tags: ["데이터 분석", "AI/머신러닝", "서비스 기획"],
+          projectTypes: ["기업 프로젝트", "데이터 분석 프로젝트"],
+          majors: ["데이터", "컴퓨터", "통계", "산업공학"],
+          keywords: ["커머스", "추천", "물류", "데이터", "python", "sql"],
+          focus: "추천 지표, 수요 예측, 커머스 데이터 분석",
+          reason: "대규모 사용자/상품 데이터를 다루는 프로젝트에 강합니다."
+        },
+        {
+          name: "지역 플랫폼 멘토",
+          role: "Local Platform Strategist",
+          company: "Woowa Brothers",
+          region: "서울 · 온라인",
+          tags: ["지역 문제 해결", "서비스 기획", "데이터 분석"],
+          projectTypes: ["지역 과제", "기업 프로젝트", "멘토링 중심"],
+          majors: ["경영", "데이터", "디자인", "도시", "컴퓨터"],
+          keywords: ["지역", "소상공인", "플랫폼", "서비스", "ux", "데이터"],
+          focus: "지역 상권 문제 정의, 플랫폼 서비스 개선, 현장 리서치",
+          reason: "지역 문제를 서비스/플랫폼 관점으로 전환하는 데 적합합니다."
+        },
+        {
+          name: "모빌리티 SW 멘토",
+          role: "Mobility Software Engineer",
+          company: "Hyundai AutoEver",
+          region: "서울 · 의왕 · 온라인",
+          tags: ["AI/머신러닝", "데이터 분석", "서비스 기획"],
+          projectTypes: ["기업 프로젝트", "데이터 분석 프로젝트"],
+          majors: ["컴퓨터", "소프트웨어", "전자", "데이터", "산업공학"],
+          keywords: ["모빌리티", "차량", "sw", "데이터", "ai", "서비스"],
+          focus: "차량 데이터 분석, 모빌리티 서비스 구조, SW 프로젝트 운영",
+          reason: "모빌리티와 소프트웨어 접점 프로젝트에 잘 맞습니다."
+        },
+        {
+          name: "ESG 데이터 멘토",
+          role: "ESG Data Manager",
+          company: "LG Energy Solution",
+          region: "서울 · 오창 · 온라인",
+          tags: ["ESG", "데이터 분석", "AI/머신러닝"],
+          projectTypes: ["기업 프로젝트", "데이터 분석 프로젝트", "지역 과제"],
+          majors: ["환경", "에너지", "데이터", "컴퓨터", "산업공학", "화학"],
+          keywords: ["esg", "배터리", "에너지", "탄소", "데이터", "품질"],
+          focus: "에너지 효율 데이터, 배터리 품질 지표, ESG 리포팅",
+          reason: "ESG와 데이터 분석을 함께 다루는 프로젝트에 적합합니다."
+        },
+        {
+          name: "환경 솔루션 멘토",
+          role: "Environmental Project Lead",
+          company: "SK ecoplant",
+          region: "서울 · 온라인",
+          tags: ["ESG", "지역 문제 해결", "데이터 분석"],
+          projectTypes: ["지역 과제", "기업 프로젝트", "데이터 분석 프로젝트"],
+          majors: ["환경", "도시", "에너지", "데이터", "산업공학"],
+          keywords: ["환경", "폐기물", "탄소", "지역", "esg", "데이터"],
+          focus: "지역 탄소/폐기물 데이터, 환경 문제 구조화, 실행 과제 설계",
+          reason: "지역 ESG 과제를 실제 실행 단위로 좁히는 데 강합니다."
+        },
+        {
+          name: "물류 최적화 멘토",
+          role: "Supply Chain Analyst",
+          company: "CJ Logistics",
+          region: "서울 · 전국 · 온라인",
+          tags: ["데이터 분석", "AI/머신러닝", "지역 문제 해결"],
+          projectTypes: ["기업 프로젝트", "데이터 분석 프로젝트", "지역 과제"],
+          majors: ["산업공학", "데이터", "컴퓨터", "통계", "경영"],
+          keywords: ["물류", "공급망", "수요", "최적화", "데이터", "지역"],
+          focus: "배송 수요 예측, 공급망 데이터 분석, 운영 최적화",
+          reason: "운영 데이터로 실무형 개선안을 만드는 프로젝트에 적합합니다."
+        },
+        {
+          name: "공공 AI 멘토",
+          role: "Public AI Project Manager",
+          company: "KT",
+          region: "서울 · 판교 · 온라인",
+          tags: ["AI/머신러닝", "지역 문제 해결", "데이터 분석", "클라우드"],
+          projectTypes: ["지역 과제", "데이터 분석 프로젝트", "멘토링 중심"],
+          majors: ["컴퓨터", "데이터", "도시", "전자", "산업공학"],
+          keywords: ["ai", "공공", "지역", "통신", "클라우드", "데이터"],
+          focus: "공공 데이터 기반 AI 서비스, 지역 문제 매칭, 클라우드 PoC",
+          reason: "지역 과제와 AI 서비스를 연결하는 멘토링에 잘 맞습니다."
+        }
+      ];
+
       const getSelectedInterests = () =>
         Array.from(profileForm.querySelectorAll("input[name='interests']:checked")).map((input) => input.value);
 
@@ -2087,6 +2275,38 @@
           .sort((a, b) => b.score - a.score || a.name.localeCompare(b.name, "ko-KR"));
       };
 
+      const buildMentorMatches = (profile) => {
+        const interests = Array.isArray(profile.interests) ? profile.interests : [];
+        const searchText = getProfileSearchText(profile);
+
+        return mentorPool
+          .map((mentor) => {
+            const exactInterestMatches = mentor.tags.filter((tag) => interests.includes(tag));
+            const keywordMatches = mentor.keywords.filter((keyword) => searchText.includes(keyword.toLowerCase()));
+            const tagTextMatches = mentor.tags.filter((tag) => searchText.includes(tag.toLowerCase()));
+            const majorMatches = mentor.majors.filter((major) => (profile.majorName || "").includes(major));
+            const projectFit = mentor.projectTypes.includes(profile.projectType) ? 16 : 0;
+            const regionFit = getRegionFit(mentor, profile.regionName);
+            const matchedSignals = Array.from(new Set([...exactInterestMatches, ...tagTextMatches, ...keywordMatches])).slice(0, 5);
+
+            const rawScore =
+              36 +
+              Math.min(exactInterestMatches.length * 16, 38) +
+              Math.min(keywordMatches.length * 5, 20) +
+              Math.min(majorMatches.length * 12, 18) +
+              projectFit +
+              regionFit;
+
+            return {
+              ...mentor,
+              score: Math.min(rawScore, 99),
+              matchedSignals: matchedSignals.length ? matchedSignals : mentor.tags.slice(0, 3),
+              level: rawScore >= 88 ? "최우선 멘토" : rawScore >= 74 ? "강력 추천" : rawScore >= 60 ? "추천" : "관련"
+            };
+          })
+          .sort((a, b) => b.score - a.score || a.company.localeCompare(b.company, "ko-KR"));
+      };
+
       const createPill = (text) => {
         const pill = document.createElement("span");
         pill.className = "summary-pill";
@@ -2136,6 +2356,48 @@
         return card;
       };
 
+      const createMentorCard = (mentor) => {
+        const card = document.createElement("article");
+        card.className = "company-card mentor-card";
+
+        const head = document.createElement("div");
+        head.className = "company-card-head";
+
+        const titleWrap = document.createElement("div");
+        const title = document.createElement("h3");
+        title.className = "company-name";
+        title.textContent = mentor.name;
+        const sector = document.createElement("p");
+        sector.className = "company-sector";
+        sector.textContent = `${mentor.role} · ${mentor.company}`;
+        titleWrap.append(title, sector);
+
+        const score = document.createElement("span");
+        score.className = "score-badge";
+        score.textContent = `${mentor.score}%`;
+        head.append(titleWrap, score);
+
+        const detail = document.createElement("p");
+        detail.className = "company-detail";
+        detail.textContent = `${mentor.level} · ${mentor.reason}`;
+
+        const project = document.createElement("p");
+        project.className = "project-line";
+        project.textContent = `멘토링 포커스: ${mentor.focus}`;
+
+        const tagRow = document.createElement("div");
+        tagRow.className = "tag-row";
+        mentor.matchedSignals.forEach((tag) => {
+          const tagNode = document.createElement("span");
+          tagNode.className = "mini-tag";
+          tagNode.textContent = tag;
+          tagRow.append(tagNode);
+        });
+
+        card.append(head, detail, project, tagRow);
+        return card;
+      };
+
       const renderMatchBlock = ({ container, title, copy, summary, list }, profile, matches, compact = false) => {
         const interests = Array.isArray(profile.interests) ? profile.interests : [];
         const displayCount = compact ? Math.min(8, matches.length) : matches.length;
@@ -2152,8 +2414,24 @@
         container.hidden = false;
       };
 
+      const renderMentorBlock = ({ title, copy, summary, list }, profile, matches, compact = false) => {
+        const interests = Array.isArray(profile.interests) ? profile.interests : [];
+        const displayCount = compact ? Math.min(6, matches.length) : matches.length;
+        title.textContent = `${profile.studentName || "학생"}님 관련 멘토 ${matches.length}명 매칭`;
+        copy.textContent = compact
+          ? `${profile.majorName || "전공"} · ${interests.slice(0, 2).join(", ") || "관심 분야"} 기준 상위 ${displayCount}명의 현직자 멘토를 먼저 보여드립니다.`
+          : `${profile.projectType || "프로젝트"} 수행에 필요한 실무 피드백을 받을 수 있는 멘토를 관련도순으로 정렬했습니다.`;
+        summary.replaceChildren(
+          createPill(compact ? `상위 ${displayCount}명` : `${matches.length}명 멘토`),
+          createPill(interests[0] || "관심 분야"),
+          createPill(profile.regionName || "지역 무관")
+        );
+        list.replaceChildren(...matches.slice(0, compact ? 6 : matches.length).map(createMentorCard));
+      };
+
       const renderCompanyMatches = (profile, shouldScroll = false) => {
         const matches = buildCompanyMatches(profile);
+        const mentorMatches = buildMentorMatches(profile);
         renderMatchBlock(
           {
             container: modalMatches,
@@ -2166,6 +2444,17 @@
           matches,
           true
         );
+        renderMentorBlock(
+          {
+            title: modalMentorTitle,
+            copy: modalMentorCopy,
+            summary: modalMentorSummary,
+            list: modalMentorList
+          },
+          profile,
+          mentorMatches,
+          true
+        );
         renderMatchBlock(
           {
             container: pageMatches,
@@ -2176,6 +2465,16 @@
           },
           profile,
           matches
+        );
+        renderMentorBlock(
+          {
+            title: pageMentorTitle,
+            copy: pageMentorCopy,
+            summary: pageMentorSummary,
+            list: pageMentorList
+          },
+          profile,
+          mentorMatches
         );
 
         if (shouldScroll) {
