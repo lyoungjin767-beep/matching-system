@@ -1764,7 +1764,6 @@
       const pageMentorCopy = document.querySelector("[data-page-mentor-copy]");
       const pageMentorSummary = document.querySelector("[data-page-mentor-summary]");
       const pageMentorList = document.querySelector("[data-page-mentor-list]");
-      const majorField = profileForm.elements.majorName;
       const storageKey = "envol-basic-profile";
       const companyPool = [
         {
@@ -2166,20 +2165,6 @@
         };
       };
 
-      const revealMatchesFromMajor = () => {
-        const profile = readProfileFromForm();
-        if (!profile.majorName) {
-          modalMatches.hidden = true;
-          pageMatches.hidden = true;
-          return;
-        }
-
-        updateProfilePreview(profile);
-        renderCompanyMatches(profile, false);
-        formStatus.textContent = "전공 선택이 완료되어 매칭 결과를 표시합니다.";
-        formStatus.hidden = false;
-      };
-
       const updateProfilePreview = (profile) => {
         const nameTarget = document.querySelector("[data-profile-name]");
         const majorTarget = document.querySelector("[data-profile-major]");
@@ -2497,8 +2482,6 @@
         button.addEventListener("click", () => profileDialog.close());
       });
 
-      majorField.addEventListener("change", revealMatchesFromMajor);
-
       profileForm.addEventListener("submit", (event) => {
         event.preventDefault();
         const profile = readProfileFromForm();
@@ -2506,7 +2489,7 @@
         localStorage.setItem(storageKey, JSON.stringify(profile));
         updateProfilePreview(profile);
         renderCompanyMatches(profile, true);
-        formStatus.textContent = "프로필이 등록되었습니다.";
+        formStatus.textContent = "프로필이 등록되었습니다. 기업과 멘토를 함께 매칭했습니다.";
         formStatus.hidden = false;
       });
 
