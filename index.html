@@ -3,50 +3,1070 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>matching-system</title>
+    <meta
+      name="description"
+      content="AI가 학생의 전공과 관심사를 분석해 현직자, 기업 프로젝트, 지역 과제와 연결하는 프로젝트형 사회 연결망 ENVOL"
+    >
+    <title>ENVOL - 프로젝트형 사회 연결망</title>
     <style>
       :root {
-        color-scheme: light;
+        --blue: #0f5bea;
+        --blue-dark: #073dbe;
+        --navy: #071841;
+        --green: #16965a;
+        --green-dark: #0d7f47;
+        --mint: #eaf8f1;
+        --sky: #eef5ff;
+        --line: #dbe4f2;
+        --text: #172033;
+        --muted: #5e6a7b;
+        --panel: #ffffff;
+        --surface: #f7faff;
         font-family: Arial, "Malgun Gothic", sans-serif;
-        color: #171717;
-        background: #f5f7fb;
+        color: var(--text);
+        background: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
       }
 
       body {
         margin: 0;
-        min-height: 100vh;
-        display: grid;
-        place-items: center;
+        min-width: 320px;
+        background: linear-gradient(180deg, #ffffff 0%, #f6fbff 58%, #ffffff 100%);
+        word-break: keep-all;
+        overflow-wrap: break-word;
+        overflow-x: hidden;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        border-bottom: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(14px);
+      }
+
+      .header-inner {
+        width: min(1600px, calc(100% - 72px));
+        min-height: 88px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 32px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 2px;
+        color: var(--blue);
+        font-size: 2.75rem;
+        font-weight: 900;
+        line-height: 1;
+      }
+
+      .brand-o {
+        position: relative;
+        width: 34px;
+        height: 34px;
+        margin: 0 1px;
+        border: 8px solid var(--blue);
+        border-radius: 50%;
+        display: inline-block;
+      }
+
+      .brand-o::after {
+        content: "";
+        position: absolute;
+        inset: 4px;
+        border: 7px solid var(--green);
+        border-top-color: transparent;
+        border-left-color: transparent;
+        border-radius: 50%;
+        transform: rotate(-28deg);
+      }
+
+      .main-nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 76px;
+        color: var(--navy);
+        font-size: 1.13rem;
+        font-weight: 800;
+      }
+
+      .login-button,
+      .cta-button {
+        min-height: 52px;
+        border-radius: 8px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        line-height: 1;
+      }
+
+      .login-button {
+        min-width: 118px;
+        padding: 0 28px;
+        color: #ffffff;
+        background: var(--blue);
+        box-shadow: 0 12px 28px rgba(15, 91, 234, 0.2);
       }
 
       main {
-        width: min(720px, calc(100% - 48px));
-        padding: 48px;
-        border: 1px solid #d9dee8;
-        border-radius: 8px;
-        background: #ffffff;
-        box-shadow: 0 18px 50px rgba(22, 34, 51, 0.08);
+        overflow: hidden;
       }
 
-      h1 {
-        margin: 0 0 16px;
-        font-size: clamp(32px, 6vw, 64px);
-        line-height: 1;
+      .hero,
+      .comparison {
+        width: min(1600px, calc(100% - 72px));
+        margin: 0 auto;
+      }
+
+      .hero {
+        padding: 58px 0 38px;
+        display: grid;
+        grid-template-columns: minmax(470px, 0.78fr) minmax(760px, 1.22fr);
+        gap: 42px;
+        align-items: center;
+      }
+
+      .hero-copy {
+        padding-top: 8px;
+      }
+
+      .hero-title {
+        margin: 0;
+        color: var(--navy);
+        font-size: 3.45rem;
+        line-height: 1.18;
+        font-weight: 900;
         letter-spacing: 0;
       }
 
-      p {
+      .hero-title > span {
+        display: block;
+        color: var(--blue);
+      }
+
+      .headline-tail {
+        white-space: nowrap;
+      }
+
+      .hero-description {
+        max-width: 680px;
+        margin: 32px 0 0;
+        color: #4d5668;
+        font-size: 1.35rem;
+        line-height: 1.55;
+        font-weight: 500;
+      }
+
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 26px;
+        margin-top: 42px;
+      }
+
+      .cta-button {
+        min-width: 286px;
+        padding: 0 34px;
+        font-size: 1.35rem;
+      }
+
+      .cta-primary {
+        color: #ffffff;
+        background: var(--blue);
+        box-shadow: 0 18px 35px rgba(15, 91, 234, 0.22);
+      }
+
+      .cta-secondary {
+        color: var(--green-dark);
+        border: 1px solid var(--green);
+        background: #ffffff;
+      }
+
+      .matching-stage {
+        border: 1px solid #d3e1f5;
+        border-radius: 8px;
+        background: rgba(248, 251, 255, 0.86);
+        box-shadow: 0 22px 55px rgba(32, 80, 144, 0.08);
+        padding: 26px 22px;
+      }
+
+      .flow-board {
+        display: grid;
+        grid-template-columns: minmax(150px, 0.82fr) 40px minmax(176px, 0.95fr) 34px minmax(220px, 1.35fr);
+        gap: 12px;
+        align-items: center;
+      }
+
+      .mini-panel,
+      .result-tile {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #ffffff;
+        box-shadow: 0 14px 30px rgba(17, 31, 62, 0.07);
+      }
+
+      .student-panel {
+        min-height: 340px;
+        padding: 20px 14px;
+        text-align: center;
+      }
+
+      .panel-title {
+        margin: 0 0 16px;
+        color: var(--navy);
+        font-size: 1rem;
+        font-weight: 900;
+      }
+
+      .avatar {
+        position: relative;
+        width: 102px;
+        height: 102px;
+        margin: 0 auto 16px;
+        border-radius: 50%;
+        background: #dcecff;
+        border: 1px solid #c9dcf3;
+        overflow: hidden;
+      }
+
+      .avatar::before {
+        content: "";
+        position: absolute;
+        width: 44px;
+        height: 48px;
+        left: 29px;
+        top: 27px;
+        border-radius: 48% 48% 45% 45%;
+        background: #f3c7a9;
+        box-shadow: 0 -18px 0 6px #263445;
+      }
+
+      .avatar::after {
+        content: "";
+        position: absolute;
+        width: 78px;
+        height: 44px;
+        left: 12px;
+        bottom: -7px;
+        border-radius: 40px 40px 0 0;
+        background: #2e72c7;
+      }
+
+      .student-name {
         margin: 0;
-        color: #4f5b6b;
-        font-size: 18px;
-        line-height: 1.6;
+        color: var(--navy);
+        font-size: 1rem;
+        font-weight: 900;
+      }
+
+      .student-major {
+        margin: 8px 0 15px;
+        color: #384358;
+        font-size: 0.82rem;
+        line-height: 1.45;
+        font-weight: 700;
+      }
+
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .chip {
+        display: inline-flex;
+        min-height: 28px;
+        align-items: center;
+        padding: 0 10px;
+        border-radius: 999px;
+        color: #1d365b;
+        background: #e8f1fb;
+        font-size: 0.75rem;
+        font-weight: 800;
+      }
+
+      .flow-arrow {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        position: relative;
+      }
+
+      .flow-arrow::before {
+        content: "";
+        position: absolute;
+        width: 32px;
+        height: 8px;
+        left: 4px;
+        top: 18px;
+        border-radius: 8px;
+        background: var(--blue);
+      }
+
+      .flow-arrow::after {
+        content: "";
+        position: absolute;
+        width: 19px;
+        height: 19px;
+        right: 2px;
+        top: 12px;
+        border-top: 8px solid var(--blue);
+        border-right: 8px solid var(--blue);
+        transform: rotate(45deg);
+      }
+
+      .ai-panel {
+        min-height: 340px;
+        padding: 20px 18px;
+      }
+
+      .ai-panel .panel-title {
+        color: var(--blue);
+        text-align: center;
+      }
+
+      .ai-orbit {
+        position: relative;
+        width: 148px;
+        height: 148px;
+        margin: 14px auto 22px;
+        border: 2px dashed #b7cff5;
+        border-radius: 50%;
+      }
+
+      .ai-orbit::before,
+      .ai-orbit::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+      }
+
+      .ai-orbit::before {
+        inset: 22px;
+        border: 2px dashed #83b2f4;
+      }
+
+      .ai-orbit::after {
+        inset: 43px;
+        border: 1px solid #c6d9f8;
+        background: #ffffff;
+        box-shadow: 0 12px 32px rgba(15, 91, 234, 0.18);
+      }
+
+      .ai-core {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        display: grid;
+        place-items: center;
+        color: var(--blue);
+        font-size: 2.4rem;
+        font-weight: 900;
+      }
+
+      .dot {
+        position: absolute;
+        z-index: 3;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--blue);
+      }
+
+      .dot-a {
+        left: 26px;
+        top: 46px;
+        background: #93bfe8;
+      }
+
+      .dot-b {
+        right: 8px;
+        top: 64px;
+        background: #39c674;
+      }
+
+      .dot-c {
+        right: 30px;
+        bottom: 24px;
+      }
+
+      .dot-d {
+        left: 34px;
+        bottom: 23px;
+        background: #67c88a;
+      }
+
+      .check-list {
+        display: grid;
+        gap: 13px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .check-list li {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        color: #1f2e45;
+        font-size: 0.86rem;
+        font-weight: 800;
+      }
+
+      .check-list li::before {
+        content: "";
+        width: 16px;
+        height: 16px;
+        flex: 0 0 16px;
+        border-radius: 50%;
+        background: var(--green);
+        box-shadow: inset 0 0 0 4px #ffffff;
+      }
+
+      .signal-lines {
+        width: 44px;
+        height: 164px;
+        position: relative;
+      }
+
+      .signal-lines::before {
+        content: "";
+        position: absolute;
+        left: 7px;
+        top: 14px;
+        width: 32px;
+        height: 132px;
+        border-left: 3px dotted var(--green);
+        border-top: 3px dotted var(--green);
+        border-bottom: 3px dotted var(--green);
+        border-radius: 28px 0 0 28px;
+      }
+
+      .signal-lines::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 78px;
+        width: 38px;
+        border-top: 3px dotted var(--blue);
+      }
+
+      .result-stack {
+        display: grid;
+        gap: 22px;
+      }
+
+      .result-tile {
+        min-height: 108px;
+        display: grid;
+        grid-template-columns: 62px 1fr 52px;
+        align-items: center;
+        gap: 14px;
+        padding: 15px 18px;
+      }
+
+      .result-tile.green {
+        border-color: #c8e7d6;
+        background: #f8fefb;
+      }
+
+      .result-title {
+        margin: 0 0 8px;
+        color: var(--blue);
+        font-size: 1rem;
+        font-weight: 900;
+      }
+
+      .result-tile.green .result-title {
+        color: var(--green-dark);
+      }
+
+      .result-text {
+        margin: 0;
+        color: #334058;
+        font-size: 0.78rem;
+        line-height: 1.45;
+        font-weight: 800;
+      }
+
+      .icon-badge,
+      .round-action {
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+      }
+
+      .icon-badge {
+        width: 56px;
+        height: 56px;
+        color: var(--blue);
+        background: #eaf3ff;
+        border: 1px solid #cae0ff;
+        font-weight: 900;
+      }
+
+      .green .icon-badge {
+        color: var(--green);
+        background: #eaf9ef;
+        border-color: #caebd5;
+      }
+
+      .round-action {
+        width: 52px;
+        height: 52px;
+        color: #ffffff;
+        background: var(--blue);
+        font-size: 1.45rem;
+        font-weight: 900;
+        box-shadow: 0 12px 24px rgba(15, 91, 234, 0.18);
+      }
+
+      .green .round-action {
+        background: var(--green);
+        box-shadow: 0 12px 24px rgba(22, 150, 90, 0.18);
+      }
+
+      .comparison {
+        padding: 10px 0 64px;
+      }
+
+      .compare-grid {
+        display: grid;
+        grid-template-columns: minmax(420px, 1fr) 102px minmax(520px, 1.1fr);
+        gap: 20px;
+        align-items: stretch;
+      }
+
+      .compare-card {
+        min-height: 258px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.92);
+        box-shadow: 0 16px 38px rgba(25, 46, 82, 0.07);
+        padding: 36px 56px;
+        display: grid;
+        grid-template-columns: 150px 1fr;
+        gap: 42px;
+        align-items: center;
+      }
+
+      .envol-compare {
+        border-color: #c8e8d8;
+        background: rgba(243, 253, 248, 0.92);
+        grid-template-columns: 130px 1fr 245px;
+      }
+
+      .muted-symbol,
+      .envol-symbol {
+        width: 112px;
+        height: 112px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+      }
+
+      .muted-symbol {
+        color: #6c7585;
+        background: #e9edf3;
+        font-size: 3.2rem;
+        font-weight: 900;
+      }
+
+      .envol-symbol {
+        color: var(--green);
+        background: radial-gradient(circle, #ffffff 31%, #45c77e 32%, #45c77e 54%, #a8e5c1 55%);
+        font-size: 0;
+      }
+
+      .envol-symbol::before {
+        content: "";
+        width: 42px;
+        height: 42px;
+        border: 13px solid var(--green);
+        border-right-color: transparent;
+        border-radius: 50%;
+        transform: rotate(-26deg);
+      }
+
+      .compare-title {
+        margin: 0 0 26px;
+        color: var(--navy);
+        font-size: 1.9rem;
+        line-height: 1.2;
+        font-weight: 900;
+        letter-spacing: 0;
+      }
+
+      .envol-compare .compare-title {
+        color: var(--green);
+        font-size: 2.5rem;
+      }
+
+      .bullet-list {
+        display: grid;
+        gap: 18px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        color: var(--navy);
+        font-size: 1.12rem;
+        font-weight: 800;
+      }
+
+      .bullet-list li {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .bullet-list li::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        flex: 0 0 8px;
+        border-radius: 50%;
+        background: #4a82df;
+      }
+
+      .envol-compare .bullet-list li::before {
+        background: var(--green);
+      }
+
+      .vs-badge {
+        width: 102px;
+        height: 102px;
+        align-self: center;
+        justify-self: center;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        color: var(--navy);
+        background: #ffffff;
+        box-shadow: 0 14px 30px rgba(30, 47, 84, 0.09);
+        font-size: 1.8rem;
+        font-weight: 900;
+      }
+
+      .network-mini {
+        position: relative;
+        width: 220px;
+        height: 170px;
+        justify-self: end;
+      }
+
+      .network-mini::before {
+        content: "";
+        position: absolute;
+        left: 42px;
+        top: 28px;
+        width: 136px;
+        height: 106px;
+        border: 2px dashed #48b979;
+        border-radius: 50%;
+      }
+
+      .node {
+        position: absolute;
+        width: 62px;
+        height: 62px;
+        display: grid;
+        place-items: center;
+        border: 1px solid #cae6d4;
+        border-radius: 50%;
+        color: var(--green);
+        background: #ffffff;
+        box-shadow: 0 12px 24px rgba(27, 109, 66, 0.1);
+        font-size: 1.55rem;
+        font-weight: 900;
+      }
+
+      .node.blue {
+        color: var(--blue);
+        border-color: #c7ddff;
+      }
+
+      .node.top {
+        left: 82px;
+        top: 0;
+      }
+
+      .node.center {
+        left: 82px;
+        top: 78px;
+      }
+
+      .node.left {
+        left: 12px;
+        bottom: 0;
+      }
+
+      .node.right {
+        right: 8px;
+        bottom: 0;
+      }
+
+      @media (max-width: 1350px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+
+        .matching-stage {
+          width: 100%;
+        }
+
+        .flow-board {
+          grid-template-columns: 188px 50px 210px 44px minmax(280px, 1fr);
+        }
+      }
+
+      @media (max-width: 980px) {
+        .header-inner,
+        .hero,
+        .comparison {
+          width: min(calc(100% - 36px), 900px);
+        }
+
+        .header-inner {
+          min-height: 74px;
+        }
+
+        .brand {
+          font-size: 2.2rem;
+        }
+
+        .brand-o {
+          width: 28px;
+          height: 28px;
+          border-width: 7px;
+        }
+
+        .main-nav {
+          gap: 28px;
+          font-size: 1rem;
+        }
+
+        .login-button {
+          min-width: 74px;
+          min-height: 46px;
+          padding: 0 14px;
+          font-size: 0.92rem;
+        }
+
+        .hero-title {
+          font-size: 3rem;
+        }
+
+        .hero-description {
+          font-size: 1.12rem;
+        }
+
+        .flow-board {
+          grid-template-columns: 1fr;
+          justify-items: stretch;
+        }
+
+        .student-panel,
+        .ai-panel {
+          min-height: 0;
+        }
+
+        .flow-arrow {
+          justify-self: center;
+          transform: rotate(90deg);
+        }
+
+        .signal-lines {
+          display: none;
+        }
+
+        .compare-grid {
+          grid-template-columns: 1fr;
+          gap: 28px;
+        }
+
+        .vs-badge {
+          margin: -4px auto;
+        }
+
+        .compare-card,
+        .envol-compare {
+          grid-template-columns: 110px 1fr;
+          padding: 30px;
+        }
+
+        .network-mini {
+          grid-column: 1 / -1;
+          justify-self: center;
+        }
+      }
+
+      @media (min-width: 1500px) {
+        .hero-title {
+          font-size: 4rem;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .site-header {
+          position: static;
+        }
+
+        .header-inner,
+        .hero,
+        .comparison {
+          max-width: 300px;
+        }
+
+        .header-inner {
+          gap: 16px;
+        }
+
+        .main-nav {
+          display: none;
+        }
+
+        .brand {
+          font-size: 1.88rem;
+        }
+
+        .brand-o {
+          width: 24px;
+          height: 24px;
+          border-width: 6px;
+        }
+
+        .brand-o::after {
+          inset: 3px;
+          border-width: 5px;
+        }
+
+        .hero {
+          padding-top: 34px;
+          gap: 32px;
+        }
+
+        .hero-title {
+          font-size: 1.9rem;
+          line-height: 1.22;
+        }
+
+        .headline-tail {
+          display: block;
+        }
+
+        .hero-description {
+          margin-top: 22px;
+          font-size: 1rem;
+        }
+
+        .cta-row {
+          gap: 14px;
+          margin-top: 28px;
+        }
+
+        .cta-button {
+          width: 100%;
+          min-width: 0;
+          min-height: 52px;
+          font-size: 1.05rem;
+        }
+
+        .matching-stage {
+          padding: 16px;
+        }
+
+        .result-tile {
+          grid-template-columns: 52px 1fr;
+        }
+
+        .round-action {
+          grid-column: 1 / -1;
+          width: 100%;
+          height: 42px;
+          border-radius: 8px;
+          font-size: 1rem;
+        }
+
+        .compare-card,
+        .envol-compare {
+          grid-template-columns: 1fr;
+          gap: 24px;
+          padding: 26px;
+        }
+
+        .muted-symbol,
+        .envol-symbol {
+          width: 90px;
+          height: 90px;
+        }
+
+        .compare-title {
+          font-size: 1.55rem;
+        }
+
+        .envol-compare .compare-title {
+          font-size: 2rem;
+        }
+
+        .bullet-list {
+          font-size: 1rem;
+        }
       }
     </style>
   </head>
   <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="#" aria-label="ENVOL 홈">
+          <span>ENV</span><span class="brand-o" aria-hidden="true"></span><span>L</span>
+        </a>
+        <nav class="main-nav" aria-label="주요 메뉴">
+          <a href="#projects">프로젝트</a>
+          <a href="#mentor">멘토</a>
+          <a href="#company">기업</a>
+          <a href="#impact">성과</a>
+        </nav>
+        <a class="login-button" href="#login">로그인</a>
+      </div>
+    </header>
+
     <main>
-      <h1>matching-system</h1>
-      <p>Cloudflare Pages deployment is ready.</p>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <h1 class="hero-title" id="hero-title">
+            인턴십이 아닌,
+            <span>프로젝트형 사회 <span class="headline-tail">연결망</span></span>
+          </h1>
+          <p class="hero-description">
+            AI가 전공과 관심사를 분석해 학생을 현직자, 기업 프로젝트,
+            지역 과제와 연결합니다.
+          </p>
+          <div class="cta-row">
+            <a class="cta-button cta-primary" href="#projects">프로젝트 시작하기</a>
+            <a class="cta-button cta-secondary" href="#mentor">멘토로 참여하기</a>
+          </div>
+        </div>
+
+        <div class="matching-stage" aria-label="AI 맞춤 매칭 흐름">
+          <div class="flow-board">
+            <article class="mini-panel student-panel">
+              <h2 class="panel-title">학생 프로필</h2>
+              <div class="avatar" aria-hidden="true"></div>
+              <p class="student-name">김지훈</p>
+              <p class="student-major">컴퓨터공학 전공</p>
+              <div class="chips" aria-label="관심 키워드">
+                <span class="chip">데이터 분석</span>
+                <span class="chip">AI/머신러닝</span>
+                <span class="chip">ESG</span>
+                <span class="chip">지역 사회 문제 해결</span>
+              </div>
+            </article>
+
+            <div class="flow-arrow" aria-hidden="true"></div>
+
+            <article class="mini-panel ai-panel">
+              <h2 class="panel-title">AI 맞춤 매칭</h2>
+              <div class="ai-orbit" aria-hidden="true">
+                <span class="ai-core">AI</span>
+                <span class="dot dot-a"></span>
+                <span class="dot dot-b"></span>
+                <span class="dot dot-c"></span>
+                <span class="dot dot-d"></span>
+              </div>
+              <ul class="check-list">
+                <li>전공 · 역량 분석</li>
+                <li>관심사 · 가치 분석</li>
+                <li>프로젝트 적합도 예측</li>
+              </ul>
+            </article>
+
+            <div class="signal-lines" aria-hidden="true"></div>
+
+            <div class="result-stack">
+              <article class="result-tile green">
+                <div class="icon-badge" aria-hidden="true">M</div>
+                <div>
+                  <h2 class="result-title">멘토(현직자)</h2>
+                  <p class="result-text">데이터 사이언티스트<br>네이버</p>
+                </div>
+                <div class="round-action" aria-hidden="true">+</div>
+              </article>
+
+              <article class="result-tile">
+                <div class="icon-badge" aria-hidden="true">B</div>
+                <div>
+                  <h2 class="result-title">기업 프로젝트</h2>
+                  <p class="result-text">친환경 데이터 플랫폼 구축<br>네이버</p>
+                </div>
+                <div class="round-action" aria-hidden="true">+</div>
+              </article>
+
+              <article class="result-tile green">
+                <div class="icon-badge" aria-hidden="true">L</div>
+                <div>
+                  <h2 class="result-title">지역 과제</h2>
+                  <p class="result-text">지역 탄소 배출 분석 프로젝트<br>서울특별시</p>
+                </div>
+                <div class="round-action" aria-hidden="true">+</div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="comparison" aria-label="일반 인턴십과 ENVOL 비교">
+        <div class="compare-grid">
+          <article class="compare-card">
+            <div class="muted-symbol" aria-hidden="true">B</div>
+            <div>
+              <h2 class="compare-title">일반 인턴십</h2>
+              <ul class="bullet-list">
+                <li>기업 중심 배치</li>
+                <li>단기 업무 경험</li>
+                <li>개인별 네트워크 격차</li>
+              </ul>
+            </div>
+          </article>
+
+          <div class="vs-badge" aria-hidden="true">VS</div>
+
+          <article class="compare-card envol-compare">
+            <div class="envol-symbol" aria-hidden="true"></div>
+            <div>
+              <h2 class="compare-title">ENVOL</h2>
+              <ul class="bullet-list">
+                <li>AI 맞춤 매칭</li>
+                <li>실제 프로젝트 수행</li>
+                <li>멘토 · 기업 · 대학 네트워크 유지</li>
+              </ul>
+            </div>
+            <div class="network-mini" aria-hidden="true">
+              <span class="node top">P</span>
+              <span class="node center">U</span>
+              <span class="node blue left">B</span>
+              <span class="node right">G</span>
+            </div>
+          </article>
+        </div>
+      </section>
     </main>
   </body>
 </html>
