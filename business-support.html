@@ -253,7 +253,9 @@
       }
 
       .mentor-dialog {
-        width: min(640px, calc(100% - 32px));
+        width: min(760px, calc(100% - 32px));
+        max-height: calc(100vh - 48px);
+        overflow: auto;
         padding: 0;
         border: 0;
         border-radius: 8px;
@@ -329,6 +331,50 @@
         color: var(--muted);
         font-size: 0.98rem;
         line-height: 1.6;
+      }
+
+      .plan-detail-card {
+        padding: 20px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        display: grid;
+        gap: 14px;
+        background: #ffffff;
+      }
+
+      .plan-detail-heading {
+        margin: 0;
+        color: var(--green-dark);
+        font-size: 1.06rem;
+        line-height: 1.4;
+        font-weight: 900;
+      }
+
+      .plan-detail-list {
+        margin: 0;
+        display: grid;
+        gap: 12px;
+      }
+
+      .plan-detail-list div {
+        padding: 13px 14px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+      }
+
+      .plan-detail-list dt {
+        margin: 0 0 6px;
+        color: var(--green);
+        font-size: 0.86rem;
+        font-weight: 900;
+      }
+
+      .plan-detail-list dd {
+        margin: 0;
+        color: #32433a;
+        font-size: 0.94rem;
+        line-height: 1.58;
       }
 
       .mentor-flow {
@@ -634,6 +680,32 @@
           <p class="mentor-copy" data-plan-summary>사업계획서 요약을 확인합니다.</p>
         </div>
 
+        <div class="plan-detail-card">
+          <p class="plan-detail-heading">가상 사업계획서 세부안</p>
+          <dl class="plan-detail-list">
+            <div>
+              <dt>사업 배경</dt>
+              <dd data-plan-background>사업 배경을 확인합니다.</dd>
+            </div>
+            <div>
+              <dt>참여 대상</dt>
+              <dd data-plan-target>참여 대상을 확인합니다.</dd>
+            </div>
+            <div>
+              <dt>운영 계획</dt>
+              <dd data-plan-operation>운영 계획을 확인합니다.</dd>
+            </div>
+            <div>
+              <dt>가상 예산</dt>
+              <dd data-plan-budget>가상 예산을 확인합니다.</dd>
+            </div>
+            <div>
+              <dt>기대 산출물</dt>
+              <dd data-plan-outcome>기대 산출물을 확인합니다.</dd>
+            </div>
+          </dl>
+        </div>
+
         <ol class="mentor-flow">
           <li data-plan-step-one>1. 사업 목표를 확인합니다.</li>
           <li data-plan-step-two>2. 실행 계획을 확인합니다.</li>
@@ -662,6 +734,11 @@
           noticeCopy: "전공 무관 청년을 대상으로 웹 서비스 구현, AI 활용 미션, 팀 프로젝트 발표를 진행하는 가상 모집 공지입니다.",
           planTitle: "예시 사업계획서: 지역 문제 해결형 SW 서비스",
           planSummary: "지역 청년이 생활 불편 데이터를 수집하고, 웹 앱과 AI 요약 기능으로 해결안을 제안하는 프로젝트를 수행합니다.",
+          background: "지역 생활 불편, 청년 커뮤니티 정보 단절, 공공 데이터 활용 부족을 하나의 프로젝트 주제로 묶는 가상 사업입니다. 참여자는 단순 교육 수강을 넘어 실제 문제를 정의하고, 사용자 인터뷰와 데이터 분석을 통해 해결 가능성이 있는 서비스를 설계합니다.",
+          target: "만 18세 이상 34세 이하 청년 30명을 가상 모집 대상으로 설정합니다. 전공은 제한하지 않되, 웹 개발 또는 AI 도구 활용에 관심이 있고 팀 프로젝트에 참여 가능한 지원자를 우선 선발합니다.",
+          operation: "1~2주는 문제 정의와 요구사항 정리, 3~6주는 웹 화면과 데이터 구조 설계, 7~10주는 AI 요약 기능과 사용자 테스트, 11~12주는 발표자료와 포트폴리오 정리로 운영합니다. 매주 코드 리뷰와 멘토 피드백을 진행한다는 가상 운영안을 둡니다.",
+          budget: "가상 총예산은 3,200만원입니다. 멘토링비 900만원, 클라우드·API 실습비 700만원, 교육자료 제작비 500만원, 프로젝트 발표 운영비 600만원, 우수팀 후속지원비 500만원으로 배분합니다.",
+          outcome: "팀별 MVP 6건, GitHub 저장소, 서비스 소개서, 사용자 인터뷰 요약, 발표용 피치덱을 산출물로 설정합니다. 우수팀은 기업 멘토와 추가 상담을 진행해 실제 지원서나 포트폴리오로 전환합니다.",
           stepOne: "1. 목표: 알고리즘 기초, 웹 개발, AI API 활용 역량을 12주 안에 포트폴리오로 정리합니다.",
           stepTwo: "2. 실행: 4인 팀 구성, 주간 코드 리뷰, 중간 MVP 발표, 최종 서비스 시연으로 진행합니다.",
           stepThree: "3. 제출: 지원서, 학습계획서, GitHub 또는 프로젝트 경험 요약 1개를 준비합니다.",
@@ -674,6 +751,11 @@
           noticeCopy: "AI 기초 교육 후 실제 데이터 기반 문제를 해커톤으로 해결하는 가상 참여자 모집 공지입니다.",
           planTitle: "예시 사업계획서: 고객 데이터 기반 AI 예측 모델",
           planSummary: "제공 데이터를 정제하고 예측 모델을 만든 뒤, 결과 해석 리포트와 개선 아이디어를 함께 제출합니다.",
+          background: "기업 현장에서는 단순 모델 정확도보다 데이터 해석과 개선 제안까지 가능한 인재 수요가 높다는 가정으로 만든 가상 사업계획서입니다. 참여자는 주어진 고객 행동 데이터를 분석해 예측 모델을 만들고, 비즈니스 의사결정에 활용 가능한 인사이트를 정리합니다.",
+          target: "AI, 데이터 분석, 통계, 경영 분석에 관심 있는 청년 40명을 가상 대상으로 설정합니다. Python 기초를 알고 있거나 온라인 사전 학습을 끝낼 수 있는 지원자를 중심으로 팀을 구성합니다.",
+          operation: "사전 온라인 강의 2주, 데이터 전처리 실습 2주, 모델링 집중 해커톤 2주, 결과 해석 및 발표 1주로 운영합니다. 팀별로 리더보드 점수와 리포트 품질을 함께 평가하고, 멘토가 모델 개선 방향을 피드백합니다.",
+          budget: "가상 총예산은 2,800만원입니다. 온라인 학습 콘텐츠 600만원, 데이터 실습 환경 500만원, 해커톤 운영비 700만원, 멘토·심사비 600만원, 우수팀 시상 및 후속 코칭 400만원으로 구성합니다.",
+          outcome: "예측 모델 코드, 데이터 전처리 노트북, 성능 평가표, 결과 해석 리포트, 개선 제안 발표자료를 산출물로 둡니다. 지원자는 이를 데이터 직무 포트폴리오와 면접 사례로 활용할 수 있습니다.",
           stepOne: "1. 목표: 데이터 전처리, 모델 학습, 평가 지표 해석 역량을 실습 중심으로 확보합니다.",
           stepTwo: "2. 실행: 온라인 학습, 팀별 모델링, 리더보드 검증, 최종 발표 자료 제작으로 운영합니다.",
           stepThree: "3. 제출: Python 기초 경험, 데이터 분석 관심 분야, 해커톤 참여 가능 시간을 정리합니다.",
@@ -686,6 +768,11 @@
           noticeCopy: "서비스 기획, 백엔드, 데이터 직무 희망자를 대상으로 모빌리티 문제를 해결하는 가상 모집 공지입니다.",
           planTitle: "예시 사업계획서: 이동 수요 기반 예약·추천 서비스",
           planSummary: "사용자 이동 패턴을 분석해 예약 편의성과 추천 정확도를 높이는 모빌리티 서비스 MVP를 설계합니다.",
+          background: "이동 수요가 시간대와 지역에 따라 달라지는 상황에서 예약 실패와 대기 시간을 줄이는 서비스를 만든다는 가상 계획입니다. 참여자는 모빌리티 데이터를 활용해 사용자의 이동 목적, 예약 선호, 추천 조건을 분석하고 서비스 흐름을 설계합니다.",
+          target: "서비스 기획, 백엔드 개발, 데이터 분석 직무를 희망하는 청년 36명을 가상 모집합니다. 팀은 기획 1명, 개발 2명, 데이터 1명 구조를 기본으로 편성합니다.",
+          operation: "1단계는 사용자 여정 분석, 2단계는 예약 API와 데이터 구조 설계, 3단계는 추천 로직과 관리자 화면 구현, 4단계는 모의 사용자 테스트와 발표로 진행합니다. 현업 멘토가 요구사항 문서와 API 명세를 중점 검토합니다.",
+          budget: "가상 총예산은 3,600만원입니다. 실습 서버와 테스트 데이터 800만원, 현업 멘토링 900만원, 직무별 교육 운영 700만원, 팀 프로젝트 지원 700만원, 최종 발표 및 포트폴리오 제작 500만원입니다.",
+          outcome: "서비스 기획서, API 명세서, 예약·추천 MVP, 데이터 분석 리포트, 직무별 회고 문서를 산출합니다. 최종 결과물은 모빌리티 또는 플랫폼 직무 지원용 프로젝트 사례로 정리합니다.",
           stepOne: "1. 목표: 서비스 기획서, API 설계, 데이터 분석 결과를 하나의 포트폴리오로 완성합니다.",
           stepTwo: "2. 실행: 직무별 트랙 학습, 팀 프로젝트, 현업 멘토 피드백, 최종 면접형 발표로 진행합니다.",
           stepThree: "3. 제출: 지원 직무, 프로젝트 역할 경험, 문제 해결 사례 1개를 정리합니다.",
@@ -698,6 +785,11 @@
           noticeCopy: "취업 준비 청년을 대상으로 직무 실습, 데이터 분석, 면접 코칭을 제공하는 가상 모집 공지입니다.",
           planTitle: "예시 사업계획서: 제조 데이터 기반 품질 개선 프로젝트",
           planSummary: "생산·품질 데이터를 분석해 불량 원인을 도출하고, 개선 제안서와 대시보드 시안을 제작합니다.",
+          background: "제조 현장에서 발생하는 품질 편차를 데이터로 파악하고 개선안을 제안하는 가상 사업계획서입니다. 취업 준비생이 산업 직무 이해와 데이터 활용 경험을 동시에 확보하도록 설계했습니다.",
+          target: "제조, 품질, 생산관리, 데이터 분석 직무를 희망하는 청년 35명을 가상 대상으로 둡니다. 전공은 제한하지 않지만 산업 현장 문제를 분석하고 자기소개서 사례로 정리하려는 지원자에게 적합합니다.",
+          operation: "직무 이해 특강, 품질 데이터 분석 실습, 불량 원인 가설 수립, 개선안 도출, 모의면접 순서로 운영합니다. 팀별로 대시보드 시안을 만들고, 개인별로 자기소개서에 넣을 프로젝트 경험 문장을 정리합니다.",
+          budget: "가상 총예산은 3,000만원입니다. 직무 특강 500만원, 데이터 실습 환경 600만원, 취업 코칭 700만원, 멘토링 700만원, 발표·자료 제작 500만원으로 편성합니다.",
+          outcome: "품질 개선 제안서, 분석 대시보드 시안, 자기소개서 프로젝트 문항 초안, 모의면접 피드백지를 산출합니다. 참여자는 제조·데이터 직무 지원 시 활용 가능한 근거 자료를 확보합니다.",
           stepOne: "1. 목표: 제조·산업 직무 이해와 데이터 기반 문제 해결 역량을 함께 강화합니다.",
           stepTwo: "2. 실행: 직무 특강, 데이터 실습, 자기소개서 클리닉, 모의면접으로 구성합니다.",
           stepThree: "3. 제출: 희망 직무, 자격증·교육 이력, 자기소개서 초안을 준비합니다.",
@@ -710,6 +802,11 @@
           noticeCopy: "AI 도구 활용을 넘어 직접 AI 서비스를 기획·구현하는 청년 개발자 대상 가상 모집 공지입니다.",
           planTitle: "예시 사업계획서: 개인 맞춤형 AI 학습 코치",
           planSummary: "사용자 목표와 학습 기록을 바탕으로 주간 학습 계획과 피드백을 제공하는 AI 서비스 프로토타입을 만듭니다.",
+          background: "청년 학습자가 목표는 있지만 꾸준한 계획 수립과 피드백에 어려움을 겪는다는 문제의식에서 출발한 가상 사업계획서입니다. Agentic AI를 활용해 학습 목표, 일정, 과제 수행 상태를 읽고 다음 행동을 제안하는 서비스를 설계합니다.",
+          target: "AI 서비스 개발, 프론트엔드, UX 기획, 프로덕트 기획에 관심 있는 청년 32명을 가상 모집합니다. 개인 아이디어를 팀 프로젝트로 확장하고 싶은 지원자를 우선 대상으로 설정합니다.",
+          operation: "1주차에는 문제 정의와 사용자 페르소나를 작성하고, 2~4주차에는 프롬프트와 AI 응답 흐름을 설계합니다. 5~8주차에는 프로토타입을 개발하고, 9~10주차에는 사용성 테스트와 발표자료를 완성합니다.",
+          budget: "가상 총예산은 3,400만원입니다. AI API 실습비 800만원, UX 테스트 운영비 500만원, 개발 멘토링 900만원, 교육 운영 700만원, 데모데이와 후속 코칭 500만원으로 배정합니다.",
+          outcome: "AI 학습 코치 프로토타입, 사용자 시나리오 문서, 프롬프트 설계서, 테스트 결과 리포트, 서비스 소개 피치덱을 산출합니다. 결과물은 AI 서비스 직무 지원 포트폴리오로 연결합니다.",
           stepOne: "1. 목표: AI 서비스 기획, 프롬프트 설계, API 연동, 사용자 흐름 설계를 경험합니다.",
           stepTwo: "2. 실행: 개인 아이디어 검증, 팀 개발, 사용성 테스트, 최종 프로덕트 발표로 진행합니다.",
           stepThree: "3. 제출: 만들고 싶은 AI 서비스 아이디어, 개발 경험, 협업 가능 시간을 정리합니다.",
@@ -722,6 +819,11 @@
           noticeCopy: "CS, 알고리즘, SW-AI, 게임테크 프로젝트를 집중적으로 수행하는 가상 모집 공지입니다.",
           planTitle: "예시 사업계획서: 실시간 협업 게임 분석 도구",
           planSummary: "게임 플레이 로그를 분석해 팀 전략과 사용자 행동을 시각화하는 웹 기반 분석 도구를 설계합니다.",
+          background: "게임 플레이 과정에서 생성되는 로그를 팀 전략 개선과 사용자 행동 분석에 활용한다는 가상 사업계획서입니다. 참여자는 컴퓨터공학 기초와 데이터 분석, 협업 개발 루틴을 동시에 훈련합니다.",
+          target: "SW 개발, 게임테크, 데이터 분석에 관심 있는 청년 42명을 가상 모집합니다. 장시간 몰입 학습과 팀 코드 리뷰에 참여할 수 있는 지원자를 대상으로 합니다.",
+          operation: "초반 3주는 알고리즘과 CS 기초를 다지고, 중반 4주는 로그 수집·분석 기능을 구현합니다. 후반 3주는 실시간 대시보드, 팀 전략 리포트, 최종 데모 발표를 준비합니다.",
+          budget: "가상 총예산은 4,000만원입니다. 몰입 학습 운영 1,000만원, 개발 환경과 서버 800만원, 코치·멘토링 1,000만원, 팀 프로젝트 지원 700만원, 전시·발표 운영 500만원으로 설정합니다.",
+          outcome: "게임 로그 분석 도구, 실시간 대시보드, 팀 전략 리포트, 코드 리뷰 기록, 최종 데모 영상을 산출합니다. 참여자는 몰입형 SW 프로젝트 경험을 이력서와 포트폴리오에 정리할 수 있습니다.",
           stepOne: "1. 목표: 컴퓨터공학 기초, 문제 해결력, 협업 개발 루틴을 단기간에 압축적으로 강화합니다.",
           stepTwo: "2. 실행: 주간 미션, 동료 코드 리뷰, 프로젝트 전시, 코치 피드백을 반복합니다.",
           stepThree: "3. 제출: 몰입 가능 기간, GitHub 또는 문제 해결 경험, 팀 프로젝트 경험을 정리합니다.",
@@ -736,6 +838,11 @@
       const noticeCopy = document.querySelector("[data-notice-copy]");
       const planTitle = document.querySelector("[data-plan-title]");
       const planSummary = document.querySelector("[data-plan-summary]");
+      const planBackground = document.querySelector("[data-plan-background]");
+      const planTarget = document.querySelector("[data-plan-target]");
+      const planOperation = document.querySelector("[data-plan-operation]");
+      const planBudget = document.querySelector("[data-plan-budget]");
+      const planOutcome = document.querySelector("[data-plan-outcome]");
       const planStepOne = document.querySelector("[data-plan-step-one]");
       const planStepTwo = document.querySelector("[data-plan-step-two]");
       const planStepThree = document.querySelector("[data-plan-step-three]");
@@ -757,6 +864,11 @@
           noticeCopy.textContent = profile.noticeCopy;
           planTitle.textContent = profile.planTitle;
           planSummary.textContent = profile.planSummary;
+          planBackground.textContent = profile.background;
+          planTarget.textContent = profile.target;
+          planOperation.textContent = profile.operation;
+          planBudget.textContent = profile.budget;
+          planOutcome.textContent = profile.outcome;
           planStepOne.textContent = profile.stepOne;
           planStepTwo.textContent = profile.stepTwo;
           planStepThree.textContent = profile.stepThree;
