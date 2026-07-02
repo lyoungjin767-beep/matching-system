@@ -209,6 +209,7 @@
       }
 
       .hero,
+      .mentor-showcase,
       .company-matches {
         width: min(1600px, calc(100% - 72px));
         margin: 0 auto;
@@ -1023,6 +1024,171 @@
         padding: 0 0 76px;
       }
 
+      .mentor-showcase {
+        padding: 18px 0 76px;
+        scroll-margin-top: 126px;
+      }
+
+      .mentor-showcase-shell {
+        border: 1px solid #cde1d6;
+        border-radius: 8px;
+        padding: 34px;
+        background: rgba(248, 253, 249, 0.96);
+        box-shadow: 0 18px 44px rgba(22, 49, 92, 0.08);
+      }
+
+      .mentor-showcase-header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 22px;
+        margin-bottom: 24px;
+      }
+
+      .mentor-showcase-kicker {
+        margin: 0 0 8px;
+        color: var(--green-dark);
+        font-size: 0.86rem;
+        font-weight: 900;
+      }
+
+      .mentor-showcase-title {
+        margin: 0;
+        color: var(--navy);
+        font-size: 2.1rem;
+        line-height: 1.22;
+        letter-spacing: 0;
+      }
+
+      .mentor-showcase-copy {
+        max-width: 720px;
+        margin: 10px 0 0;
+        color: var(--muted);
+        font-size: 1rem;
+        line-height: 1.65;
+      }
+
+      .mentor-count-pill {
+        min-height: 36px;
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid #c9e7d4;
+        border-radius: 999px;
+        padding: 0 14px;
+        color: #1c5e3d;
+        background: #eef8f1;
+        font-size: 0.86rem;
+        font-weight: 900;
+        white-space: nowrap;
+      }
+
+      .mentor-profile-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 16px;
+      }
+
+      .mentor-profile-card {
+        min-height: 370px;
+        display: grid;
+        gap: 16px;
+        align-content: start;
+        border: 1px solid #cbe8d7;
+        border-radius: 8px;
+        padding: 20px;
+        background: #ffffff;
+        box-shadow: 0 14px 30px rgba(24, 51, 89, 0.06);
+      }
+
+      .mentor-profile-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 14px;
+      }
+
+      .mentor-profile-name {
+        margin: 0;
+        color: var(--navy);
+        font-size: 1.2rem;
+        line-height: 1.35;
+        font-weight: 900;
+      }
+
+      .mentor-profile-role {
+        margin: 6px 0 0;
+        color: var(--green-dark);
+        font-size: 0.88rem;
+        line-height: 1.5;
+        font-weight: 900;
+      }
+
+      .mentor-year-badge {
+        min-width: 62px;
+        min-height: 34px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        color: #ffffff;
+        background: var(--green);
+        font-size: 0.82rem;
+        font-weight: 900;
+        white-space: nowrap;
+      }
+
+      .mentor-career-list {
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 9px;
+        list-style: none;
+      }
+
+      .mentor-career-list li {
+        padding: 11px 12px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        color: #344158;
+        background: #fbfefc;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        font-weight: 800;
+      }
+
+      .mentor-fit-copy {
+        margin: 0;
+        color: #1f2c44;
+        font-size: 0.92rem;
+        line-height: 1.6;
+        font-weight: 800;
+      }
+
+      .mentor-apply-button {
+        min-height: 46px;
+        border: 0;
+        border-radius: 8px;
+        padding: 0 16px;
+        color: #ffffff;
+        background: var(--blue);
+        font: inherit;
+        font-size: 0.96rem;
+        font-weight: 900;
+        cursor: pointer;
+      }
+
+      .mentor-apply-status {
+        margin: 0;
+        padding: 11px 12px;
+        border: 1px solid rgba(46, 95, 76, 0.24);
+        border-radius: 8px;
+        color: var(--green-dark);
+        background: var(--mint);
+        font-size: 0.88rem;
+        line-height: 1.5;
+        font-weight: 900;
+      }
+
       .company-match-shell,
       .match-results {
         border: 1px solid #cfdff3;
@@ -1308,6 +1474,7 @@
       @media (max-width: 980px) {
         .header-inner,
         .hero,
+        .mentor-showcase,
         .company-matches {
           width: min(calc(100% - 36px), 900px);
         }
@@ -1367,6 +1534,11 @@
         .match-summary {
           justify-content: flex-start;
         }
+
+        .mentor-showcase-header {
+          display: grid;
+          align-items: start;
+        }
       }
 
       @media (min-width: 1500px) {
@@ -1382,6 +1554,7 @@
 
         .header-inner,
         .hero,
+        .mentor-showcase,
         .company-matches {
           max-width: 300px;
         }
@@ -1531,6 +1704,30 @@
           padding: 22px;
         }
 
+        .mentor-showcase {
+          padding-bottom: 44px;
+        }
+
+        .mentor-showcase-shell {
+          padding: 22px;
+        }
+
+        .mentor-showcase-title {
+          font-size: 1.45rem;
+        }
+
+        .mentor-profile-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .mentor-profile-card {
+          min-height: 0;
+        }
+
+        .mentor-apply-button {
+          width: 100%;
+        }
+
         .match-page-actions {
           justify-content: stretch;
         }
@@ -1635,6 +1832,161 @@
                 </blockquote>
               </article>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="mentor-showcase" id="mentor" data-home-view aria-labelledby="mentorShowcaseTitle">
+        <div class="mentor-showcase-shell">
+          <div class="mentor-showcase-header">
+            <div>
+              <p class="mentor-showcase-kicker">멘토 프로필</p>
+              <h2 class="mentor-showcase-title" id="mentorShowcaseTitle">멘티가 보고 지원할 수 있는 현직자 멘토</h2>
+              <p class="mentor-showcase-copy">
+                관심 분야와 프로젝트 방향을 보고 바로 지원할 수 있도록, 멘토의 경력과 멘토링 포커스를 먼저 보여드립니다.
+              </p>
+            </div>
+            <span class="mentor-count-pill">예시 멘토 6명</span>
+          </div>
+
+          <div class="mentor-profile-grid">
+            <article class="mentor-profile-card">
+              <div class="mentor-profile-head">
+                <div>
+                  <h3 class="mentor-profile-name">AI 플랫폼 멘토</h3>
+                  <p class="mentor-profile-role">AI Product Manager · NAVER Cloud</p>
+                </div>
+                <span class="mentor-year-badge">8년차</span>
+              </div>
+              <ul class="mentor-career-list">
+                <li>생성형 AI 서비스 MVP 기획 및 PoC 운영</li>
+                <li>클라우드 기반 AI API 연동 프로젝트 리딩</li>
+                <li>학생 포트폴리오를 서비스 기획서로 정리하는 멘토링</li>
+              </ul>
+              <div class="tag-row">
+                <span class="mini-tag">AI/머신러닝</span>
+                <span class="mini-tag">클라우드</span>
+                <span class="mini-tag">서비스 기획</span>
+              </div>
+              <p class="mentor-fit-copy">추천 멘티: AI 기능을 실제 서비스 흐름으로 만들고 싶은 학생</p>
+              <button class="mentor-apply-button" type="button" data-mentor-apply="AI 플랫폼 멘토">멘티로 지원하기</button>
+              <p class="mentor-apply-status" data-mentor-apply-status hidden></p>
+            </article>
+
+            <article class="mentor-profile-card">
+              <div class="mentor-profile-head">
+                <div>
+                  <h3 class="mentor-profile-name">데이터 엔지니어 멘토</h3>
+                  <p class="mentor-profile-role">Data Engineer · Samsung SDS</p>
+                </div>
+                <span class="mentor-year-badge">7년차</span>
+              </div>
+              <ul class="mentor-career-list">
+                <li>기업 데이터 파이프라인 설계 및 운영</li>
+                <li>SQL·Python 기반 데이터 품질 진단 프로젝트 수행</li>
+                <li>분석 결과를 대시보드와 기술 문서로 정리하는 코칭</li>
+              </ul>
+              <div class="tag-row">
+                <span class="mini-tag">데이터 분석</span>
+                <span class="mini-tag">SQL</span>
+                <span class="mini-tag">Python</span>
+              </div>
+              <p class="mentor-fit-copy">추천 멘티: 데이터 분석 결과를 실무 시스템 관점으로 확장하고 싶은 학생</p>
+              <button class="mentor-apply-button" type="button" data-mentor-apply="데이터 엔지니어 멘토">멘티로 지원하기</button>
+              <p class="mentor-apply-status" data-mentor-apply-status hidden></p>
+            </article>
+
+            <article class="mentor-profile-card">
+              <div class="mentor-profile-head">
+                <div>
+                  <h3 class="mentor-profile-name">DX 컨설팅 멘토</h3>
+                  <p class="mentor-profile-role">DX Consultant · LG CNS</p>
+                </div>
+                <span class="mentor-year-badge">9년차</span>
+              </div>
+              <ul class="mentor-career-list">
+                <li>기업 업무 프로세스 개선 및 요구사항 정의</li>
+                <li>데이터 기반 제안서, 발표자료, 실행 로드맵 설계</li>
+                <li>비전공자 프로젝트를 실무 언어로 바꾸는 멘토링</li>
+              </ul>
+              <div class="tag-row">
+                <span class="mini-tag">DX 컨설팅</span>
+                <span class="mini-tag">문제 정의</span>
+                <span class="mini-tag">제안서</span>
+              </div>
+              <p class="mentor-fit-copy">추천 멘티: 아이디어를 기업 제안서나 사업계획서로 만들고 싶은 학생</p>
+              <button class="mentor-apply-button" type="button" data-mentor-apply="DX 컨설팅 멘토">멘티로 지원하기</button>
+              <p class="mentor-apply-status" data-mentor-apply-status hidden></p>
+            </article>
+
+            <article class="mentor-profile-card">
+              <div class="mentor-profile-head">
+                <div>
+                  <h3 class="mentor-profile-name">콘텐츠 기획 멘토</h3>
+                  <p class="mentor-profile-role">Content Strategist · NAVER WEBTOON</p>
+                </div>
+                <span class="mentor-year-badge">6년차</span>
+              </div>
+              <ul class="mentor-career-list">
+                <li>IP 콘텐츠 리서치와 사용자 반응 분석</li>
+                <li>스토리텔링 기반 서비스 기획안 구조화</li>
+                <li>인문·예체능 전공 포트폴리오 방향 코칭</li>
+              </ul>
+              <div class="tag-row">
+                <span class="mini-tag">콘텐츠 기획</span>
+                <span class="mini-tag">리서치</span>
+                <span class="mini-tag">브랜딩</span>
+              </div>
+              <p class="mentor-fit-copy">추천 멘티: 콘텐츠, 미디어, 디자인 경험을 플랫폼 프로젝트로 연결하고 싶은 학생</p>
+              <button class="mentor-apply-button" type="button" data-mentor-apply="콘텐츠 기획 멘토">멘티로 지원하기</button>
+              <p class="mentor-apply-status" data-mentor-apply-status hidden></p>
+            </article>
+
+            <article class="mentor-profile-card">
+              <div class="mentor-profile-head">
+                <div>
+                  <h3 class="mentor-profile-name">모빌리티 SW 멘토</h3>
+                  <p class="mentor-profile-role">Mobility Software Engineer · Hyundai AutoEver</p>
+                </div>
+                <span class="mentor-year-badge">8년차</span>
+              </div>
+              <ul class="mentor-career-list">
+                <li>차량 데이터 분석 및 모빌리티 서비스 구조 설계</li>
+                <li>SW 프로젝트 일정, 역할 분담, 코드 리뷰 운영</li>
+                <li>부트캠프·기업 과제형 포트폴리오 피드백</li>
+              </ul>
+              <div class="tag-row">
+                <span class="mini-tag">모빌리티</span>
+                <span class="mini-tag">SW 개발</span>
+                <span class="mini-tag">데이터</span>
+              </div>
+              <p class="mentor-fit-copy">추천 멘티: 모빌리티 데이터나 소프트웨어 프로젝트를 준비하는 학생</p>
+              <button class="mentor-apply-button" type="button" data-mentor-apply="모빌리티 SW 멘토">멘티로 지원하기</button>
+              <p class="mentor-apply-status" data-mentor-apply-status hidden></p>
+            </article>
+
+            <article class="mentor-profile-card">
+              <div class="mentor-profile-head">
+                <div>
+                  <h3 class="mentor-profile-name">ESG 데이터 멘토</h3>
+                  <p class="mentor-profile-role">ESG Data Manager · LG Energy Solution</p>
+                </div>
+                <span class="mentor-year-badge">7년차</span>
+              </div>
+              <ul class="mentor-career-list">
+                <li>배터리 품질 지표와 ESG 리포팅 데이터 관리</li>
+                <li>탄소·에너지 데이터를 활용한 개선 과제 설계</li>
+                <li>환경·에너지 전공자의 데이터 프로젝트 코칭</li>
+              </ul>
+              <div class="tag-row">
+                <span class="mini-tag">ESG</span>
+                <span class="mini-tag">에너지</span>
+                <span class="mini-tag">품질 데이터</span>
+              </div>
+              <p class="mentor-fit-copy">추천 멘티: 환경, 에너지, 제조 데이터를 프로젝트로 만들고 싶은 학생</p>
+              <button class="mentor-apply-button" type="button" data-mentor-apply="ESG 데이터 멘토">멘티로 지원하기</button>
+              <p class="mentor-apply-status" data-mentor-apply-status hidden></p>
+            </article>
           </div>
         </div>
       </section>
@@ -1918,7 +2270,7 @@
       const profileDialog = document.querySelector("#profileDialog");
       const profileForm = document.querySelector("#profileForm");
       const formStatus = document.querySelector("[data-form-status]");
-      const homeView = document.querySelector("[data-home-view]");
+      const homeViews = document.querySelectorAll("[data-home-view]");
       const modalMatches = document.querySelector("[data-modal-matches]");
       const modalMatchTitle = document.querySelector("[data-modal-match-title]");
       const modalMatchCopy = document.querySelector("[data-modal-match-copy]");
@@ -1941,6 +2293,8 @@
       const pageMentorCopy = document.querySelector("[data-page-mentor-copy]");
       const pageMentorSummary = document.querySelector("[data-page-mentor-summary]");
       const pageMentorList = document.querySelector("[data-page-mentor-list]");
+      let selectedMentorName = "";
+      let selectedMentorStatus = null;
       const storageKey = "envol-basic-profile";
       const companyPool = [
         {
@@ -2833,7 +3187,9 @@
       };
 
       const showHomePage = (shouldScroll = true) => {
-        if (homeView) homeView.hidden = false;
+        homeViews.forEach((view) => {
+          view.hidden = false;
+        });
         pageMatches.hidden = true;
 
         if (window.location.hash === "#matches") {
@@ -2848,7 +3204,9 @@
       };
 
       const showMatchPage = (shouldScroll = true) => {
-        if (homeView) homeView.hidden = true;
+        homeViews.forEach((view) => {
+          view.hidden = true;
+        });
         pageMatches.hidden = false;
 
         if (window.location.hash !== "#matches") {
@@ -2947,12 +3305,41 @@
 
         if (window.location.hash === "#profile") {
           openProfileDialog();
+          return;
+        }
+
+        if (window.location.hash === "#mentor") {
+          requestAnimationFrame(() => {
+            document.querySelector("#mentor")?.scrollIntoView({ behavior: "smooth", block: "start" });
+          });
         }
       };
 
       document.querySelectorAll("[data-open-profile]").forEach((button) => {
         button.addEventListener("click", () => {
           openProfileDialog();
+        });
+      });
+
+      document.querySelectorAll("[data-mentor-apply]").forEach((button) => {
+        button.addEventListener("click", () => {
+          selectedMentorName = button.dataset.mentorApply || "선택한 멘토";
+          const card = button.closest(".mentor-profile-card");
+          selectedMentorStatus = card?.querySelector("[data-mentor-apply-status]") || null;
+
+          document.querySelectorAll("[data-mentor-apply-status]").forEach((status) => {
+            if (status !== selectedMentorStatus) status.hidden = true;
+          });
+
+          if (selectedMentorStatus) {
+            selectedMentorStatus.textContent = `${selectedMentorName} 지원을 위해 기본 프로필을 작성해주세요.`;
+            selectedMentorStatus.hidden = false;
+          }
+
+          button.textContent = "지원 프로필 작성 중";
+          openProfileDialog();
+          formStatus.textContent = `${selectedMentorName} 지원용 기본 프로필을 입력하세요.`;
+          formStatus.hidden = false;
         });
       });
 
@@ -2999,12 +3386,19 @@
 
       const submitProfileForMatching = () => {
         const profile = readProfileFromForm();
+        const mentorMessage = selectedMentorName ? ` ${selectedMentorName} 지원 요청도 함께 준비되었습니다.` : "";
 
         localStorage.setItem(storageKey, JSON.stringify(profile));
         updateProfilePreview(profile);
         renderCompanyMatches(profile, true, true);
-        formStatus.textContent = "프로필이 등록되었습니다. 다음 결과 화면에서 기업과 멘토 페어를 확인하세요.";
+        if (selectedMentorStatus && selectedMentorName) {
+          selectedMentorStatus.textContent = `${selectedMentorName} 지원 요청이 등록되었습니다. 매칭 결과에서 관련 기업과 멘토를 확인하세요.`;
+          selectedMentorStatus.hidden = false;
+        }
+        formStatus.textContent = `프로필이 등록되었습니다.${mentorMessage} 다음 결과 화면에서 기업과 멘토 페어를 확인하세요.`;
         formStatus.hidden = false;
+        selectedMentorName = "";
+        selectedMentorStatus = null;
         profileDialog.close();
       };
 
