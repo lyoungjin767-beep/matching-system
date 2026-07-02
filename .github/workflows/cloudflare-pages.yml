@@ -23,7 +23,7 @@ jobs:
       - name: Prepare static files
         run: |
           mkdir -p dist
-          cp index.html dist/index.html
+          cp index.html image.png logo.svg photo1.png dist/
 
       - name: Deploy to Cloudflare Pages
         run: npx wrangler pages deploy dist --project-name matching-system --branch main --commit-dirty=true
