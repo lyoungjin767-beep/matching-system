@@ -1,0 +1,22 @@
+<svg width="420" height="120" viewBox="0 0 420 120" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ENVOL 로고">
+  <defs>
+    <linearGradient id="g" x1="40" y1="18" x2="92" y2="102" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1C7F4D"/>
+      <stop offset="1" stop-color="#2AA564"/>
+    </linearGradient>
+    <filter id="s" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#123526" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+  <circle cx="62" cy="60" r="38" fill="url(#g)" filter="url(#s)"/>
+  <circle cx="62" cy="44" r="11" fill="#FFFFFF"/>
+  <path d="M52 60c0-5.523 4.477-10 10-10s10 4.477 10 10v18H52V60Z" fill="#FFFFFF"/>
+  <path d="M48 63c0-2.761 2.239-5 5-5h18c2.761 0 5 2.239 5 5s-2.239 5-5 5H53c-2.761 0-5-2.239-5-5Z" fill="#FFFFFF" opacity="0.95"/>
+  <circle cx="62" cy="60" r="28" stroke="#FFFFFF" stroke-width="3" opacity="0.6"/>
+  <path d="M146 42h41c17.673 0 32 14.327 32 32s-14.327 32-32 32h-41V42Z" fill="#123526"/>
+  <path d="M149 45h35c15.464 0 28 12.536 28 28s-12.536 28-28 28h-35V45Z" fill="#FFFFFF"/>
+  <path d="M149 45h35c15.464 0 28 12.536 28 28s-12.536 28-28 28h-35V45Z" fill="#F5FBF8"/>
+  <text x="157" y="80" fill="#1C7F4D" font-family="Arial, 'Malgun Gothic', sans-serif" font-size="30" font-weight="900" letter-spacing="1.2">ENVOL</text>
+  <path d="M208 89h70" stroke="#D8E8DD" stroke-width="2"/>
+  <circle cx="243" cy="89" r="4" fill="#2AA564"/>
+</svg>
