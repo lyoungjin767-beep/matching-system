@@ -2376,10 +2376,9 @@
         localStorage.setItem(storageKey, JSON.stringify(profile));
         updateProfilePreview(profile);
         renderCompanyMatches(profile, true);
-        formStatus.textContent = "프로필이 등록되었습니다. 기업과 멘토 매칭 결과를 불러옵니다.";
+        formStatus.textContent = "프로필이 등록되었습니다. 기업과 멘토 매칭 결과를 바로 확인하세요.";
         formStatus.hidden = false;
-        profileDialog.close();
-        pageMatches.scrollIntoView({ behavior: "smooth", block: "start" });
+        modalMatches.scrollIntoView({ behavior: "smooth", block: "start" });
       });
 
       const savedProfile = readSavedProfile();
