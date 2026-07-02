@@ -74,25 +74,16 @@
         line-height: 1;
       }
 
-      .brand-o {
-        position: relative;
+      .brand-mark {
         width: 34px;
         height: 34px;
         margin: 0 1px;
-        border: 8px solid var(--blue);
+        border: 2px solid #d7e3f5;
         border-radius: 50%;
-        display: inline-block;
-      }
-
-      .brand-o::after {
-        content: "";
-        position: absolute;
-        inset: 4px;
-        border: 7px solid var(--green);
-        border-top-color: transparent;
-        border-left-color: transparent;
-        border-radius: 50%;
-        transform: rotate(-28deg);
+        display: block;
+        object-fit: cover;
+        background: #fff;
+        box-shadow: 0 6px 14px rgba(15, 42, 79, 0.08);
       }
 
       .main-nav {
@@ -1147,10 +1138,9 @@
           font-size: 2.2rem;
         }
 
-        .brand-o {
+        .brand-mark {
           width: 28px;
           height: 28px;
-          border-width: 7px;
         }
 
         .main-nav {
@@ -1227,15 +1217,9 @@
           font-size: 1.88rem;
         }
 
-        .brand-o {
+        .brand-mark {
           width: 24px;
           height: 24px;
-          border-width: 6px;
-        }
-
-        .brand-o::after {
-          inset: 3px;
-          border-width: 5px;
         }
 
         .hero {
@@ -1388,7 +1372,7 @@
     <header class="site-header">
       <div class="header-inner">
         <a class="brand" href="#" aria-label="ENVOL 홈">
-          <span>ENV</span><span class="brand-o" aria-hidden="true"></span><span>L</span>
+          <span>ENV</span><img class="brand-mark" src="./photo1.png" alt="" aria-hidden="true"><span>L</span>
         </a>
         <nav class="main-nav" aria-label="주요 메뉴">
           <a href="#projects">프로젝트</a>
