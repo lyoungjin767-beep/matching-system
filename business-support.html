@@ -234,6 +234,7 @@
         min-height: 46px;
         margin-top: auto;
         padding: 0 15px;
+        border: 0;
         border-radius: 8px;
         display: inline-flex;
         align-items: center;
@@ -243,11 +244,141 @@
         font-size: 0.96rem;
         font-weight: 900;
         background: var(--green-dark);
+        cursor: pointer;
       }
 
       .card-link::after {
         content: ">";
         font-size: 1rem;
+      }
+
+      .mentor-dialog {
+        width: min(640px, calc(100% - 32px));
+        padding: 0;
+        border: 0;
+        border-radius: 8px;
+        color: var(--ink);
+        background: #ffffff;
+        box-shadow: 0 28px 70px rgba(18, 53, 38, 0.24);
+      }
+
+      .mentor-dialog::backdrop {
+        background: rgba(18, 53, 38, 0.4);
+      }
+
+      .mentor-panel {
+        padding: 28px;
+        display: grid;
+        gap: 20px;
+      }
+
+      .mentor-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .mentor-kicker {
+        margin: 0 0 8px;
+        color: var(--green);
+        font-size: 0.9rem;
+        font-weight: 900;
+      }
+
+      .mentor-title {
+        margin: 0;
+        color: var(--green-dark);
+        font-size: 1.45rem;
+        line-height: 1.28;
+        font-weight: 900;
+      }
+
+      .mentor-close {
+        width: 38px;
+        height: 38px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        flex: 0 0 auto;
+        color: var(--green-dark);
+        background: #ffffff;
+        font-size: 1.35rem;
+        line-height: 1;
+        cursor: pointer;
+      }
+
+      .mentor-card {
+        padding: 20px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        display: grid;
+        gap: 12px;
+        background: var(--surface);
+      }
+
+      .mentor-name {
+        margin: 0;
+        color: var(--green-dark);
+        font-size: 1.16rem;
+        line-height: 1.35;
+        font-weight: 900;
+      }
+
+      .mentor-copy {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.98rem;
+        line-height: 1.6;
+      }
+
+      .mentor-flow {
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 10px;
+        list-style: none;
+        color: #32433a;
+        font-size: 0.96rem;
+        line-height: 1.5;
+      }
+
+      .mentor-flow li {
+        padding: 12px 14px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #ffffff;
+      }
+
+      .mentor-actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .mentor-cancel,
+      .mentor-official {
+        min-height: 46px;
+        padding: 0 16px;
+        border-radius: 8px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.96rem;
+        font-weight: 900;
+      }
+
+      .mentor-cancel {
+        border: 1px solid var(--line);
+        color: var(--green-dark);
+        background: #ffffff;
+        cursor: pointer;
+      }
+
+      .mentor-official {
+        color: #ffffff;
+        background: var(--green-dark);
       }
 
       .note {
@@ -297,6 +428,14 @@
         .support-card {
           min-height: 0;
         }
+
+        .mentor-panel {
+          padding: 22px;
+        }
+
+        .mentor-actions {
+          display: grid;
+        }
       }
     </style>
   </head>
@@ -336,7 +475,7 @@
             <li>SW 개발, AI 기초·심화 역량을 쌓고 싶은 청년에게 적합</li>
             <li>취업 준비 과정과 프로젝트 기반 학습을 함께 확인 가능</li>
           </ul>
-          <a class="card-link" href="https://www.ssafy.com/" target="_blank" rel="noopener">공식 페이지</a>
+          <button class="card-link" type="button" data-mentor-id="ssafy">멘토 연결하기</button>
         </article>
 
         <article class="support-card">
@@ -354,7 +493,7 @@
             <li>AI 서비스, 데이터 분석, 해커톤 포트폴리오가 필요한 청년에게 적합</li>
             <li>2026년 모집 일정이 공식 페이지에 공지되어 있음</li>
           </ul>
-          <a class="card-link" href="https://www.lgaimers.ai/" target="_blank" rel="noopener">공식 페이지</a>
+          <button class="card-link" type="button" data-mentor-id="lgaimers">멘토 연결하기</button>
         </article>
 
         <article class="support-card">
@@ -372,7 +511,7 @@
             <li>2026년 8기 모집과 교육비 전액 무료 혜택 확인</li>
             <li>서비스 기획, 개발, 데이터 직무 경험을 쌓기 좋음</li>
           </ul>
-          <a class="card-link" href="https://www.softeerbootcamp.com/" target="_blank" rel="noopener">공식 페이지</a>
+          <button class="card-link" type="button" data-mentor-id="softeer">멘토 연결하기</button>
         </article>
 
         <article class="support-card">
@@ -390,7 +529,7 @@
             <li>취업 준비, 직무 실습, 데이터 역량 강화 과정 확인 가능</li>
             <li>세부 과정별 모집 공고와 신청 방식은 공식 페이지에서 확인</li>
           </ul>
-          <a class="card-link" href="https://youth.posco.com/index.php?mod=academy&amp;pag=aca01#khwhay" target="_blank" rel="noopener">공식 페이지</a>
+          <button class="card-link" type="button" data-mentor-id="posco">멘토 연결하기</button>
         </article>
 
         <article class="support-card">
@@ -408,7 +547,7 @@
             <li>AI 도구 활용을 넘어 서비스 구조 설계와 프로덕트 완성을 목표로 함</li>
             <li>카카오의 AI 서비스 구현 경험을 쌓고 싶은 청년에게 적합</li>
           </ul>
-          <a class="card-link" href="https://www.kakaotechcampus.com/" target="_blank" rel="noopener">공식 페이지</a>
+          <button class="card-link" type="button" data-mentor-id="kakao">멘토 연결하기</button>
         </article>
 
         <article class="support-card">
@@ -426,7 +565,7 @@
             <li>2026년 하반기 모집 일정이 공식 페이지에 공지되어 있음</li>
             <li>SW-AI Lab, Game Lab, Game Tech Lab 등 과정별 선택 가능</li>
           </ul>
-          <a class="card-link" href="https://jungle.krafton.com/" target="_blank" rel="noopener">공식 페이지</a>
+          <button class="card-link" type="button" data-mentor-id="krafton">멘토 연결하기</button>
         </article>
       </section>
 
@@ -435,5 +574,115 @@
         네이버 부스트캠프는 2026년 웹·모바일 및 AI Tech 과정을 운영하지 않는다는 공식 공지가 있어 목록에서 제외했습니다.
       </p>
     </main>
+
+    <dialog class="mentor-dialog" data-mentor-dialog>
+      <div class="mentor-panel">
+        <div class="mentor-head">
+          <div>
+            <p class="mentor-kicker">멘토 연결</p>
+            <h2 class="mentor-title" data-mentor-program>사업 멘토 연결</h2>
+          </div>
+          <button class="mentor-close" type="button" aria-label="닫기" data-mentor-close>&times;</button>
+        </div>
+
+        <div class="mentor-card">
+          <p class="mentor-name" data-mentor-name>ENVOL 멘토</p>
+          <p class="mentor-copy" data-mentor-copy>선택한 사업에 맞는 준비 방향을 먼저 확인합니다.</p>
+        </div>
+
+        <ol class="mentor-flow">
+          <li data-mentor-step-one>1. 사업별 준비 포인트를 멘토와 먼저 확인합니다.</li>
+          <li data-mentor-step-two>2. 준비 방향을 확인한 뒤 공식 페이지에서 모집 요강과 신청 일정을 확인합니다.</li>
+        </ol>
+
+        <div class="mentor-actions">
+          <button class="mentor-cancel" type="button" data-mentor-close>다른 사업 보기</button>
+          <a class="mentor-official" href="#" target="_blank" rel="noopener" data-mentor-official>공식 페이지로 이동</a>
+        </div>
+      </div>
+    </dialog>
+
+    <script>
+      const mentorProfiles = {
+        ssafy: {
+          program: "삼성청년SW·AI아카데미 SSAFY",
+          name: "ENVOL SW 개발 멘토",
+          copy: "코딩 테스트, 전공 무관 SW 학습 루트, 팀 프로젝트 포트폴리오 정리 방향을 먼저 잡아드립니다.",
+          stepOne: "1. SW 기초, 알고리즘, 프로젝트 경험 중 부족한 부분을 멘토가 먼저 점검합니다.",
+          stepTwo: "2. 준비 방향을 확인한 뒤 SSAFY 공식 페이지에서 모집 요강과 신청 일정을 확인합니다.",
+          officialUrl: "https://www.ssafy.com/"
+        },
+        lgaimers: {
+          program: "LG Aimers",
+          name: "ENVOL AI 해커톤 멘토",
+          copy: "AI 모델링, 데이터 분석 경험, 해커톤 제출물 구성 방식까지 지원 전 준비 흐름을 정리합니다.",
+          stepOne: "1. AI 교육 수강 전 필요한 데이터 분석 역량과 해커톤 준비 포인트를 먼저 확인합니다.",
+          stepTwo: "2. 멘토 확인 후 LG Aimers 공식 페이지에서 과정 일정과 신청 조건을 확인합니다.",
+          officialUrl: "https://www.lgaimers.ai/"
+        },
+        softeer: {
+          program: "HMG Softeer Bootcamp",
+          name: "ENVOL 모빌리티 IT 멘토",
+          copy: "서비스 기획, 개발, 데이터 직무 중 어떤 트랙이 맞는지와 채용연계 준비 포인트를 먼저 연결합니다.",
+          stepOne: "1. 현대차그룹 IT 직무와 본인 프로젝트 경험의 연결 가능성을 멘토가 먼저 점검합니다.",
+          stepTwo: "2. 트랙 방향을 정한 뒤 Softeer Bootcamp 공식 페이지에서 모집 분야를 확인합니다.",
+          officialUrl: "https://www.softeerbootcamp.com/"
+        },
+        posco: {
+          program: "포스코 청년 아카데미",
+          name: "ENVOL 취업역량 멘토",
+          copy: "직무 실습, 취업 아카데미, AI·BigData 과정 중 어떤 과정이 맞는지 지원 목적을 먼저 정리합니다.",
+          stepOne: "1. 이력서, 직무 목표, 데이터 역량 수준을 기준으로 적합한 아카데미 방향을 먼저 확인합니다.",
+          stepTwo: "2. 멘토 연결 후 포스코 청년 아카데미 공식 페이지에서 세부 과정을 확인합니다.",
+          officialUrl: "https://youth.posco.com/index.php?mod=academy&pag=aca01#khwhay"
+        },
+        kakao: {
+          program: "카카오테크 캠퍼스",
+          name: "ENVOL AI 서비스 멘토",
+          copy: "Agentic AI, 서비스 구조 설계, 개인 프로덕트 완성 흐름을 지원 전 먼저 점검합니다.",
+          stepOne: "1. AI 서비스를 직접 구현하기 위한 기획, API, 프로토타입 경험을 멘토가 먼저 확인합니다.",
+          stepTwo: "2. 준비 방향을 정한 뒤 카카오테크 캠퍼스 공식 페이지에서 프로그램 정보를 확인합니다.",
+          officialUrl: "https://www.kakaotechcampus.com/"
+        },
+        krafton: {
+          program: "크래프톤 정글",
+          name: "ENVOL 몰입형 SW 멘토",
+          copy: "자기주도 학습, 알고리즘, CS, 게임·SW 프로젝트 몰입 과정에 맞는 준비 수준을 먼저 연결합니다.",
+          stepOne: "1. 몰입형 교육에 맞는 학습 태도, 문제 해결 경험, 협업 경험을 멘토가 먼저 점검합니다.",
+          stepTwo: "2. 멘토 연결 후 크래프톤 정글 공식 페이지에서 과정과 모집 일정을 확인합니다.",
+          officialUrl: "https://jungle.krafton.com/"
+        }
+      };
+
+      const mentorDialog = document.querySelector("[data-mentor-dialog]");
+      const mentorProgram = document.querySelector("[data-mentor-program]");
+      const mentorName = document.querySelector("[data-mentor-name]");
+      const mentorCopy = document.querySelector("[data-mentor-copy]");
+      const mentorStepOne = document.querySelector("[data-mentor-step-one]");
+      const mentorStepTwo = document.querySelector("[data-mentor-step-two]");
+      const mentorOfficial = document.querySelector("[data-mentor-official]");
+
+      document.querySelectorAll("[data-mentor-id]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const profile = mentorProfiles[button.dataset.mentorId];
+          if (!profile || !mentorDialog) return;
+
+          mentorProgram.textContent = profile.program;
+          mentorName.textContent = profile.name;
+          mentorCopy.textContent = profile.copy;
+          mentorStepOne.textContent = profile.stepOne;
+          mentorStepTwo.textContent = profile.stepTwo;
+          mentorOfficial.href = profile.officialUrl;
+
+          mentorDialog.showModal();
+        });
+      });
+
+      document.querySelectorAll("[data-mentor-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          if (mentorDialog) mentorDialog.close();
+        });
+      });
+    </script>
   </body>
 </html>
