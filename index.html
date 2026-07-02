@@ -2301,6 +2301,7 @@
       const renderCompanyMatches = (profile, shouldScroll = false) => {
         const matches = buildCompanyMatches(profile);
         const mentorMatches = buildMentorMatches(profile);
+        pageMatches.hidden = false;
         renderMatchBlock(
           {
             container: modalMatches,
@@ -2347,7 +2348,9 @@
         );
 
         if (shouldScroll) {
-          pageMatches.scrollIntoView({ behavior: "smooth", block: "start" });
+          requestAnimationFrame(() => {
+            pageMatches.scrollIntoView({ behavior: "smooth", block: "start" });
+          });
         }
       };
 
@@ -2379,6 +2382,7 @@
         formStatus.textContent = "프로필이 등록되었습니다. 기업과 멘토 매칭 결과를 바로 확인하세요.";
         formStatus.hidden = false;
         profileDialog.close();
+        pageMatches.hidden = false;
       });
 
       const savedProfile = readSavedProfile();
