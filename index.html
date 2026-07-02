@@ -121,7 +121,6 @@
       }
 
       .hero,
-      .comparison,
       .company-matches {
         width: min(1600px, calc(100% - 72px));
         margin: 0 auto;
@@ -655,186 +654,6 @@
         box-shadow: 0 12px 24px rgba(22, 150, 90, 0.18);
       }
 
-      .comparison {
-        padding: 10px 0 64px;
-      }
-
-      .compare-grid {
-        display: grid;
-        grid-template-columns: minmax(420px, 1fr) 102px minmax(520px, 1.1fr);
-        gap: 20px;
-        align-items: stretch;
-      }
-
-      .compare-card {
-        min-height: 258px;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        background: rgba(255, 255, 255, 0.92);
-        box-shadow: 0 16px 38px rgba(25, 46, 82, 0.07);
-        padding: 36px 56px;
-        display: grid;
-        grid-template-columns: 150px 1fr;
-        gap: 42px;
-        align-items: center;
-      }
-
-      .envol-compare {
-        border-color: #c8e8d8;
-        background: rgba(243, 253, 248, 0.92);
-        grid-template-columns: 130px 1fr 245px;
-      }
-
-      .muted-symbol,
-      .envol-symbol {
-        width: 112px;
-        height: 112px;
-        display: grid;
-        place-items: center;
-        border-radius: 50%;
-      }
-
-      .muted-symbol {
-        color: #6c7585;
-        background: #e9edf3;
-        font-size: 3.2rem;
-        font-weight: 900;
-      }
-
-      .envol-symbol {
-        color: var(--green);
-        background: radial-gradient(circle, #ffffff 31%, #45c77e 32%, #45c77e 54%, #a8e5c1 55%);
-        font-size: 0;
-      }
-
-      .envol-symbol::before {
-        content: "";
-        width: 42px;
-        height: 42px;
-        border: 13px solid var(--green);
-        border-right-color: transparent;
-        border-radius: 50%;
-        transform: rotate(-26deg);
-      }
-
-      .compare-title {
-        margin: 0 0 26px;
-        color: var(--navy);
-        font-size: 1.9rem;
-        line-height: 1.2;
-        font-weight: 900;
-        letter-spacing: 0;
-      }
-
-      .envol-compare .compare-title {
-        color: var(--green);
-        font-size: 2.5rem;
-      }
-
-      .bullet-list {
-        display: grid;
-        gap: 18px;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        color: var(--navy);
-        font-size: 1.12rem;
-        font-weight: 800;
-      }
-
-      .bullet-list li {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-      }
-
-      .bullet-list li::before {
-        content: "";
-        width: 8px;
-        height: 8px;
-        flex: 0 0 8px;
-        border-radius: 50%;
-        background: #4a82df;
-      }
-
-      .envol-compare .bullet-list li::before {
-        background: var(--green);
-      }
-
-      .vs-badge {
-        width: 102px;
-        height: 102px;
-        align-self: center;
-        justify-self: center;
-        display: grid;
-        place-items: center;
-        border: 1px solid var(--line);
-        border-radius: 50%;
-        color: var(--navy);
-        background: #ffffff;
-        box-shadow: 0 14px 30px rgba(30, 47, 84, 0.09);
-        font-size: 1.8rem;
-        font-weight: 900;
-      }
-
-      .network-mini {
-        position: relative;
-        width: 220px;
-        height: 170px;
-        justify-self: end;
-      }
-
-      .network-mini::before {
-        content: "";
-        position: absolute;
-        left: 42px;
-        top: 28px;
-        width: 136px;
-        height: 106px;
-        border: 2px dashed #48b979;
-        border-radius: 50%;
-      }
-
-      .node {
-        position: absolute;
-        width: 62px;
-        height: 62px;
-        display: grid;
-        place-items: center;
-        border: 1px solid #cae6d4;
-        border-radius: 50%;
-        color: var(--green);
-        background: #ffffff;
-        box-shadow: 0 12px 24px rgba(27, 109, 66, 0.1);
-        font-size: 1.55rem;
-        font-weight: 900;
-      }
-
-      .node.blue {
-        color: var(--blue);
-        border-color: #c7ddff;
-      }
-
-      .node.top {
-        left: 82px;
-        top: 0;
-      }
-
-      .node.center {
-        left: 82px;
-        top: 78px;
-      }
-
-      .node.left {
-        left: 12px;
-        bottom: 0;
-      }
-
-      .node.right {
-        right: 8px;
-        bottom: 0;
-      }
-
       .profile-modal {
         width: min(940px, calc(100% - 40px));
         max-height: min(860px, calc(100vh - 48px));
@@ -1316,7 +1135,6 @@
       @media (max-width: 980px) {
         .header-inner,
         .hero,
-        .comparison,
         .company-matches {
           width: min(calc(100% - 36px), 900px);
         }
@@ -1371,26 +1189,6 @@
           display: none;
         }
 
-        .compare-grid {
-          grid-template-columns: 1fr;
-          gap: 28px;
-        }
-
-        .vs-badge {
-          margin: -4px auto;
-        }
-
-        .compare-card,
-        .envol-compare {
-          grid-template-columns: 110px 1fr;
-          padding: 30px;
-        }
-
-        .network-mini {
-          grid-column: 1 / -1;
-          justify-self: center;
-        }
-
         .match-header {
           display: grid;
         }
@@ -1413,7 +1211,6 @@
 
         .header-inner,
         .hero,
-        .comparison,
         .company-matches {
           max-width: 300px;
         }
@@ -1497,31 +1294,6 @@
           width: 100%;
           height: 42px;
           border-radius: 8px;
-          font-size: 1rem;
-        }
-
-        .compare-card,
-        .envol-compare {
-          grid-template-columns: 1fr;
-          gap: 24px;
-          padding: 26px;
-        }
-
-        .muted-symbol,
-        .envol-symbol {
-          width: 90px;
-          height: 90px;
-        }
-
-        .compare-title {
-          font-size: 1.55rem;
-        }
-
-        .envol-compare .compare-title {
-          font-size: 2rem;
-        }
-
-        .bullet-list {
           font-size: 1rem;
         }
 
@@ -1665,42 +1437,6 @@
               </article>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section class="comparison" aria-label="일반 인턴십과 ENVOL 비교">
-        <div class="compare-grid">
-          <article class="compare-card">
-            <div class="muted-symbol" aria-hidden="true">B</div>
-            <div>
-              <h2 class="compare-title">일반 인턴십</h2>
-              <ul class="bullet-list">
-                <li>기업 중심 배치</li>
-                <li>단기 업무 경험</li>
-                <li>개인별 네트워크 격차</li>
-              </ul>
-            </div>
-          </article>
-
-          <div class="vs-badge" aria-hidden="true">VS</div>
-
-          <article class="compare-card envol-compare">
-            <div class="envol-symbol" aria-hidden="true"></div>
-            <div>
-              <h2 class="compare-title">ENVOL</h2>
-              <ul class="bullet-list">
-                <li>AI 맞춤 매칭</li>
-                <li>실제 프로젝트 수행</li>
-                <li>멘토 · 기업 · 대학 네트워크 유지</li>
-              </ul>
-            </div>
-            <div class="network-mini" aria-hidden="true">
-              <span class="node top">P</span>
-              <span class="node center">U</span>
-              <span class="node blue left">B</span>
-              <span class="node right">G</span>
-            </div>
-          </article>
         </div>
       </section>
 
