@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="정부와 공공기관이 운영하는 청년 정책, 취업, 훈련, 창업 지원 사업을 한곳에서 확인하는 ENVOL 정부 사업 페이지"
+    >
+    <title>ENVOL - 정부 사업</title>
+    <style>
+      :root {
+        --green: #1c7f4d;
+        --green-dark: #123526;
+        --mint: #eaf8ef;
+        --line: #d8e8dd;
+        --ink: #1c2a23;
+        --muted: #607068;
+        --surface: #f7fbf8;
+        --blue: #2767b1;
+        --amber: #c47a18;
+        --violet: #6a4bb8;
+        font-family: Arial, "Malgun Gothic", sans-serif;
+        color: var(--ink);
+        background: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+        background:
+          linear-gradient(180deg, rgba(234, 248, 239, 0.84) 0%, rgba(255, 255, 255, 0) 42%),
+          #ffffff;
+        word-break: keep-all;
+        overflow-wrap: break-word;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .site-header {
+        border-bottom: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(14px);
+      }
+
+      .header-inner,
+      .page-shell {
+        width: min(1180px, calc(100% - 48px));
+        margin: 0 auto;
+      }
+
+      .header-inner {
+        min-height: 92px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .brand-logo {
+        width: min(300px, 48vw);
+        height: auto;
+        display: block;
+        object-fit: contain;
+        mix-blend-mode: multiply;
+      }
+
+      .back-link {
+        min-height: 44px;
+        padding: 0 16px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--green-dark);
+        font-size: 0.96rem;
+        font-weight: 800;
+        background: #ffffff;
+      }
+
+      .page-shell {
+        padding: 54px 0 70px;
+      }
+
+      .page-head {
+        display: grid;
+        gap: 14px;
+        margin-bottom: 32px;
+      }
+
+      .eyebrow {
+        margin: 0;
+        color: var(--green);
+        font-size: 1rem;
+        font-weight: 900;
+      }
+
+      h1 {
+        max-width: 820px;
+        margin: 0;
+        color: var(--green-dark);
+        font-size: clamp(2rem, 4vw, 3.4rem);
+        line-height: 1.12;
+        font-weight: 900;
+        letter-spacing: 0;
+      }
+
+      .lead {
+        max-width: 900px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 1.14rem;
+        line-height: 1.7;
+      }
+
+      .support-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .support-card {
+        min-height: 300px;
+        padding: 24px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        background: #ffffff;
+        box-shadow: 0 14px 28px rgba(18, 53, 38, 0.08);
+      }
+
+      .card-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 14px;
+      }
+
+      .company {
+        margin: 0 0 6px;
+        color: var(--muted);
+        font-size: 0.9rem;
+        font-weight: 800;
+      }
+
+      h2 {
+        margin: 0;
+        color: var(--green-dark);
+        font-size: 1.28rem;
+        line-height: 1.28;
+        font-weight: 900;
+      }
+
+      .badge {
+        flex: 0 0 auto;
+        padding: 7px 10px;
+        border-radius: 999px;
+        color: #ffffff;
+        font-size: 0.78rem;
+        font-weight: 900;
+        background: var(--green);
+      }
+
+      .badge-blue {
+        background: var(--blue);
+      }
+
+      .badge-amber {
+        background: var(--amber);
+      }
+
+      .badge-violet {
+        background: var(--violet);
+      }
+
+      .summary {
+        margin: 0;
+        color: #32433a;
+        font-size: 1rem;
+        line-height: 1.62;
+      }
+
+      .detail-list {
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 10px;
+        list-style: none;
+        color: var(--muted);
+        font-size: 0.96rem;
+        line-height: 1.5;
+      }
+
+      .detail-list li {
+        padding-left: 14px;
+        position: relative;
+      }
+
+      .detail-list li::before {
+        content: "";
+        position: absolute;
+        top: 0.68em;
+        left: 0;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--green);
+      }
+
+      .card-link {
+        min-height: 46px;
+        margin-top: auto;
+        padding: 0 15px;
+        border-radius: 8px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        color: #ffffff;
+        font-size: 0.96rem;
+        font-weight: 900;
+        background: var(--green-dark);
+      }
+
+      .card-link::after {
+        content: ">";
+        font-size: 1rem;
+      }
+
+      .note {
+        margin: 28px 0 0;
+        padding: 18px 20px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        color: var(--muted);
+        background: var(--surface);
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+
+      @media (max-width: 720px) {
+        .header-inner,
+        .page-shell {
+          width: min(calc(100% - 32px), 520px);
+        }
+
+        .header-inner {
+          min-height: 82px;
+        }
+
+        .brand-logo {
+          width: min(220px, 58vw);
+        }
+
+        .back-link {
+          padding: 0 12px;
+          font-size: 0.86rem;
+        }
+
+        .page-shell {
+          padding-top: 38px;
+        }
+
+        .support-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .support-card {
+          min-height: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="./index.html" aria-label="ENVOL 홈">
+          <img class="brand-logo" src="./image.png" alt="ENVOL 로고">
+        </a>
+        <a class="back-link" href="./index.html">홈으로</a>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <section class="page-head" aria-labelledby="support-title">
+        <p class="eyebrow">정부 사업</p>
+        <h1 id="support-title">정부와 공공기관이 운영하는 청년 정책·취업·훈련·창업 지원</h1>
+        <p class="lead">
+          정부 사업은 모집 기간과 지원 조건이 자주 바뀝니다. 아래는 공식 포털 기준으로 확인한 대표 경로이며,
+          실제 신청 전 각 포털의 최신 공고를 확인하세요.
+        </p>
+      </section>
+
+      <section class="support-grid" aria-label="정부 청년 사업 목록">
+        <article class="support-card">
+          <div class="card-top">
+            <div>
+              <p class="company">국무조정실 청년정책조정실</p>
+              <h2>온통청년 청년정책 통합검색</h2>
+            </div>
+            <span class="badge">통합검색</span>
+          </div>
+          <p class="summary">
+            청년정책, 청년공간, 청년소식, 상담서비스 등을 한곳에서 확인할 수 있는 청년정책 통합 포털입니다.
+          </p>
+          <ul class="detail-list">
+            <li>취업, 주거, 금융, 복지, 참여 프로그램을 통합 검색</li>
+            <li>지역과 조건에 맞는 청년정책을 찾을 때 먼저 확인하기 좋음</li>
+          </ul>
+          <a class="card-link" href="https://www.youthcenter.go.kr/" target="_blank" rel="noopener">공식 페이지</a>
+        </article>
+
+        <article class="support-card">
+          <div class="card-top">
+            <div>
+              <p class="company">고용노동부·한국고용정보원</p>
+              <h2>고용24 청년 취업·훈련 사업</h2>
+            </div>
+            <span class="badge badge-blue">취업·훈련</span>
+          </div>
+          <p class="summary">
+            고용24에서 청년성장프로젝트, 청년도전지원사업, 미래내일 일경험, K-디지털 훈련 등을 확인할 수 있습니다.
+          </p>
+          <ul class="detail-list">
+            <li>취업지원 프로그램, 일경험, 직업훈련 과정 확인</li>
+            <li>국민내일배움카드와 K-디지털 훈련 과정 검색 가능</li>
+          </ul>
+          <a class="card-link" href="https://www.work24.go.kr/" target="_blank" rel="noopener">공식 페이지</a>
+        </article>
+
+        <article class="support-card">
+          <div class="card-top">
+            <div>
+              <p class="company">고용노동부</p>
+              <h2>국민취업지원제도</h2>
+            </div>
+            <span class="badge badge-amber">취업지원</span>
+          </div>
+          <p class="summary">
+            취업을 준비하는 구직자에게 상담, 취업활동 계획, 취업지원 서비스 등을 제공하는 정부 취업지원 제도입니다.
+          </p>
+          <ul class="detail-list">
+            <li>취업 상담과 구직활동 계획이 필요한 청년에게 적합</li>
+            <li>세부 자격과 신청 절차는 공식 페이지에서 확인</li>
+          </ul>
+          <a class="card-link" href="https://www.kua.go.kr/" target="_blank" rel="noopener">공식 페이지</a>
+        </article>
+
+        <article class="support-card">
+          <div class="card-top">
+            <div>
+              <p class="company">창업진흥원</p>
+              <h2>K-Startup 창업지원포털</h2>
+            </div>
+            <span class="badge badge-violet">창업</span>
+          </div>
+          <p class="summary">
+            창업지원사업 공고와 창업 정보를 확인할 수 있는 정부 창업지원 포털입니다. 청년 창업자도 모집 공고를 확인할 수 있습니다.
+          </p>
+          <ul class="detail-list">
+            <li>창업지원사업 공고, 신청, 창업 정보 확인</li>
+            <li>청년창업사관학교 등 창업 관련 공고 탐색에 유용</li>
+          </ul>
+          <a class="card-link" href="https://www.k-startup.go.kr/web" target="_blank" rel="noopener">공식 페이지</a>
+        </article>
+      </section>
+
+      <p class="note">
+        조사 기준: 2026년 7월 2일 기준으로 접속 가능한 정부·공공기관 공식 포털을 확인했습니다.
+        세부 사업명, 예산, 모집 기간은 변경될 수 있으므로 신청 직전 공식 공고를 다시 확인하세요.
+      </p>
+    </main>
+  </body>
+</html>

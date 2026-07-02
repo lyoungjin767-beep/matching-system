@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="기업이 운영하는 청년 교육, 프로젝트, 취업 연계 사업을 한곳에서 확인하는 ENVOL 기업 사업 페이지"
+    >
+    <title>ENVOL - 기업 사업</title>
+    <style>
+      :root {
+        --green: #1c7f4d;
+        --green-dark: #123526;
+        --mint: #eaf8ef;
+        --line: #d8e8dd;
+        --ink: #1c2a23;
+        --muted: #607068;
+        --surface: #f7fbf8;
+        --blue: #2767b1;
+        --amber: #c47a18;
+        --violet: #6a4bb8;
+        font-family: Arial, "Malgun Gothic", sans-serif;
+        color: var(--ink);
+        background: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+        background:
+          linear-gradient(180deg, rgba(234, 248, 239, 0.84) 0%, rgba(255, 255, 255, 0) 42%),
+          #ffffff;
+        word-break: keep-all;
+        overflow-wrap: break-word;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .site-header {
+        border-bottom: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(14px);
+      }
+
+      .header-inner,
+      .page-shell {
+        width: min(1180px, calc(100% - 48px));
+        margin: 0 auto;
+      }
+
+      .header-inner {
+        min-height: 92px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .brand-logo {
+        width: min(300px, 48vw);
+        height: auto;
+        display: block;
+        object-fit: contain;
+        mix-blend-mode: multiply;
+      }
+
+      .back-link {
+        min-height: 44px;
+        padding: 0 16px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--green-dark);
+        font-size: 0.96rem;
+        font-weight: 800;
+        background: #ffffff;
+      }
+
+      .page-shell {
+        padding: 54px 0 70px;
+      }
+
+      .page-head {
+        display: grid;
+        gap: 14px;
+        margin-bottom: 32px;
+      }
+
+      .eyebrow {
+        margin: 0;
+        color: var(--green);
+        font-size: 1rem;
+        font-weight: 900;
+      }
+
+      h1 {
+        max-width: 760px;
+        margin: 0;
+        color: var(--green-dark);
+        font-size: clamp(2rem, 4vw, 3.4rem);
+        line-height: 1.12;
+        font-weight: 900;
+        letter-spacing: 0;
+      }
+
+      .lead {
+        max-width: 860px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 1.14rem;
+        line-height: 1.7;
+      }
+
+      .support-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .support-card {
+        min-height: 350px;
+        padding: 24px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        background: #ffffff;
+        box-shadow: 0 14px 28px rgba(18, 53, 38, 0.08);
+      }
+
+      .support-card:nth-child(2n) {
+        border-color: #d5e0ef;
+      }
+
+      .support-card:nth-child(3n) {
+        border-color: #eadfc7;
+      }
+
+      .card-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 14px;
+      }
+
+      .company {
+        margin: 0 0 6px;
+        color: var(--muted);
+        font-size: 0.9rem;
+        font-weight: 800;
+      }
+
+      h2 {
+        margin: 0;
+        color: var(--green-dark);
+        font-size: 1.28rem;
+        line-height: 1.28;
+        font-weight: 900;
+      }
+
+      .badge {
+        flex: 0 0 auto;
+        padding: 7px 10px;
+        border-radius: 999px;
+        color: #ffffff;
+        font-size: 0.78rem;
+        font-weight: 900;
+        background: var(--green);
+      }
+
+      .badge-blue {
+        background: var(--blue);
+      }
+
+      .badge-amber {
+        background: var(--amber);
+      }
+
+      .badge-violet {
+        background: var(--violet);
+      }
+
+      .summary {
+        margin: 0;
+        color: #32433a;
+        font-size: 1rem;
+        line-height: 1.62;
+      }
+
+      .detail-list {
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 10px;
+        list-style: none;
+        color: var(--muted);
+        font-size: 0.96rem;
+        line-height: 1.5;
+      }
+
+      .detail-list li {
+        padding-left: 14px;
+        position: relative;
+      }
+
+      .detail-list li::before {
+        content: "";
+        position: absolute;
+        top: 0.68em;
+        left: 0;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--green);
+      }
+
+      .card-link {
+        min-height: 46px;
+        margin-top: auto;
+        padding: 0 15px;
+        border-radius: 8px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        color: #ffffff;
+        font-size: 0.96rem;
+        font-weight: 900;
+        background: var(--green-dark);
+      }
+
+      .card-link::after {
+        content: ">";
+        font-size: 1rem;
+      }
+
+      .note {
+        margin: 28px 0 0;
+        padding: 18px 20px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        color: var(--muted);
+        background: var(--surface);
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+
+      @media (max-width: 960px) {
+        .support-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 640px) {
+        .header-inner,
+        .page-shell {
+          width: min(calc(100% - 32px), 520px);
+        }
+
+        .header-inner {
+          min-height: 82px;
+        }
+
+        .brand-logo {
+          width: min(220px, 58vw);
+        }
+
+        .back-link {
+          padding: 0 12px;
+          font-size: 0.86rem;
+        }
+
+        .page-shell {
+          padding-top: 38px;
+        }
+
+        .support-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .support-card {
+          min-height: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="./index.html" aria-label="ENVOL 홈">
+          <img class="brand-logo" src="./image.png" alt="ENVOL 로고">
+        </a>
+        <a class="back-link" href="./index.html">홈으로</a>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <section class="page-head" aria-labelledby="support-title">
+        <p class="eyebrow">기업 사업</p>
+        <h1 id="support-title">기업이 운영하는 청년 교육·프로젝트·취업 연계 사업</h1>
+        <p class="lead">
+          2026년 7월 기준으로 공식 페이지에서 확인 가능한 프로그램을 중심으로 정리했습니다.
+          모집 일정과 지원 조건은 수시로 바뀌므로 지원 전 각 공식 페이지에서 최신 공고를 확인하세요.
+        </p>
+      </section>
+
+      <section class="support-grid" aria-label="청년 지원 사업 목록">
+        <article class="support-card">
+          <div class="card-top">
+            <div>
+              <p class="company">삼성</p>
+              <h2>삼성청년SW·AI아카데미 SSAFY</h2>
+            </div>
+            <span class="badge">SW·AI</span>
+          </div>
+          <p class="summary">
+            삼성이 주관하고 고용노동부가 후원하는 청년 취업 프로그램입니다. SW·AI 교육과 취업 지원을 함께 제공합니다.
+          </p>
+          <ul class="detail-list">
+            <li>SW 개발, AI 기초·심화 역량을 쌓고 싶은 청년에게 적합</li>
+            <li>취업 준비 과정과 프로젝트 기반 학습을 함께 확인 가능</li>
+          </ul>
+          <a class="card-link" href="https://www.ssafy.com/" target="_blank" rel="noopener">공식 페이지</a>
+        </article>
+
+        <article class="support-card">
+          <div class="card-top">
+            <div>
+              <p class="company">LG</p>
+              <h2>LG Aimers</h2>
+            </div>
+            <span class="badge badge-blue">AI</span>
+          </div>
+          <p class="summary">
+            LG그룹의 청년 AI 교육 프로그램입니다. AI 교육과 LG 실제 데이터를 활용한 해커톤 경험을 제공합니다.
+          </p>
+          <ul class="detail-list">
+            <li>AI 서비스, 데이터 분석, 해커톤 포트폴리오가 필요한 청년에게 적합</li>
+            <li>2026년 모집 일정이 공식 페이지에 공지되어 있음</li>
+          </ul>
+          <a class="card-link" href="https://www.lgaimers.ai/" target="_blank" rel="noopener">공식 페이지</a>
+        </article>
+
+        <article class="support-card">
+          <div class="card-top">
+            <div>
+              <p class="company">현대자동차그룹</p>
+              <h2>HMG Softeer Bootcamp</h2>
+            </div>
+            <span class="badge badge-amber">채용연계</span>
+          </div>
+          <p class="summary">
+            현대자동차그룹 소프티어 부트캠프입니다. 실무 교육, 팀 프로젝트, 현대차·기아 IT 직무 채용 기회가 연결됩니다.
+          </p>
+          <ul class="detail-list">
+            <li>2026년 8기 모집과 교육비 전액 무료 혜택 확인</li>
+            <li>서비스 기획, 개발, 데이터 직무 경험을 쌓기 좋음</li>
+          </ul>
+          <a class="card-link" href="https://www.softeerbootcamp.com/" target="_blank" rel="noopener">공식 페이지</a>
+        </article>
+
+        <article class="support-card">
+          <div class="card-top">
+            <div>
+              <p class="company">포스코</p>
+              <h2>포스코 청년 아카데미</h2>
+            </div>
+            <span class="badge badge-violet">취업역량</span>
+          </div>
+          <p class="summary">
+            포스코 청년 대상 아카데미 페이지입니다. 취업 아카데미와 AI·BigData 등 실무 역량 과정 정보를 확인할 수 있습니다.
+          </p>
+          <ul class="detail-list">
+            <li>취업 준비, 직무 실습, 데이터 역량 강화 과정 확인 가능</li>
+            <li>세부 과정별 모집 공고와 신청 방식은 공식 페이지에서 확인</li>
+          </ul>
+          <a class="card-link" href="https://youth.posco.com/index.php?mod=academy&amp;pag=aca01#khwhay" target="_blank" rel="noopener">공식 페이지</a>
+        </article>
+
+        <article class="support-card">
+          <div class="card-top">
+            <div>
+              <p class="company">카카오</p>
+              <h2>카카오테크 캠퍼스</h2>
+            </div>
+            <span class="badge">AI 서비스</span>
+          </div>
+          <p class="summary">
+            카카오가 운영하는 테크 교육 프로그램입니다. 4기는 AI 서비스 개발을 위한 Agentic AI 과정을 중심으로 모집 중입니다.
+          </p>
+          <ul class="detail-list">
+            <li>AI 도구 활용을 넘어 서비스 구조 설계와 프로덕트 완성을 목표로 함</li>
+            <li>카카오의 AI 서비스 구현 경험을 쌓고 싶은 청년에게 적합</li>
+          </ul>
+          <a class="card-link" href="https://www.kakaotechcampus.com/" target="_blank" rel="noopener">공식 페이지</a>
+        </article>
+
+        <article class="support-card">
+          <div class="card-top">
+            <div>
+              <p class="company">크래프톤</p>
+              <h2>크래프톤 정글</h2>
+            </div>
+            <span class="badge badge-blue">몰입교육</span>
+          </div>
+          <p class="summary">
+            크래프톤의 자기주도형 SW·AI·게임 개발 교육 사업입니다. 문제 해결, 몰입, 협업 역량을 중심으로 성장 과정을 제공합니다.
+          </p>
+          <ul class="detail-list">
+            <li>2026년 하반기 모집 일정이 공식 페이지에 공지되어 있음</li>
+            <li>SW-AI Lab, Game Lab, Game Tech Lab 등 과정별 선택 가능</li>
+          </ul>
+          <a class="card-link" href="https://jungle.krafton.com/" target="_blank" rel="noopener">공식 페이지</a>
+        </article>
+      </section>
+
+      <p class="note">
+        조사 기준: 각 기업 또는 운영 기관의 공식 페이지에서 프로그램명, 운영 주체, 모집/교육 내용이 확인되는 사업을 우선 선정했습니다.
+        네이버 부스트캠프는 2026년 웹·모바일 및 AI Tech 과정을 운영하지 않는다는 공식 공지가 있어 목록에서 제외했습니다.
+      </p>
+    </main>
+  </body>
+</html>
