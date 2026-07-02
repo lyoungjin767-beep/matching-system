@@ -950,6 +950,14 @@
         padding: 34px;
       }
 
+      .match-page-actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-bottom: 24px;
+      }
+
       .match-results {
         padding: 20px;
       }
@@ -1015,6 +1023,78 @@
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
         gap: 14px;
+      }
+
+      .match-pair-section {
+        margin-bottom: 30px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid #d9e4f4;
+      }
+
+      .mentor-pair-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 16px;
+      }
+
+      .mentor-pair-card {
+        display: grid;
+        gap: 14px;
+        border: 1px solid #cde1d6;
+        border-radius: 8px;
+        padding: 18px;
+        background: #ffffff;
+        box-shadow: 0 14px 30px rgba(24, 51, 89, 0.06);
+      }
+
+      .pair-card-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 12px;
+      }
+
+      .pair-node {
+        min-height: 138px;
+        border: 1px solid #d8e3f3;
+        border-radius: 8px;
+        padding: 14px;
+        background: #f9fbfe;
+      }
+
+      .pair-node--mentor {
+        border-color: #cbe8d7;
+        background: #f7fdf9;
+      }
+
+      .pair-node-label {
+        margin: 0 0 7px;
+        color: var(--green-dark);
+        font-size: 0.76rem;
+        font-weight: 900;
+      }
+
+      .pair-node-title {
+        margin: 0;
+        color: var(--navy);
+        font-size: 1rem;
+        line-height: 1.35;
+        font-weight: 900;
+      }
+
+      .pair-node-meta {
+        margin: 7px 0 0;
+        color: #41506a;
+        font-size: 0.82rem;
+        line-height: 1.5;
+        font-weight: 800;
+      }
+
+      .pair-reason {
+        margin: 0;
+        color: #26364f;
+        font-size: 0.9rem;
+        line-height: 1.55;
+        font-weight: 800;
       }
 
       .match-results .match-list {
@@ -1366,6 +1446,20 @@
           padding: 22px;
         }
 
+        .match-page-actions {
+          justify-content: stretch;
+        }
+
+        .match-page-actions .submit-button,
+        .match-page-actions .ghost-button {
+          flex: 1 1 100%;
+        }
+
+        .mentor-pair-list,
+        .pair-card-grid {
+          grid-template-columns: 1fr;
+        }
+
         .match-results {
           padding: 16px;
         }
@@ -1400,7 +1494,7 @@
     </header>
 
     <main>
-      <section class="hero" aria-labelledby="hero-title">
+      <section class="hero" data-home-view aria-labelledby="hero-title">
         <div class="hero-copy">
           <h1 class="hero-title" id="hero-title">
             인턴십이 아닌,
@@ -1456,6 +1550,25 @@
 
       <section class="company-matches" data-page-matches hidden aria-live="polite">
         <div class="company-match-shell">
+          <div class="match-page-actions">
+            <button class="ghost-button" type="button" data-back-home>홈으로</button>
+            <button class="submit-button" type="button" data-open-profile>프로필 수정</button>
+          </div>
+
+          <div class="match-pair-section">
+            <div class="match-header">
+              <div>
+                <p class="match-eyebrow">기업별 연결 멘토</p>
+                <h2 data-pair-title>관련 기업 멘토 매칭 대기 중</h2>
+                <p class="match-copy" data-pair-copy>
+                  프로필 등록 후 추천 기업과 해당 기업 또는 가장 가까운 분야의 현직자 멘토를 함께 보여드립니다.
+                </p>
+              </div>
+              <div class="match-summary" data-pair-summary></div>
+            </div>
+            <div class="mentor-pair-list" data-pair-list></div>
+          </div>
+
           <div class="match-header">
             <div>
               <p class="match-eyebrow">AI 기업·멘토 매칭 결과</p>
@@ -1489,7 +1602,7 @@
       <div class="profile-shell">
         <aside class="profile-aside">
           <h2 id="profileDialogTitle">기본 프로필 등록</h2>
-          <p>전공, 관심 분야, 프로젝트 선호도를 등록하면 AI 매칭 카드에 바로 반영됩니다.</p>
+          <p>전공, 관심 분야, 프로젝트 선호도를 등록하면 다음 화면에서 기업과 현직자 멘토를 함께 매칭합니다.</p>
           <ul class="profile-points">
             <li>학생 기본 정보</li>
             <li>관심 분야와 역량</li>
@@ -1679,7 +1792,7 @@
             <div class="form-actions">
               <button class="ghost-button" type="button" data-close-profile>취소</button>
               <p class="form-status" data-form-status hidden></p>
-              <button class="submit-button" type="submit">프로필 등록하기</button>
+              <button class="submit-button" type="submit">프로필 등록하고 매칭 보기</button>
             </div>
 
             <section class="match-results" data-modal-matches hidden aria-live="polite">
@@ -1714,12 +1827,17 @@
       const profileDialog = document.querySelector("#profileDialog");
       const profileForm = document.querySelector("#profileForm");
       const formStatus = document.querySelector("[data-form-status]");
+      const homeView = document.querySelector("[data-home-view]");
       const modalMatches = document.querySelector("[data-modal-matches]");
       const modalMatchTitle = document.querySelector("[data-modal-match-title]");
       const modalMatchCopy = document.querySelector("[data-modal-match-copy]");
       const modalMatchSummary = document.querySelector("[data-modal-match-summary]");
       const modalMatchList = document.querySelector("[data-modal-match-list]");
       const pageMatches = document.querySelector("[data-page-matches]");
+      const pairTitle = document.querySelector("[data-pair-title]");
+      const pairCopy = document.querySelector("[data-pair-copy]");
+      const pairSummary = document.querySelector("[data-pair-summary]");
+      const pairList = document.querySelector("[data-pair-list]");
       const pageMatchTitle = document.querySelector("[data-page-match-title]");
       const pageMatchCopy = document.querySelector("[data-page-match-copy]");
       const pageMatchSummary = document.querySelector("[data-page-match-summary]");
@@ -2476,6 +2594,118 @@
         return card;
       };
 
+      const getSharedSignals = (company, mentor) => {
+        const companySignals = [...company.tags, ...company.keywords, ...company.majors, company.sector]
+          .filter(Boolean);
+        const mentorSignals = [...mentor.tags, ...mentor.keywords, ...mentor.majors, mentor.sector || "", mentor.role]
+          .filter(Boolean)
+          .map(normalizeKeyword);
+
+        return companySignals.filter((signal) => {
+          const normalizedSignal = normalizeKeyword(signal);
+          return mentorSignals.some((mentorSignal) => mentorSignal.includes(normalizedSignal) || normalizedSignal.includes(mentorSignal));
+        });
+      };
+
+      const findMentorForCompany = (company, mentorMatches) => {
+        return mentorMatches
+          .map((mentor) => {
+            const isSameCompany = normalizeKeyword(mentor.company) === normalizeKeyword(company.name);
+            const sharedSignals = getSharedSignals(company, mentor);
+            const score = (isSameCompany ? 120 : 0) + sharedSignals.length * 14 + mentor.score / 10;
+
+            return {
+              mentor,
+              score,
+              sharedSignals,
+              relation: isSameCompany ? "동일 기업 현직자" : "분야 연계 멘토"
+            };
+          })
+          .sort((a, b) => b.score - a.score)[0];
+      };
+
+      const buildCompanyMentorPairs = (companyMatches, mentorMatches) =>
+        companyMatches.slice(0, 6).map((company) => {
+          const match = findMentorForCompany(company, mentorMatches);
+          return {
+            company,
+            mentor: match.mentor,
+            relation: match.relation,
+            sharedSignals: match.sharedSignals.length ? match.sharedSignals : company.matchedSignals
+          };
+        });
+
+      const createPairNode = ({ label, title, meta, modifier }) => {
+        const node = document.createElement("div");
+        node.className = `pair-node${modifier ? ` ${modifier}` : ""}`;
+
+        const labelNode = document.createElement("p");
+        labelNode.className = "pair-node-label";
+        labelNode.textContent = label;
+
+        const titleNode = document.createElement("h3");
+        titleNode.className = "pair-node-title";
+        titleNode.textContent = title;
+
+        const metaNode = document.createElement("p");
+        metaNode.className = "pair-node-meta";
+        metaNode.textContent = meta;
+
+        node.append(labelNode, titleNode, metaNode);
+        return node;
+      };
+
+      const createMentorPairCard = ({ company, mentor, relation, sharedSignals }) => {
+        const card = document.createElement("article");
+        card.className = "mentor-pair-card";
+
+        const grid = document.createElement("div");
+        grid.className = "pair-card-grid";
+        grid.append(
+          createPairNode({
+            label: `추천 기업 · ${company.score}%`,
+            title: company.name,
+            meta: `${company.sector} · ${company.region}`
+          }),
+          createPairNode({
+            label: `${relation} · ${mentor.score}%`,
+            title: mentor.name,
+            meta: `${mentor.role} · ${mentor.company}`,
+            modifier: "pair-node--mentor"
+          })
+        );
+
+        const reason = document.createElement("p");
+        reason.className = "pair-reason";
+        reason.textContent = `${company.project} 과제에 ${mentor.focus} 경험을 연결합니다.`;
+
+        const tagRow = document.createElement("div");
+        tagRow.className = "tag-row";
+        Array.from(new Set(sharedSignals)).slice(0, 5).forEach((signal) => {
+          const tag = document.createElement("span");
+          tag.className = "mini-tag";
+          tag.textContent = signal;
+          tagRow.append(tag);
+        });
+
+        card.append(grid, reason, tagRow);
+        return card;
+      };
+
+      const renderCompanyMentorPairs = (profile, companyMatches, mentorMatches) => {
+        const pairs = buildCompanyMentorPairs(companyMatches, mentorMatches);
+        const interests = Array.isArray(profile.interests) ? profile.interests : [];
+
+        pairTitle.textContent = `${profile.studentName || "학생"}님 기업-멘토 ${pairs.length}개 페어 매칭`;
+        pairCopy.textContent = `${profile.majorName || "전공"} · ${profile.projectType || "프로젝트"} · ${interests.slice(0, 3).join(", ") || "관심 키워드"} 기준으로 기업과 연결 가능한 현직자 멘토를 함께 정렬했습니다.`;
+        pairSummary.replaceChildren(
+          createPill(`상위 ${pairs.length}개 페어`),
+          createPill(profile.regionName || "지역 무관"),
+          createPill(interests[0] || "관심 분야")
+        );
+        pairList.replaceChildren(...pairs.map(createMentorPairCard));
+      };
+
       const renderMatchBlock = ({ container, title, copy, summary, list }, profile, matches, compact = false) => {
         const interests = Array.isArray(profile.interests) ? profile.interests : [];
         const displayCount = compact ? Math.min(8, matches.length) : matches.length;
@@ -2507,10 +2737,41 @@
         list.replaceChildren(...matches.slice(0, compact ? 6 : matches.length).map(createMentorCard));
       };
 
-      const renderCompanyMatches = (profile, shouldScroll = false) => {
+      const showHomePage = (shouldScroll = true) => {
+        if (homeView) homeView.hidden = false;
+        pageMatches.hidden = true;
+
+        if (window.location.hash === "#matches") {
+          history.pushState(null, "", `${window.location.pathname}${window.location.search}`);
+        }
+
+        if (shouldScroll) {
+          requestAnimationFrame(() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          });
+        }
+      };
+
+      const showMatchPage = (shouldScroll = true) => {
+        if (homeView) homeView.hidden = true;
+        pageMatches.hidden = false;
+
+        if (window.location.hash !== "#matches") {
+          history.pushState(null, "", "#matches");
+        }
+
+        if (shouldScroll) {
+          requestAnimationFrame(() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          });
+        }
+      };
+
+      const renderCompanyMatches = (profile, shouldScroll = false, showAsPage = false) => {
         const matches = buildCompanyMatches(profile);
         const mentorMatches = buildMentorMatches(profile);
         pageMatches.hidden = false;
+        renderCompanyMentorPairs(profile, matches, mentorMatches);
         renderMatchBlock(
           {
             container: modalMatches,
@@ -2556,7 +2817,9 @@
           mentorMatches
         );
 
-        if (shouldScroll) {
+        if (showAsPage) {
+          showMatchPage(shouldScroll);
+        } else if (shouldScroll) {
           requestAnimationFrame(() => {
             pageMatches.scrollIntoView({ behavior: "smooth", block: "start" });
           });
@@ -2571,6 +2834,27 @@
         }
       };
 
+      const handleRouteChange = () => {
+        if (window.location.hash === "#matches") {
+          const profile = readSavedProfile();
+          if (profile) {
+            fillForm(profile);
+            updateProfilePreview(profile);
+            renderCompanyMatches(profile, false, true);
+          } else {
+            showHomePage(false);
+            openProfileDialog();
+          }
+          return;
+        }
+
+        showHomePage(false);
+
+        if (window.location.hash === "#profile") {
+          openProfileDialog();
+        }
+      };
+
       document.querySelectorAll("[data-open-profile]").forEach((button) => {
         button.addEventListener("click", () => {
           openProfileDialog();
@@ -2581,17 +2865,22 @@
         button.addEventListener("click", () => profileDialog.close());
       });
 
+      document.querySelectorAll("[data-back-home]").forEach((button) => {
+        button.addEventListener("click", () => {
+          showHomePage();
+        });
+      });
+
       profileForm.addEventListener("submit", (event) => {
         event.preventDefault();
         const profile = readProfileFromForm();
 
         localStorage.setItem(storageKey, JSON.stringify(profile));
         updateProfilePreview(profile);
-        renderCompanyMatches(profile, true);
-        formStatus.textContent = "프로필이 등록되었습니다. 기업과 멘토 매칭 결과를 바로 확인하세요.";
+        renderCompanyMatches(profile, true, true);
+        formStatus.textContent = "프로필이 등록되었습니다. 다음 결과 화면에서 기업과 멘토 페어를 확인하세요.";
         formStatus.hidden = false;
         profileDialog.close();
-        pageMatches.hidden = false;
       });
 
       const savedProfile = readSavedProfile();
@@ -2600,9 +2889,16 @@
         updateProfilePreview(savedProfile);
       }
 
-      if (window.location.hash === "#profile") {
+      if (window.location.hash === "#matches" && savedProfile) {
+        renderCompanyMatches(savedProfile, false, true);
+      } else if (window.location.hash === "#matches") {
+        openProfileDialog();
+      } else if (window.location.hash === "#profile") {
         openProfileDialog();
       }
+
+      window.addEventListener("popstate", handleRouteChange);
+      window.addEventListener("hashchange", handleRouteChange);
     </script>
   </body>
 </html>
