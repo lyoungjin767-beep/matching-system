@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ENVOL | 가상 신청</title>
+    <style>
+      :root {
+        --green-dark: #2e5f4c;
+        --green-mid: #5f8f73;
+        --mint: #eaf5ee;
+        --cream: #f7f4ea;
+        --ink: #24342c;
+        --muted: #607069;
+        --line: #d8e3dc;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--ink);
+        background: var(--cream);
+        font-family: "Pretendard", "Noto Sans KR", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .topbar {
+        min-height: 74px;
+        padding: 0 clamp(18px, 4vw, 56px);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid rgba(46, 95, 76, 0.16);
+        background: rgba(247, 244, 234, 0.92);
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--green-dark);
+        font-size: 1.2rem;
+        font-weight: 900;
+      }
+
+      .brand img {
+        width: 34px;
+        height: 34px;
+        object-fit: contain;
+      }
+
+      .nav-link {
+        padding: 10px 12px;
+        border-radius: 8px;
+        color: var(--green-dark);
+        font-weight: 900;
+      }
+
+      main {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 44px 0 64px;
+      }
+
+      .application {
+        display: grid;
+        grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.75fr);
+        gap: 18px;
+        align-items: start;
+      }
+
+      .panel,
+      .summary {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #ffffff;
+      }
+
+      .panel {
+        padding: clamp(22px, 4vw, 34px);
+      }
+
+      .eyebrow {
+        margin: 0 0 8px;
+        color: var(--green-mid);
+        font-size: 0.84rem;
+        font-weight: 900;
+      }
+
+      h1 {
+        margin: 0;
+        color: var(--green-dark);
+        font-size: clamp(2rem, 4vw, 3.2rem);
+        line-height: 1.08;
+        letter-spacing: 0;
+      }
+
+      .lead {
+        margin: 14px 0 0;
+        max-width: 760px;
+        color: var(--muted);
+        font-size: 1rem;
+        line-height: 1.7;
+      }
+
+      .form-grid {
+        margin-top: 26px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      label {
+        display: grid;
+        gap: 7px;
+        color: #33453c;
+        font-size: 0.92rem;
+        font-weight: 900;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 12px 13px;
+        color: var(--ink);
+        background: #fbfcfa;
+        font: inherit;
+        font-weight: 700;
+      }
+
+      textarea {
+        min-height: 132px;
+        resize: vertical;
+      }
+
+      .wide {
+        grid-column: 1 / -1;
+      }
+
+      .actions {
+        margin-top: 18px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 10px;
+      }
+
+      button,
+      .secondary {
+        min-height: 46px;
+        padding: 0 16px;
+        border-radius: 8px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font: inherit;
+        font-weight: 900;
+        cursor: pointer;
+      }
+
+      button {
+        border: 0;
+        color: #ffffff;
+        background: var(--green-dark);
+      }
+
+      .secondary {
+        border: 1px solid var(--line);
+        color: var(--green-dark);
+        background: #ffffff;
+      }
+
+      .status {
+        margin: 16px 0 0;
+        padding: 12px 14px;
+        border: 1px solid rgba(46, 95, 76, 0.24);
+        border-radius: 8px;
+        color: var(--green-dark);
+        background: var(--mint);
+        font-weight: 900;
+        line-height: 1.5;
+      }
+
+      .summary {
+        padding: 20px;
+        display: grid;
+        gap: 14px;
+      }
+
+      .summary h2 {
+        margin: 0;
+        color: var(--green-dark);
+        font-size: 1.12rem;
+      }
+
+      .summary p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .summary-list {
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 9px;
+        list-style: none;
+      }
+
+      .summary-list li {
+        padding: 11px 12px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fbfcfa;
+        color: #35473e;
+        font-weight: 800;
+        line-height: 1.5;
+      }
+
+      @media (max-width: 820px) {
+        .application,
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .topbar {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 10px;
+          padding-top: 16px;
+          padding-bottom: 16px;
+        }
+
+        .actions {
+          justify-content: stretch;
+        }
+
+        button,
+        .secondary {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="./index.html" aria-label="ENVOL 홈">
+        <img src="./logo.svg" alt="" />
+        <span>ENVOL</span>
+      </a>
+      <a class="nav-link" href="./business-support.html">기업 사업</a>
+    </header>
+
+    <main>
+      <section class="application">
+        <div class="panel">
+          <p class="eyebrow">가상 신청 페이지</p>
+          <h1 data-program-title>기업 청년 사업 신청</h1>
+          <p class="lead" data-program-copy>
+            실제 접수로 연결되지 않는 데모용 신청 화면입니다. 사업계획서 초안과 멘토 상담에 넘길 기본 정보를 정리합니다.
+          </p>
+
+          <form data-apply-form>
+            <div class="form-grid">
+              <label>
+                이름
+                <input type="text" name="name" placeholder="홍길동" />
+              </label>
+              <label>
+                연락처
+                <input type="tel" name="phone" placeholder="010-0000-0000" />
+              </label>
+              <label>
+                희망 분야
+                <select name="track" data-track-select>
+                  <option>SW 개발</option>
+                  <option>AI·데이터</option>
+                  <option>서비스 기획</option>
+                  <option>취업 역량</option>
+                </select>
+              </label>
+              <label>
+                참여 가능 기간
+                <input type="text" name="period" placeholder="2026년 하반기" />
+              </label>
+              <label class="wide">
+                사업계획서 한 줄 요약
+                <textarea name="plan" data-plan-field></textarea>
+              </label>
+            </div>
+
+            <div class="actions">
+              <a class="secondary" href="./business-support.html">목록으로</a>
+              <button type="submit">가상 신청서 저장</button>
+            </div>
+          </form>
+
+          <p class="status" data-apply-status hidden>가상 신청서가 저장되었습니다.</p>
+        </div>
+
+        <aside class="summary">
+          <h2 data-summary-title>신청 요약</h2>
+          <p data-summary-copy>선택한 사업의 가상 신청 정보가 표시됩니다.</p>
+          <ul class="summary-list">
+            <li data-summary-one>접수 상태: 가상 접수 준비</li>
+            <li data-summary-two>검토 항목: 공지, 사업계획서, 멘토 상담</li>
+            <li data-summary-three>다음 단계: 신청서 초안 저장</li>
+          </ul>
+        </aside>
+      </section>
+    </main>
+
+    <script>
+      const programs = {
+        ssafy: {
+          title: "SSAFY 가상 신청",
+          copy: "SW·AI 실전 프로젝트 참여를 위한 데모 신청 화면입니다.",
+          track: "SW 개발",
+          plan: "지역 문제 해결형 SW 서비스를 개발해 웹 포트폴리오로 완성합니다.",
+          summary: "알고리즘, 웹 개발, AI API 활용 역량을 중심으로 신청서를 구성합니다."
+        },
+        lgaimers: {
+          title: "LG Aimers 가상 신청",
+          copy: "AI 모델링과 해커톤 참여를 위한 데모 신청 화면입니다.",
+          track: "AI·데이터",
+          plan: "고객 데이터 기반 AI 예측 모델을 만들고 결과 해석 리포트를 제출합니다.",
+          summary: "데이터 전처리, 모델 학습, 평가 지표 해석 경험을 중심으로 정리합니다."
+        },
+        softeer: {
+          title: "Softeer Bootcamp 가상 신청",
+          copy: "모빌리티 IT 서비스 프로젝트 참여를 위한 데모 신청 화면입니다.",
+          track: "서비스 기획",
+          plan: "이동 수요 기반 예약·추천 서비스 MVP를 설계하고 검증합니다.",
+          summary: "서비스 기획, API 설계, 모빌리티 문제 해결 경험을 중심으로 작성합니다."
+        },
+        posco: {
+          title: "포스코 청년 아카데미 가상 신청",
+          copy: "직무역량과 AI BigData 과정 참여를 위한 데모 신청 화면입니다.",
+          track: "취업 역량",
+          plan: "제조 데이터를 분석해 품질 개선 제안서와 대시보드 시안을 제작합니다.",
+          summary: "희망 직무, 교육 이력, 자기소개서 초안을 함께 정리합니다."
+        },
+        kakao: {
+          title: "카카오테크 캠퍼스 가상 신청",
+          copy: "Agentic AI 서비스 개발 과정 참여를 위한 데모 신청 화면입니다.",
+          track: "AI·데이터",
+          plan: "개인 맞춤형 AI 학습 코치 서비스를 기획하고 프로토타입으로 구현합니다.",
+          summary: "AI 서비스 아이디어, 개발 경험, 협업 가능 시간을 중심으로 구성합니다."
+        },
+        krafton: {
+          title: "크래프톤 정글 가상 신청",
+          copy: "몰입형 SW·게임테크 성장 과정 참여를 위한 데모 신청 화면입니다.",
+          track: "SW 개발",
+          plan: "실시간 협업 게임 분석 도구를 설계하고 웹 기반 분석 화면을 만듭니다.",
+          summary: "CS 기초, 문제 해결 경험, 팀 프로젝트 경험을 중심으로 작성합니다."
+        }
+      };
+
+      const params = new URLSearchParams(window.location.search);
+      const selected = programs[params.get("program")] || programs.ssafy;
+
+      document.querySelector("[data-program-title]").textContent = selected.title;
+      document.querySelector("[data-program-copy]").textContent = selected.copy;
+      document.querySelector("[data-plan-field]").value = selected.plan;
+      document.querySelector("[data-summary-title]").textContent = selected.title;
+      document.querySelector("[data-summary-copy]").textContent = selected.summary;
+      document.querySelector("[data-summary-one]").textContent = `희망 분야: ${selected.track}`;
+      document.querySelector("[data-summary-two]").textContent = "검토 항목: 가상 공지, 예시 사업계획서, 멘토 상담";
+      document.querySelector("[data-summary-three]").textContent = "다음 단계: 가상 신청서 저장 후 멘토 연결";
+
+      const trackSelect = document.querySelector("[data-track-select]");
+      if (trackSelect) trackSelect.value = selected.track;
+
+      document.querySelector("[data-apply-form]").addEventListener("submit", (event) => {
+        event.preventDefault();
+        const status = document.querySelector("[data-apply-status]");
+        status.textContent = `${selected.title} 신청서 초안이 가상 저장되었습니다.`;
+        status.hidden = false;
+      });
+    </script>
+  </body>
+</html>

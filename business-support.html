@@ -361,10 +361,12 @@
       .mentor-official {
         min-height: 46px;
         padding: 0 16px;
+        border: 0;
         border-radius: 8px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
+        font-family: inherit;
         font-size: 0.96rem;
         font-weight: 900;
       }
@@ -379,6 +381,7 @@
       .mentor-official {
         color: #ffffff;
         background: var(--green-dark);
+        cursor: pointer;
       }
 
       .mentor-status {
@@ -391,6 +394,30 @@
         font-size: 0.94rem;
         line-height: 1.5;
         font-weight: 800;
+      }
+
+      .application-link-preview {
+        margin: 0;
+        padding: 14px 16px;
+        border: 1px solid rgba(46, 95, 76, 0.24);
+        border-radius: 8px;
+        background: #ffffff;
+        color: #26382f;
+        line-height: 1.5;
+      }
+
+      .application-link-label {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--green-dark);
+        font-size: 0.84rem;
+        font-weight: 900;
+      }
+
+      .application-link-preview a {
+        color: #1d6f53;
+        font-weight: 900;
+        word-break: break-all;
       }
 
       .note {
@@ -614,11 +641,15 @@
         </ol>
 
         <p class="mentor-status" data-mentor-status hidden>멘토 연결 요청이 준비되었습니다.</p>
+        <div class="application-link-preview" data-application-link-preview hidden>
+          <span class="application-link-label">가상 신청 링크</span>
+          <a href="#" target="_blank" rel="noopener" data-application-link-url>신청 링크를 누르면 표시됩니다.</a>
+        </div>
 
         <div class="mentor-actions">
           <button class="mentor-cancel" type="button" data-mentor-close>다른 사업 보기</button>
           <button class="mentor-cancel" type="button" data-mentor-connect>멘토 연결</button>
-          <a class="mentor-official" href="#" target="_blank" rel="noopener" data-mentor-official>신청 링크</a>
+          <button class="mentor-official" type="button" data-mentor-official>신청 링크</button>
         </div>
       </div>
     </dialog>
@@ -635,7 +666,7 @@
           stepTwo: "2. 실행: 4인 팀 구성, 주간 코드 리뷰, 중간 MVP 발표, 최종 서비스 시연으로 진행합니다.",
           stepThree: "3. 제출: 지원서, 학습계획서, GitHub 또는 프로젝트 경험 요약 1개를 준비합니다.",
           mentorName: "ENVOL SW 개발 멘토",
-          officialUrl: "https://www.ssafy.com/"
+          applicationUrl: "https://matching-system.pages.dev/apply.html?program=ssafy"
         },
         lgaimers: {
           program: "LG Aimers",
@@ -647,7 +678,7 @@
           stepTwo: "2. 실행: 온라인 학습, 팀별 모델링, 리더보드 검증, 최종 발표 자료 제작으로 운영합니다.",
           stepThree: "3. 제출: Python 기초 경험, 데이터 분석 관심 분야, 해커톤 참여 가능 시간을 정리합니다.",
           mentorName: "ENVOL AI 해커톤 멘토",
-          officialUrl: "https://www.lgaimers.ai/"
+          applicationUrl: "https://matching-system.pages.dev/apply.html?program=lgaimers"
         },
         softeer: {
           program: "HMG Softeer Bootcamp",
@@ -659,7 +690,7 @@
           stepTwo: "2. 실행: 직무별 트랙 학습, 팀 프로젝트, 현업 멘토 피드백, 최종 면접형 발표로 진행합니다.",
           stepThree: "3. 제출: 지원 직무, 프로젝트 역할 경험, 문제 해결 사례 1개를 정리합니다.",
           mentorName: "ENVOL 모빌리티 IT 멘토",
-          officialUrl: "https://www.softeerbootcamp.com/"
+          applicationUrl: "https://matching-system.pages.dev/apply.html?program=softeer"
         },
         posco: {
           program: "포스코 청년 아카데미",
@@ -671,7 +702,7 @@
           stepTwo: "2. 실행: 직무 특강, 데이터 실습, 자기소개서 클리닉, 모의면접으로 구성합니다.",
           stepThree: "3. 제출: 희망 직무, 자격증·교육 이력, 자기소개서 초안을 준비합니다.",
           mentorName: "ENVOL 취업역량 멘토",
-          officialUrl: "https://youth.posco.com/index.php?mod=academy&pag=aca01#khwhay"
+          applicationUrl: "https://matching-system.pages.dev/apply.html?program=posco"
         },
         kakao: {
           program: "카카오테크 캠퍼스",
@@ -683,7 +714,7 @@
           stepTwo: "2. 실행: 개인 아이디어 검증, 팀 개발, 사용성 테스트, 최종 프로덕트 발표로 진행합니다.",
           stepThree: "3. 제출: 만들고 싶은 AI 서비스 아이디어, 개발 경험, 협업 가능 시간을 정리합니다.",
           mentorName: "ENVOL AI 서비스 멘토",
-          officialUrl: "https://www.kakaotechcampus.com/"
+          applicationUrl: "https://matching-system.pages.dev/apply.html?program=kakao"
         },
         krafton: {
           program: "크래프톤 정글",
@@ -695,7 +726,7 @@
           stepTwo: "2. 실행: 주간 미션, 동료 코드 리뷰, 프로젝트 전시, 코치 피드백을 반복합니다.",
           stepThree: "3. 제출: 몰입 가능 기간, GitHub 또는 문제 해결 경험, 팀 프로젝트 경험을 정리합니다.",
           mentorName: "ENVOL 몰입형 SW 멘토",
-          officialUrl: "https://jungle.krafton.com/"
+          applicationUrl: "https://matching-system.pages.dev/apply.html?program=krafton"
         }
       };
 
@@ -711,6 +742,8 @@
       const mentorOfficial = document.querySelector("[data-mentor-official]");
       const mentorStatus = document.querySelector("[data-mentor-status]");
       const mentorConnect = document.querySelector("[data-mentor-connect]");
+      const applicationLinkPreview = document.querySelector("[data-application-link-preview]");
+      const applicationLinkUrl = document.querySelector("[data-application-link-url]");
       let activeProfile = null;
 
       document.querySelectorAll("[data-mentor-id]").forEach((button) => {
@@ -727,9 +760,13 @@
           planStepOne.textContent = profile.stepOne;
           planStepTwo.textContent = profile.stepTwo;
           planStepThree.textContent = profile.stepThree;
-          mentorOfficial.href = profile.officialUrl;
           mentorStatus.hidden = true;
           mentorStatus.textContent = "멘토 연결 요청이 준비되었습니다.";
+          if (applicationLinkPreview) applicationLinkPreview.hidden = true;
+          if (applicationLinkUrl) {
+            applicationLinkUrl.href = profile.applicationUrl;
+            applicationLinkUrl.textContent = profile.applicationUrl;
+          }
 
           mentorDialog.showModal();
         });
@@ -740,6 +777,15 @@
           if (!activeProfile || !mentorStatus) return;
           mentorStatus.textContent = `${activeProfile.mentorName} 연결 요청이 생성되었습니다. 신청 링크를 확인한 뒤 지원서 초안을 멘토에게 보여주세요.`;
           mentorStatus.hidden = false;
+        });
+      }
+
+      if (mentorOfficial) {
+        mentorOfficial.addEventListener("click", () => {
+          if (!activeProfile || !applicationLinkPreview || !applicationLinkUrl) return;
+          applicationLinkUrl.href = activeProfile.applicationUrl;
+          applicationLinkUrl.textContent = activeProfile.applicationUrl;
+          applicationLinkPreview.hidden = false;
         });
       }
 
