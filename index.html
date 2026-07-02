@@ -2347,7 +2347,7 @@
         );
 
         if (shouldScroll) {
-          modalMatches.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          pageMatches.scrollIntoView({ behavior: "smooth", block: "start" });
         }
       };
 
@@ -2378,7 +2378,7 @@
         renderCompanyMatches(profile, true);
         formStatus.textContent = "프로필이 등록되었습니다. 기업과 멘토 매칭 결과를 바로 확인하세요.";
         formStatus.hidden = false;
-        modalMatches.scrollIntoView({ behavior: "smooth", block: "start" });
+        profileDialog.close();
       });
 
       const savedProfile = readSavedProfile();
