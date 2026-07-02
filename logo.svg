@@ -1,6 +1,6 @@
-<svg width="420" height="120" viewBox="0 0 420 120" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ENVOL 로고">
+<svg width="560" height="160" viewBox="0 0 560 160" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ENVOL logo">
   <defs>
-    <linearGradient id="g" x1="40" y1="18" x2="92" y2="102" gradientUnits="userSpaceOnUse">
+    <linearGradient id="g" x1="20" y1="20" x2="120" y2="140" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#1C7F4D"/>
       <stop offset="1" stop-color="#2AA564"/>
     </linearGradient>
@@ -8,15 +8,12 @@
       <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#123526" flood-opacity="0.12"/>
     </filter>
   </defs>
-  <circle cx="62" cy="60" r="38" fill="url(#g)" filter="url(#s)"/>
-  <circle cx="62" cy="44" r="11" fill="#FFFFFF"/>
-  <path d="M52 60c0-5.523 4.477-10 10-10s10 4.477 10 10v18H52V60Z" fill="#FFFFFF"/>
-  <path d="M48 63c0-2.761 2.239-5 5-5h18c2.761 0 5 2.239 5 5s-2.239 5-5 5H53c-2.761 0-5-2.239-5-5Z" fill="#FFFFFF" opacity="0.95"/>
-  <circle cx="62" cy="60" r="28" stroke="#FFFFFF" stroke-width="3" opacity="0.6"/>
-  <path d="M146 42h41c17.673 0 32 14.327 32 32s-14.327 32-32 32h-41V42Z" fill="#123526"/>
-  <path d="M149 45h35c15.464 0 28 12.536 28 28s-12.536 28-28 28h-35V45Z" fill="#FFFFFF"/>
-  <path d="M149 45h35c15.464 0 28 12.536 28 28s-12.536 28-28 28h-35V45Z" fill="#F5FBF8"/>
-  <text x="157" y="80" fill="#1C7F4D" font-family="Arial, 'Malgun Gothic', sans-serif" font-size="30" font-weight="900" letter-spacing="1.2">ENVOL</text>
-  <path d="M208 89h70" stroke="#D8E8DD" stroke-width="2"/>
-  <circle cx="243" cy="89" r="4" fill="#2AA564"/>
+  <circle cx="70" cy="80" r="48" fill="url(#g)" filter="url(#s)"/>
+  <circle cx="70" cy="58" r="14" fill="#FFFFFF"/>
+  <path d="M58 79c0-6.627 5.373-12 12-12s12 5.373 12 12v22H58V79Z" fill="#FFFFFF"/>
+  <path d="M53 83c0-3.314 2.686-6 6-6h22c3.314 0 6 2.686 6 6s-2.686 6-6 6H59c-3.314 0-6-2.686-6-6Z" fill="#FFFFFF" opacity="0.95"/>
+  <circle cx="70" cy="80" r="34" stroke="#FFFFFF" stroke-width="4" opacity="0.55"/>
+  <text x="155" y="100" fill="#1C7F4D" font-family="Arial, 'Malgun Gothic', sans-serif" font-size="44" font-weight="900" letter-spacing="1.2">ENVOL</text>
+  <path d="M154 114h138" stroke="#D8E8DD" stroke-width="3"/>
+  <circle cx="223" cy="114" r="5" fill="#2AA564"/>
 </svg>
