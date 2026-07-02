@@ -10,18 +10,18 @@
     <title>ENVOL - 프로젝트형 사회 연결망</title>
     <style>
       :root {
-        --blue: #0f5bea;
-        --blue-dark: #073dbe;
-        --navy: #071841;
-        --green: #16965a;
-        --green-dark: #0d7f47;
-        --mint: #eaf8f1;
-        --sky: #eef5ff;
-        --line: #dbe4f2;
-        --text: #172033;
-        --muted: #5e6a7b;
+        --blue: #1c7f4d;
+        --blue-dark: #115a36;
+        --navy: #123526;
+        --green: #2aa564;
+        --green-dark: #177846;
+        --mint: #eaf8ef;
+        --sky: #eef8f2;
+        --line: #d8e8dd;
+        --text: #1c2a23;
+        --muted: #5b6a60;
         --panel: #ffffff;
-        --surface: #f7faff;
+        --surface: #f7fbf8;
         font-family: Arial, "Malgun Gothic", sans-serif;
         color: var(--text);
         background: #ffffff;
@@ -34,7 +34,7 @@
       body {
         margin: 0;
         min-width: 320px;
-        background: linear-gradient(180deg, #ffffff 0%, #f6fbff 58%, #ffffff 100%);
+        background: linear-gradient(180deg, #ffffff 0%, #f5fbf7 58%, #ffffff 100%);
         word-break: keep-all;
         overflow-wrap: break-word;
         overflow-x: hidden;
@@ -67,23 +67,34 @@
       .brand {
         display: inline-flex;
         align-items: center;
-        gap: 2px;
+        gap: 0;
         color: var(--blue);
         font-size: 2.75rem;
         font-weight: 900;
         line-height: 1;
       }
 
-      .brand-mark {
-        width: 34px;
-        height: 34px;
-        margin: 0 1px;
-        border: 2px solid #d7e3f5;
-        border-radius: 50%;
+      .brand-logo {
+        width: 148px;
+        height: 42px;
         display: block;
-        object-fit: cover;
+        object-fit: contain;
+        object-position: center;
+        border-radius: 8px;
         background: #fff;
         box-shadow: 0 6px 14px rgba(15, 42, 79, 0.08);
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
       }
 
       .main-nav {
@@ -134,9 +145,9 @@
         justify-self: end;
         width: min(1020px, 100%);
         padding: 28px;
-        border: 1px solid #d9e6f7;
+        border: 1px solid #d8e8dd;
         border-radius: 12px;
-        background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
+        background: linear-gradient(180deg, #ffffff 0%, #f7fbf8 100%);
         box-shadow: 0 18px 42px rgba(14, 45, 88, 0.12);
         overflow: hidden;
       }
@@ -185,7 +196,7 @@
 
       .testimonial-card {
         padding: 26px 28px;
-        border: 1px solid #dce8f7;
+        border: 1px solid #d8e8dd;
         border-radius: 10px;
         background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
         box-shadow: 0 10px 22px rgba(15, 42, 79, 0.05);
@@ -213,7 +224,7 @@
       }
 
       .testimonial-card--youth {
-        border-left: 4px solid #3e76f0;
+        border-left: 4px solid #2a8c54;
       }
 
       .testimonial-card--mentor {
@@ -221,7 +232,7 @@
       }
 
       .testimonial-card--company {
-        border-left: 4px solid #6b8cff;
+        border-left: 4px solid #4bb97a;
       }
 
       .testimonial-label {
@@ -291,7 +302,7 @@
       .cta-primary {
         color: #ffffff;
         background: var(--blue);
-        box-shadow: 0 18px 35px rgba(15, 91, 234, 0.22);
+        box-shadow: 0 18px 35px rgba(28, 127, 77, 0.22);
       }
 
       .cta-secondary {
@@ -301,9 +312,9 @@
       }
 
       .matching-stage {
-        border: 1px solid #d3e1f5;
+        border: 1px solid #d8e8dd;
         border-radius: 8px;
-        background: rgba(248, 251, 255, 0.86);
+        background: rgba(248, 253, 249, 0.86);
         box-shadow: 0 22px 55px rgba(32, 80, 144, 0.08);
         padding: 26px 22px;
       }
@@ -342,8 +353,8 @@
         height: 102px;
         margin: 0 auto 16px;
         border-radius: 50%;
-        background: #dcecff;
-        border: 1px solid #c9dcf3;
+        background: #dff3e7;
+        border: 1px solid #c7e4d2;
         overflow: hidden;
       }
 
@@ -367,7 +378,7 @@
         left: 12px;
         bottom: -7px;
         border-radius: 40px 40px 0 0;
-        background: #2e72c7;
+        background: #2f9b61;
       }
 
       .student-name {
@@ -398,8 +409,8 @@
         align-items: center;
         padding: 0 10px;
         border-radius: 999px;
-        color: #1d365b;
-        background: #e8f1fb;
+        color: #1a4330;
+        background: #e6f6ea;
         font-size: 0.75rem;
         font-weight: 800;
       }
@@ -440,7 +451,7 @@
       }
 
       .ai-panel .panel-title {
-        color: var(--blue);
+        color: var(--green-dark);
         text-align: center;
       }
 
@@ -449,7 +460,7 @@
         width: 148px;
         height: 148px;
         margin: 14px auto 22px;
-        border: 2px dashed #b7cff5;
+        border: 2px dashed #b9dec8;
         border-radius: 50%;
       }
 
@@ -462,14 +473,14 @@
 
       .ai-orbit::before {
         inset: 22px;
-        border: 2px dashed #83b2f4;
+        border: 2px dashed #78c694;
       }
 
       .ai-orbit::after {
         inset: 43px;
-        border: 1px solid #c6d9f8;
+        border: 1px solid #c8ead3;
         background: #ffffff;
-        box-shadow: 0 12px 32px rgba(15, 91, 234, 0.18);
+        box-shadow: 0 12px 32px rgba(28, 127, 77, 0.18);
       }
 
       .ai-core {
@@ -478,7 +489,7 @@
         z-index: 2;
         display: grid;
         place-items: center;
-        color: var(--blue);
+        color: var(--green-dark);
         font-size: 2.4rem;
         font-weight: 900;
       }
@@ -489,19 +500,19 @@
         width: 9px;
         height: 9px;
         border-radius: 50%;
-        background: var(--blue);
+        background: var(--green);
       }
 
       .dot-a {
         left: 26px;
         top: 46px;
-        background: #93bfe8;
+        background: #8fd2ab;
       }
 
       .dot-b {
         right: 8px;
         top: 64px;
-        background: #39c674;
+        background: #2ea864;
       }
 
       .dot-c {
@@ -618,9 +629,9 @@
       .icon-badge {
         width: 56px;
         height: 56px;
-        color: var(--blue);
-        background: #eaf3ff;
-        border: 1px solid #cae0ff;
+        color: var(--green-dark);
+        background: #e6f6ea;
+        border: 1px solid #c9e7d4;
         font-weight: 900;
       }
 
@@ -637,7 +648,7 @@
         background: var(--blue);
         font-size: 1.45rem;
         font-weight: 900;
-        box-shadow: 0 12px 24px rgba(15, 91, 234, 0.18);
+        box-shadow: 0 12px 24px rgba(28, 127, 77, 0.18);
       }
 
       .green .round-action {
@@ -670,7 +681,7 @@
       .profile-aside {
         padding: 36px 30px;
         color: #ffffff;
-        background: linear-gradient(160deg, #0f5bea 0%, #0b8c5b 100%);
+        background: linear-gradient(160deg, #176f45 0%, #2caa65 100%);
       }
 
       .profile-aside h2 {
@@ -819,7 +830,7 @@
       .field select:focus,
       .field textarea:focus {
         border-color: var(--blue);
-        box-shadow: 0 0 0 4px rgba(15, 91, 234, 0.12);
+        box-shadow: 0 0 0 4px rgba(28, 127, 77, 0.12);
       }
 
       .choice-group {
@@ -844,11 +855,11 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        border: 1px solid #cfd9ea;
+        border: 1px solid #c8e2cf;
         border-radius: 999px;
         padding: 0 14px;
-        color: #24314a;
-        background: #f8fbff;
+        color: #1f4330;
+        background: #f3fbf5;
         font-size: 0.9rem;
         font-weight: 800;
         cursor: pointer;
@@ -856,9 +867,9 @@
       }
 
       .option-grid input:checked + label {
-        border-color: var(--blue);
-        color: var(--blue);
-        background: #eaf3ff;
+        border-color: var(--green);
+        color: var(--green-dark);
+        background: #e6f6ea;
       }
 
       .agreement {
@@ -875,7 +886,7 @@
         height: 18px;
         flex: 0 0 18px;
         margin-top: 2px;
-        accent-color: var(--blue);
+        accent-color: var(--green);
       }
 
       .form-actions {
@@ -901,7 +912,7 @@
         border: 0;
         color: #ffffff;
         background: var(--blue);
-        box-shadow: 0 14px 30px rgba(15, 91, 234, 0.2);
+        box-shadow: 0 14px 30px rgba(28, 127, 77, 0.2);
       }
 
       .ghost-button {
@@ -985,11 +996,11 @@
         min-height: 34px;
         display: inline-flex;
         align-items: center;
-        border: 1px solid #cae0ff;
+        border: 1px solid #c9e7d4;
         border-radius: 999px;
         padding: 0 12px;
-        color: #17458c;
-        background: #eef6ff;
+        color: #1c5e3d;
+        background: #eef8f1;
         font-size: 0.82rem;
         font-weight: 900;
       }
@@ -1103,8 +1114,8 @@
         align-items: center;
         border-radius: 999px;
         padding: 0 9px;
-        color: #1d365b;
-        background: #edf4ff;
+        color: #1a4330;
+        background: #e6f6ea;
         font-size: 0.74rem;
         font-weight: 900;
       }
@@ -1134,13 +1145,9 @@
           min-height: 74px;
         }
 
-        .brand {
-          font-size: 2.2rem;
-        }
-
-        .brand-mark {
-          width: 28px;
-          height: 28px;
+        .brand-logo {
+          width: 130px;
+          height: 38px;
         }
 
         .main-nav {
@@ -1213,13 +1220,9 @@
           display: none;
         }
 
-        .brand {
-          font-size: 1.88rem;
-        }
-
-        .brand-mark {
-          width: 24px;
-          height: 24px;
+        .brand-logo {
+          width: 116px;
+          height: 34px;
         }
 
         .hero {
@@ -1372,7 +1375,7 @@
     <header class="site-header">
       <div class="header-inner">
         <a class="brand" href="#" aria-label="ENVOL 홈">
-          <span>ENV</span><img class="brand-mark" src="./photo1.png" alt="" aria-hidden="true"><span>L</span>
+          <span class="sr-only">ENVOL</span><img class="brand-logo" src="./photo1.png" alt="ENVOL 로고">
         </a>
         <nav class="main-nav" aria-label="주요 메뉴">
           <a href="#projects">프로젝트</a>
