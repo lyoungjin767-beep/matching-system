@@ -1619,17 +1619,17 @@
             <button class="icon-button" type="button" aria-label="닫기" data-close-profile>&times;</button>
           </div>
 
-          <form class="profile-form" id="profileForm">
+          <form class="profile-form" id="profileForm" novalidate>
             <fieldset class="form-section">
               <legend>기본 정보</legend>
               <div class="form-grid">
                 <div class="field">
                   <label for="studentName">이름</label>
-                  <input id="studentName" name="studentName" type="text" placeholder="김지훈" autocomplete="name" required>
+                  <input id="studentName" name="studentName" type="text" placeholder="이웅진" autocomplete="name" required>
                 </div>
                 <div class="field">
                   <label for="schoolName">학교</label>
-                  <input id="schoolName" name="schoolName" type="text" placeholder="ENVOL대학교" required>
+                  <input id="schoolName" name="schoolName" type="text" placeholder="한서대학교" required>
                 </div>
                 <div class="field">
                   <label for="majorName">전공</label>
@@ -1761,11 +1761,11 @@
                 </div>
                 <div class="field">
                   <label for="regionName">활동 가능 지역</label>
-                  <input id="regionName" name="regionName" type="text" placeholder="서울, 경기, 온라인" required>
+                  <input id="regionName" name="regionName" type="text" placeholder="인천" required>
                 </div>
                 <div class="field full">
                   <label for="skills">보유 역량</label>
-                  <textarea id="skills" name="skills" placeholder="Python, 데이터 시각화, 발표, 리서치 등"></textarea>
+                  <textarea id="skills" name="skills" placeholder="데이터 시각화 머신러닝"></textarea>
                 </div>
               </div>
             </fieldset>
@@ -1792,7 +1792,7 @@
             <div class="form-actions">
               <button class="ghost-button" type="button" data-close-profile>취소</button>
               <p class="form-status" data-form-status hidden></p>
-              <button class="submit-button" type="submit">프로필 등록하고 매칭 보기</button>
+              <button class="submit-button" type="button" data-submit-profile>프로필 등록하고 매칭 보기</button>
             </div>
 
             <section class="match-results" data-modal-matches hidden aria-live="polite">
@@ -2270,16 +2270,18 @@
       const readProfileFromForm = () => {
         const formData = new FormData(profileForm);
         const readText = (key) => (formData.get(key) || "").trim();
+        const selectedInterests = getSelectedInterests();
+        const fallbackInterests = ["데이터 분석", "AI/머신러닝", "ESG", "서비스 기획"];
 
         return {
-          studentName: readText("studentName") || "김지훈",
-          schoolName: readText("schoolName") || "ENVOL대학교",
-          majorName: readText("majorName"),
+          studentName: readText("studentName") || "이웅진",
+          schoolName: readText("schoolName") || "한서대학교",
+          majorName: readText("majorName") || "경제학",
           studentYear: formData.get("studentYear") || "3학년",
-          interests: getSelectedInterests(),
+          interests: selectedInterests.length ? selectedInterests : fallbackInterests,
           projectType: formData.get("projectType") || "기업 프로젝트",
-          regionName: readText("regionName") || "서울",
-          skills: readText("skills"),
+          regionName: readText("regionName") || "인천",
+          skills: readText("skills") || "데이터 시각화 머신러닝",
           emailAddress: readText("emailAddress"),
           portfolioUrl: readText("portfolioUrl")
         };
@@ -2289,11 +2291,13 @@
         const nameTarget = document.querySelector("[data-profile-name]");
         const majorTarget = document.querySelector("[data-profile-major]");
         const chipsTarget = document.querySelector("[data-profile-chips]");
+        if (!nameTarget || !majorTarget || !chipsTarget) return;
+
         const savedInterests = Array.isArray(profile.interests) ? profile.interests : [];
         const interests = savedInterests.length ? savedInterests : ["데이터 분석", "AI/머신러닝", "ESG"];
 
-        nameTarget.textContent = profile.studentName || "김지훈";
-        majorTarget.textContent = `${profile.majorName || "컴퓨터공학"} 전공`;
+        nameTarget.textContent = profile.studentName || "이웅진";
+        majorTarget.textContent = `${profile.majorName || "경제학"} 전공`;
         chipsTarget.replaceChildren(
           ...interests.slice(0, 4).map((interest) => {
             const chip = document.createElement("span");
@@ -2871,8 +2875,7 @@
         });
       });
 
-      profileForm.addEventListener("submit", (event) => {
-        event.preventDefault();
+      const submitProfileForMatching = () => {
         const profile = readProfileFromForm();
 
         localStorage.setItem(storageKey, JSON.stringify(profile));
@@ -2881,6 +2884,15 @@
         formStatus.textContent = "프로필이 등록되었습니다. 다음 결과 화면에서 기업과 멘토 페어를 확인하세요.";
         formStatus.hidden = false;
         profileDialog.close();
+      };
+
+      document.querySelectorAll("[data-submit-profile]").forEach((button) => {
+        button.addEventListener("click", submitProfileForMatching);
+      });
+
+      profileForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        submitProfileForMatching();
       });
 
       const savedProfile = readSavedProfile();
