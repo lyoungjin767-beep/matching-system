@@ -143,7 +143,7 @@
         margin: 0;
         justify-self: end;
         width: min(940px, 100%);
-        padding: 18px;
+        padding: 22px;
         border: 1px solid #d9e6f7;
         border-radius: 12px;
         background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
@@ -151,11 +151,105 @@
         overflow: hidden;
       }
 
+      .testimonial-panel {
+        display: grid;
+        gap: 16px;
+      }
+
+      .testimonial-head {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .testimonial-eyebrow {
+        margin: 0;
+        color: var(--green);
+        font-size: 0.84rem;
+        font-weight: 800;
+        letter-spacing: 0;
+      }
+
+      .testimonial-title {
+        margin: 8px 0 0;
+        color: var(--navy);
+        font-size: 1.35rem;
+        line-height: 1.2;
+        font-weight: 900;
+        letter-spacing: 0;
+      }
+
+      .testimonial-subtitle {
+        margin: 6px 0 0;
+        color: #5d6a7f;
+        font-size: 0.94rem;
+        line-height: 1.5;
+        font-weight: 500;
+      }
+
+      .testimonial-list {
+        display: grid;
+        gap: 12px;
+      }
+
+      .testimonial-card {
+        padding: 18px 20px;
+        border: 1px solid #dce8f7;
+        border-radius: 10px;
+        background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+        box-shadow: 0 10px 22px rgba(15, 42, 79, 0.05);
+      }
+
+      .testimonial-card h3 {
+        margin: 0;
+        color: var(--navy);
+        font-size: 1rem;
+        line-height: 1.15;
+        font-weight: 900;
+        letter-spacing: 0;
+      }
+
+      .testimonial-card p {
+        margin: 10px 0 0;
+        color: #334058;
+        font-size: 1.02rem;
+        line-height: 1.6;
+        font-weight: 500;
+      }
+
+      .testimonial-card blockquote {
+        margin: 0;
+      }
+
+      .testimonial-card--youth {
+        border-left: 4px solid #3e76f0;
+      }
+
+      .testimonial-card--mentor {
+        border-left: 4px solid #21a566;
+      }
+
+      .testimonial-card--company {
+        border-left: 4px solid #6b8cff;
+      }
+
+      .testimonial-label {
+        display: inline-flex;
+        align-items: center;
+        min-height: 30px;
+        margin-bottom: 10px;
+        color: var(--green);
+        font-size: 0.84rem;
+        font-weight: 800;
+        letter-spacing: 0;
+      }
+
       .hero-photo {
         display: block;
         width: 100%;
         aspect-ratio: 1.75 / 1;
-        object-fit: contain;
+        object-fit: cover;
         object-position: center;
         border-radius: 8px;
         background: #ffffff;
@@ -1361,8 +1455,12 @@
           padding: 12px;
         }
 
-        .hero-photo {
-          aspect-ratio: 1.2 / 1;
+        .testimonial-title {
+          font-size: 1.1rem;
+        }
+
+        .testimonial-card p {
+          font-size: 0.98rem;
         }
 
         .headline-tail {
@@ -1534,9 +1632,40 @@
           </div>
         </div>
 
-        <figure class="hero-visual" aria-label="사진1">
-          <img class="hero-photo" src="./photo1.png" alt="사진1" />
-        </figure>
+        <div class="hero-visual" aria-label="후기">
+          <div class="testimonial-panel">
+            <div class="testimonial-head">
+              <div>
+                <p class="testimonial-eyebrow">이용 후기</p>
+                <h2 class="testimonial-title">청년, 멘토, 기업이 한 화면에서 연결됩니다</h2>
+                <p class="testimonial-subtitle">실무 경험, 피드백, 채용 미스매칭 개선을 동시에 보여주는 후기 영역입니다.</p>
+              </div>
+            </div>
+
+            <div class="testimonial-list">
+              <article class="testimonial-card testimonial-card--youth">
+                <div class="testimonial-label">청년 후기</div>
+                <blockquote>
+                  <p>“부모님이나 지인 인맥 없이도 현직자에게 직접 피드백을 받고, 제 역량을 보여줄 수 있는 실무 프로젝트 경험을 만들 수 있었습니다.”</p>
+                </blockquote>
+              </article>
+
+              <article class="testimonial-card testimonial-card--mentor">
+                <div class="testimonial-label">멘토 후기</div>
+                <blockquote>
+                  <p>“단순한 조언이 아니라 실제 과제를 함께 해결하는 과정에서 청년의 문제 해결력과 협업 태도, 성장 가능성을 직접 확인할 수 있었습니다.”</p>
+                </blockquote>
+              </article>
+
+              <article class="testimonial-card testimonial-card--company">
+                <div class="testimonial-label">기업 후기</div>
+                <blockquote>
+                  <p>“서류와 면접만으로는 보기 어려운 실무 역량을 프로젝트 수행 과정에서 확인할 수 있어, 채용 미스매칭을 줄이는 데 도움이 되었습니다.”</p>
+                </blockquote>
+              </article>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section class="comparison" aria-label="일반 인턴십과 ENVOL 비교">
