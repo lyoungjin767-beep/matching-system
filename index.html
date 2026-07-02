@@ -31,6 +31,10 @@
         box-sizing: border-box;
       }
 
+      [hidden] {
+        display: none !important;
+      }
+
       body {
         margin: 0;
         min-width: 320px;
@@ -1550,11 +1554,6 @@
 
       <section class="company-matches" data-page-matches hidden aria-live="polite">
         <div class="company-match-shell">
-          <div class="match-page-actions">
-            <button class="ghost-button" type="button" data-back-home>홈으로</button>
-            <button class="submit-button" type="button" data-open-profile>프로필 수정</button>
-          </div>
-
           <div class="match-pair-section">
             <div class="match-header">
               <div>
@@ -1567,6 +1566,11 @@
               <div class="match-summary" data-pair-summary></div>
             </div>
             <div class="mentor-pair-list" data-pair-list></div>
+          </div>
+
+          <div class="match-page-actions">
+            <button class="ghost-button" type="button" data-back-home>홈으로</button>
+            <button class="submit-button" type="button" data-open-profile>프로필 수정</button>
           </div>
 
           <div class="match-header">
